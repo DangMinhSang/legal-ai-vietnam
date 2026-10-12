@@ -3,94 +3,147 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Legal AI Vietnam - Hệ Thống Hỗ Trợ Xét Xử Hình Sự</title>
+  <title>Legal AI Vietnam - Hệ Thống Trí Tuệ Nhân Tạo Pháp Lý Đa Lĩnh Vực</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Inter', sans-serif; }
+    code, pre, .font-mono { font-family: 'JetBrains Mono', monospace; }
     .badge { display: inline-flex; align-items: center; padding: 0.25rem 0.65rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-900 min-h-screen">
+<body class="bg-slate-50 text-slate-900 min-h-screen antialiased">
 
   <!-- Header -->
   <header class="bg-indigo-900 text-white shadow-lg sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-col md:flex-row items-center justify-between gap-3">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-xl text-amber-300 shadow">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-700 to-amber-500 flex items-center justify-center font-bold text-xl text-white shadow-md">
           ⚖️
         </div>
         <div>
-          <h1 class="text-xl font-bold tracking-tight">HỆ THỐNG AI PHÂN TÍCH VÀ DỰ ĐOÁN XÉT XỬ HÌNH SỰ</h1>
-          <p class="text-xs text-indigo-200">Đại học Công nghệ Thông tin (UIT) - ĐHQG TP.HCM | Nghiên cứu Pháp lý AI Việt Nam</p>
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg md:text-xl font-extrabold tracking-tight">LEGAL AI VIETNAM</h1>
+            <span class="text-[10px] bg-amber-400 text-amber-950 font-extrabold px-2 py-0.5 rounded uppercase">Phase 3 Multi-Domain</span>
+          </div>
+          <p class="text-xs text-indigo-200">Hệ Thống Trí Tuệ Nhân Tạo Pháp Lý Đa Lĩnh Vực & Giải Quyết Tranh Chấp • ĐH Công nghệ Thông tin (UIT)</p>
         </div>
       </div>
-      <div class="flex items-center gap-2 text-xs bg-indigo-800/80 px-3 py-1.5 rounded-full border border-indigo-700">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="text-slate-200">Multi-tier Architecture: BLHS 2015 • 7 Án Lệ TANDTC • RF Predictor</span>
+      <div class="flex flex-wrap items-center gap-2 text-xs">
+        <span class="bg-indigo-800/90 text-slate-200 px-3 py-1.5 rounded-full border border-indigo-700 flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>5 Lĩnh vực: Hình sự • Dân sự • Hành chính • Thương mại • Kỷ luật</span>
+        </span>
+        <span class="bg-amber-900/60 text-amber-200 px-2.5 py-1.5 rounded-full border border-amber-700/80 font-medium hidden lg:inline-flex">
+          Điều 32 BLHS: 7 HP Chính + 7 HP Bổ sung
+        </span>
       </div>
     </div>
   </header>
 
   <!-- Main Container -->
-  <main class="max-w-6xl mx-auto px-4 py-8">
+  <main class="max-w-7xl mx-auto px-4 py-6">
 
-    <!-- Hero / Guidance -->
-    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-8">
-      <div class="flex items-start justify-between gap-4">
-        <div>
-          <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-            <span>📝</span> Nhập liệu Hồ sơ Vụ án Sơ thẩm
-          </h2>
-          <p class="text-sm text-slate-600 mt-1">
-            Hệ thống hỗ trợ <strong>chính xác 2 khung nhập liệu</strong>: Thông tin cá nhân các đương sự và Diễn biến tình tiết vụ án.
-            Hệ thống tự động trích xuất thực thể, suy luận hiệu lực pháp luật theo <strong>Điều 7 BLHS 2015</strong>, tra cứu án lệ tương đồng và dự đoán mức án.
-          </p>
+    <!-- Domain Navigator Tabs -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 mb-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Lĩnh vực pháp luật:</span>
+          <span id="active_domain_label" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg border border-indigo-200">
+            🌐 Tự động nhận diện (Multi-Domain Dispatcher)
+          </span>
+        </div>
+        <!-- Model Engine Selector -->
+        <div class="flex items-center gap-2">
+          <label for="model_engine_select" class="text-xs font-bold text-slate-600 flex items-center gap-1">
+            <span>🧠</span> Engine:
+          </label>
+          <select id="model_engine_select" onchange="changeModelEngine()" class="text-xs rounded-lg border-slate-300 border bg-white px-2.5 py-1.5 text-slate-800 font-medium focus:ring-1 focus:ring-indigo-500">
+            <option value="offline_hybrid" selected>⚙️ Heuristic & Random Forest (Offline 100% - Khuyến nghị)</option>
+            <option value="qwen_ollama">🧠 Qwen2.5 (3B / 7B qua Ollama Local)</option>
+            <option value="vietnamese_llm">🇻🇳 Vietnamese LLM (PhoGPT-4B / Vistral-7B)</option>
+            <option value="kaggle_gpu">⚡ Kaggle Cloud GPU (QLoRA 4-bit SFT)</option>
+            <option value="claude_openai">☁️ Claude 3.5 Sonnet / GPT-4o API</option>
+          </select>
         </div>
       </div>
 
-      <!-- Quick Preset Buttons & Model Selector -->
-      <div class="mt-4 pt-4 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Mẫu vụ án:</span>
-          <button onclick="loadPreset('forgery_vstep')" class="text-xs bg-amber-50 hover:bg-amber-100 hover:text-amber-900 text-amber-800 font-bold px-3 py-1.5 rounded-lg border border-amber-300 transition shadow-sm">
-            🪪 1. Làm giả CCCD thi hộ VSTEP (Đ.341)
-          </button>
-          <button onclick="loadPreset('injury')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
-            🔪 2. Cố ý gây thương tích (Đ.134)
-          </button>
-          <button onclick="loadPreset('robbery')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
-            🔫 3. Cướp tài sản (Đ.168)
-          </button>
-          <button onclick="loadPreset('snatching')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
-            🏍️ 4. Cướp giật tài sản (Đ.171)
-          </button>
-          <button onclick="loadPreset('not_guilty')" class="text-xs bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
-            🕊️ 5. Vô tội
-          </button>
-        </div>
+      <!-- Domain Selection Buttons -->
+      <div class="flex flex-wrap gap-2 mt-3">
+        <button onclick="setDomainFilter(null)" id="btn_domain_all" class="text-xs px-3 py-1.5 rounded-lg font-bold transition shadow-sm bg-indigo-700 text-white border border-indigo-700">
+          🌐 1. Tự Động Phân Loại
+        </button>
+        <button onclick="setDomainFilter('criminal')" id="btn_domain_criminal" class="text-xs px-3 py-1.5 rounded-lg font-medium transition text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200">
+          ⚖️ 2. Hình Sự (Đ.32 BLHS)
+        </button>
+        <button onclick="setDomainFilter('civil')" id="btn_domain_civil" class="text-xs px-3 py-1.5 rounded-lg font-medium transition text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200">
+          🤝 3. Dân Sự & Hợp Đồng
+        </button>
+        <button onclick="setDomainFilter('administrative')" id="btn_domain_administrative" class="text-xs px-3 py-1.5 rounded-lg font-medium transition text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200">
+          🏛️ 4. Hành Chính (Tranh chấp CQNN)
+        </button>
+        <button onclick="setDomainFilter('commercial')" id="btn_domain_commercial" class="text-xs px-3 py-1.5 rounded-lg font-medium transition text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200">
+          💼 5. Thương Mại (Trần phạt 8% & VIAC)
+        </button>
+        <button onclick="setDomainFilter('disciplinary')" id="btn_domain_disciplinary" class="text-xs px-3 py-1.5 rounded-lg font-medium transition text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200">
+          👔 6. Kỷ Luật & Lao Động
+        </button>
+      </div>
 
-        <!-- AI Engine Selector -->
-        <div class="flex items-center gap-2 bg-slate-50 p-2 rounded-xl border border-slate-200">
-          <label for="model_engine_select" class="text-xs font-bold text-slate-600 flex items-center gap-1">
-            <span>🧠</span> Mô hình LLM:
-          </label>
-          <select id="model_engine_select" onchange="changeModelEngine()" class="text-xs rounded-lg border-slate-300 border bg-white px-2.5 py-1 text-slate-800 font-medium focus:ring-1 focus:ring-indigo-500">
-            <option value="offline_hybrid" selected>⚙️ Heuristic & Random Forest (Tự động - Offline 100%)</option>
-            <option value="qwen_ollama">🧠 Qwen2.5 (3B / 7B qua Ollama Local)</option>
-            <option value="vietnamese_llm">🇻🇳 Vietnamese LLM (PhoGPT / Vistral-7B)</option>
-            <option value="claude_openai">☁️ Claude 3.5 Sonnet / GPT-4o (Cloud API)</option>
-            <option value="kaggle_gpu">⚡ Kaggle Cloud GPU (Hỗ trợ fine-tune & host)</option>
-          </select>
+      <!-- Quick Preset Buttons -->
+      <div class="mt-3 pt-3 border-t border-slate-100">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Hồ sơ mẫu thực tế 1-Click:</span>
+          <span class="text-[11px] text-slate-400">Chọn mẫu để tự động điền hồ sơ</span>
+        </div>
+        <div class="flex flex-wrap gap-1.5" id="presets_container">
+          <!-- Hình sự -->
+          <button onclick="loadPreset('forgery_vstep')" class="text-xs bg-amber-50 hover:bg-amber-100 text-amber-900 font-semibold px-2.5 py-1 rounded-md border border-amber-300">
+            🪪 HS: Làm giả CCCD thi hộ VSTEP (Đ.341)
+          </button>
+          <button onclick="loadPreset('injury')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 px-2.5 py-1 rounded-md border border-slate-200">
+            🔪 HS: Cố ý gây thương tích (Đ.134)
+          </button>
+          <button onclick="loadPreset('robbery')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 px-2.5 py-1 rounded-md border border-slate-200">
+            🔫 HS: Cướp tài sản (Đ.168)
+          </button>
+          <button onclick="loadPreset('not_guilty')" class="text-xs bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 px-2.5 py-1 rounded-md border border-slate-200">
+            🕊️ HS: Tuyên bố Vô tội
+          </button>
+          <!-- Dân sự -->
+          <button onclick="loadPreset('civil_loan')" class="text-xs bg-blue-50 hover:bg-blue-100 text-blue-900 font-semibold px-2.5 py-1 rounded-md border border-blue-300">
+            💰 DS: Vay 800 triệu & Lãi suất trần 20% (Đ.468)
+          </button>
+          <button onclick="loadPreset('civil_inheritance')" class="text-xs bg-blue-50 hover:bg-blue-100 text-blue-900 px-2.5 py-1 rounded-md border border-blue-300">
+            📜 DS: Chia di sản thừa kế nhà đất (Đ.609)
+          </button>
+          <!-- Hành chính -->
+          <button onclick="loadPreset('admin_land')" class="text-xs bg-rose-50 hover:bg-rose-100 text-rose-900 font-semibold px-2.5 py-1 rounded-md border border-rose-300">
+            🏛️ HC: Thu hồi đất & bồi thường GPMB của UBND
+          </button>
+          <button onclick="loadPreset('admin_penalty')" class="text-xs bg-rose-50 hover:bg-rose-100 text-rose-900 px-2.5 py-1 rounded-md border border-rose-300">
+            🚨 HC: Xử phạt VPHC 80 triệu vượt thẩm quyền
+          </button>
+          <!-- Thương mại -->
+          <button onclick="loadPreset('com_penalty_8pct')" class="text-xs bg-purple-50 hover:bg-purple-100 text-purple-900 font-semibold px-2.5 py-1 rounded-md border border-purple-300">
+            📦 TM: Phạt vi phạm 15% (vượt trần 8% Đ.301 LTM) & VIAC
+          </button>
+          <!-- Kỷ luật -->
+          <button onclick="loadPreset('disc_pregnant')" class="text-xs bg-teal-50 hover:bg-teal-100 text-teal-900 font-semibold px-2.5 py-1 rounded-md border border-teal-300">
+            🚫 KL: Sa thải trái luật lao động nữ mang thai (Đ.137)
+          </button>
+          <button onclick="loadPreset('disc_wage_cut')" class="text-xs bg-teal-50 hover:bg-teal-100 text-teal-900 px-2.5 py-1 rounded-md border border-teal-300">
+            💼 KL: Phạt tiền, trừ 50% lương trái luật (Đ.127)
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- Input Mode Switcher (Tabs) -->
-    <div class="flex items-center justify-between mb-4">
-      <div class="flex items-center gap-2 bg-slate-200/70 p-1 rounded-xl">
+    <!-- Input Mode Switcher -->
+    <div class="flex items-center justify-between mb-3">
+      <div class="flex items-center gap-2 bg-slate-200/80 p-1 rounded-xl">
         <button
           id="tab_single_btn"
           onclick="switchInputTab('single')"
@@ -107,88 +160,65 @@
         </button>
       </div>
 
-      <div class="text-xs text-slate-500 hidden md:block">
-        Mẹo: Có thể dán trực tiếp toàn bộ bản tóm tắt hoặc tải file đính kèm
+      <div class="flex items-center gap-2">
+        <input type="file" id="case_file_upload" accept=".txt,.pdf,.docx" class="hidden" onchange="handleFileUpload(event)">
+        <button
+          onclick="document.getElementById('case_file_upload').click()"
+          class="text-xs bg-white hover:bg-slate-50 text-slate-700 font-semibold px-3 py-1.5 rounded-lg border border-slate-300 shadow-sm transition flex items-center gap-1.5"
+        >
+          <span>📂</span> Tải file hồ sơ (.txt, .pdf, .docx)
+        </button>
       </div>
     </div>
 
-    <!-- Mode 1: Single Free-Form Input Box -->
-    <div id="single_input_container" class="bg-white rounded-xl shadow-sm border border-indigo-200 p-6 mb-8">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-3">
-        <div>
-          <label for="freeform_text" class="text-base font-bold text-slate-800 flex items-center gap-2">
-            <span class="w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-bold">★</span>
-            TOÀN VĂN HỒ SƠ / CÁO TRẠNG / TÓM TẮT VỤ ÁN TỰ DO
-          </label>
-          <p class="text-xs text-slate-500 mt-0.5">
-            Dán toàn bộ văn bản vụ việc vào đây. Hệ thống sẽ tự động bóc tách danh sách bị cáo, bị hại, tình tiết vụ án và khung hình phạt.
-          </p>
-        </div>
-
-        <!-- File Upload Action -->
-        <div class="flex items-center gap-2">
-          <input type="file" id="case_file_upload" accept=".txt,.pdf,.docx" class="hidden" onchange="handleFileUpload(event)">
-          <button
-            onclick="document.getElementById('case_file_upload').click()"
-            class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 font-semibold px-3 py-1.5 rounded-lg border border-slate-300 transition flex items-center gap-1.5"
-          >
-            <span>📂</span> Tải file (.txt, .pdf, .docx)
-          </button>
-        </div>
+    <!-- Mode 1: Single Freeform Input Box -->
+    <div id="single_input_container" class="bg-white rounded-2xl shadow-sm border border-indigo-200 p-5 mb-6">
+      <div class="flex items-center justify-between mb-2">
+        <label for="freeform_text" class="text-sm font-bold text-slate-800 flex items-center gap-2">
+          <span class="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-bold">★</span>
+          HỒ SƠ / CÁO TRẠNG / ĐƠN KHỞI KIỆN / TÓM TẮT TRANH CHẤP
+        </label>
+        <span class="text-xs text-slate-500">Tự động nhận diện 5 lĩnh vực pháp luật</span>
       </div>
-
       <textarea
         id="freeform_text"
-        rows="12"
-        class="w-full text-sm rounded-lg border-slate-300 border focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 p-3.5 bg-slate-50/50 font-mono leading-relaxed"
-        placeholder="Dán toàn bộ nội dung vụ việc hoặc bản cáo trạng vào đây...
-Ví dụ:
-- Bị cáo: N, nữ sinh viên năm cuối tại TP.HCM, gia đình hoàn cảnh khó khăn...
-- Bị cáo: Hoàng, người làm giả trực tiếp...
-- Bị cáo: P, người môi giới...
-Vào ngày 19/01/2024, N đã thông qua P liên hệ Hoàng để làm CCCD giả thi hộ VSTEP cho M và A..."
+        rows="10"
+        class="w-full text-sm rounded-xl border-slate-300 border focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 p-3.5 bg-slate-50/50 font-mono leading-relaxed"
+        placeholder="Dán toàn bộ nội dung vụ việc, cáo trạng hoặc đơn khởi kiện vào đây..."
       ></textarea>
-
-      <div class="mt-3 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100">
+      <div class="mt-2.5 flex items-center justify-between pt-2 border-t border-slate-100">
         <div class="flex items-center gap-2">
           <button
             onclick="triggerAutoSplit()"
             class="text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-800 font-bold px-3 py-1.5 rounded-lg border border-indigo-200 transition flex items-center gap-1"
           >
-            <span>⚡</span> Tự động phân tách sang 2 khung chi tiết
+            <span>⚡</span> Tự động tách sang 2 khung chi tiết
           </button>
           <span id="split_status_msg" class="text-xs text-emerald-600 font-medium hidden">✓ Đã phân tách xong!</span>
         </div>
         <button onclick="document.getElementById('freeform_text').value=''" class="text-xs text-slate-400 hover:text-slate-600">
-          Xóa trắng
+          Xóa trắng ô
         </button>
       </div>
     </div>
 
-    <!-- Mode 2: The 2 Input Frames (Hidden by default or toggled) -->
-    <div id="double_input_container" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-
-      <!-- Khung 1: Thông tin cá nhân -->
-      <div class="bg-white rounded-xl shadow-sm border border-indigo-200 p-6 flex flex-col justify-between">
+    <!-- Mode 2: Double Input Boxes -->
+    <div id="double_input_container" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <!-- Khung 1: Cá nhân / Đương sự -->
+      <div class="bg-white rounded-2xl shadow-sm border border-indigo-200 p-5 flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-2">
-            <label for="personal_info" class="text-base font-bold text-slate-800 flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold">1</span>
-              THÔNG TIN CÁ NHÂN
+            <label for="personal_info" class="text-sm font-bold text-slate-800 flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold">1</span>
+              THÔNG TIN ĐƯƠNG SỰ / CÁ NHÂN
             </label>
-            <span class="text-xs text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded font-medium">Có thể nhiều Bị cáo & Bị hại</span>
+            <span class="text-xs text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded font-medium">Bị cáo, Bị hại, Nguyên đơn...</span>
           </div>
-          <p class="text-xs text-slate-500 mb-3">
-            Ghi rõ thông tin các đương sự: Họ tên, năm sinh, vai trò (Bị cáo / Bị hại), tiền án, tiền sự, nhân thân...
-          </p>
           <textarea
             id="personal_info"
-            rows="9"
-            class="w-full text-sm rounded-lg border-slate-300 border focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 p-3 bg-slate-50/50 font-mono"
-            placeholder="Ví dụ:
-- Bị cáo 1: Nguyễn Văn An, SN 1995, chưa có tiền án tiền sự.
-- Bị cáo 2: Lê Văn Cường, SN 1992, có 1 tiền án về tội trộm cắp tài sản (chưa xóa án tích).
-- Bị hại: Trần Quốc Bình, SN 1998, tỷ lệ tổn hại sức khỏe 35%."
+            rows="8"
+            class="w-full text-sm rounded-xl border-slate-300 border focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 p-3 bg-slate-50/50 font-mono"
+            placeholder="Thông tin các đương sự: Họ tên, năm sinh, vai trò, tiền án, tiền sự..."
           ></textarea>
         </div>
         <div class="mt-2 text-right">
@@ -196,155 +226,247 @@ Vào ngày 19/01/2024, N đã thông qua P liên hệ Hoàng để làm CCCD gi�
         </div>
       </div>
 
-      <!-- Khung 2: Thông tin vụ án -->
-      <div class="bg-white rounded-xl shadow-sm border border-indigo-200 p-6 flex flex-col justify-between">
+      <!-- Khung 2: Diễn biến vụ việc -->
+      <div class="bg-white rounded-2xl shadow-sm border border-indigo-200 p-5 flex flex-col justify-between">
         <div>
           <div class="flex items-center justify-between mb-2">
-            <label for="case_info" class="text-base font-bold text-slate-800 flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold">2</span>
-              THÔNG TIN VỤ ÁN
+            <label for="case_info" class="text-sm font-bold text-slate-800 flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold">2</span>
+              DIỄN BIẾN TÌNH TIẾT VỤ ÁN / TRANH CHẤP
             </label>
-            <span class="text-xs text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded font-medium">Hồ sơ Cáo trạng truy tố</span>
+            <span class="text-xs text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded font-medium">Hành vi, Hậu quả, Yêu cầu...</span>
           </div>
-          <p class="text-xs text-slate-500 mb-3">
-            Mô tả hành vi, ngày xảy ra, địa điểm, công cụ/vũ khí, hậu quả, bồi thường, tình tiết tăng nặng / giảm nhẹ...
-          </p>
           <textarea
             id="case_info"
-            rows="9"
-            class="w-full text-sm rounded-lg border-slate-300 border focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 p-3 bg-slate-50/50 font-mono"
-            placeholder="Ví dụ:
-Khoảng 21 giờ ngày 15/04/2023, do mâu thuẫn tại quán nước, bị cáo Nguyễn Văn An và Lê Văn Cường đã dùng dao bấm (hung khí nguy hiểm) đâm vào ngực anh Trần Quốc Bình làm anh Bình bị tổn hại 35% sức khỏe. Sau khi gây án, các bị cáo thành khẩn khai báo, tự nguyện bồi thường 50.000.000 đồng và được gia đình bị hại xin giảm nhẹ hình phạt."
+            rows="8"
+            class="w-full text-sm rounded-xl border-slate-300 border focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 p-3 bg-slate-50/50 font-mono"
+            placeholder="Mô tả hành vi phạm tội, thiệt hại, vi phạm hợp đồng hoặc quyết định hành chính bị khiếu kiện..."
           ></textarea>
         </div>
         <div class="mt-2 text-right">
           <button onclick="document.getElementById('case_info').value=''" class="text-xs text-slate-400 hover:text-slate-600">Xóa trắng ô 2</button>
         </div>
       </div>
-
     </div>
 
     <!-- Submit Button -->
-    <div class="flex justify-center mb-10">
+    <div class="flex justify-center mb-8">
       <button
         id="submit_btn"
         onclick="analyzeCase()"
-        class="bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-base px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition transform active:scale-95 flex items-center gap-3"
+        class="bg-gradient-to-r from-indigo-700 to-indigo-900 hover:from-indigo-800 hover:to-indigo-950 text-white font-extrabold text-base px-10 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition transform active:scale-95 flex items-center gap-3"
       >
-        <span id="btn_icon">⚖️</span>
-        <span id="btn_text">PHÂN TÍCH & DỰ ĐOÁN KẾT QUẢ XÉT XỬ</span>
+        <span id="btn_icon" class="text-xl">⚖️</span>
+        <span id="btn_text">PHÂN TÍCH PHÁP LÝ & ĐỀ XUẤT GIẢI QUYẾT</span>
       </button>
     </div>
 
     <!-- Loading State -->
     <div id="loading_state" class="hidden text-center py-12">
       <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-indigo-600 border-t-transparent"></div>
-      <p class="mt-4 text-base font-semibold text-slate-700">Đang kích hoạt Orchestrator & Phân tích Đa Tác tử...</p>
-      <p class="text-xs text-slate-500">Đối chiếu Điều 7 BLHS 2015 • Tra cứu 7 Án lệ TANDTC • Chạy mô hình Random Forest</p>
+      <p class="mt-4 text-base font-bold text-slate-800">Đang kích hoạt Multi-Domain Legal Engine...</p>
+      <p class="text-xs text-slate-500 mt-1">Phân loại 5 Lĩnh vực • Tra cứu Điều 32 BLHS 2015 • Đối chiếu Án lệ TANDTC • Kiểm tra Hàng rào Nhất quán</p>
     </div>
 
     <!-- Error Box -->
-    <div id="error_box" class="hidden bg-rose-50 border border-rose-200 text-rose-800 p-4 rounded-xl mb-8">
+    <div id="error_box" class="hidden bg-rose-50 border border-rose-200 text-rose-800 p-4 rounded-xl mb-6">
       <p class="font-bold flex items-center gap-2"><span>⚠️</span> Đã xảy ra lỗi khi phân tích:</p>
       <p id="error_message" class="text-sm mt-1"></p>
     </div>
 
-    <!-- Result Dashboard -->
+    <!-- RESULT DASHBOARD -->
     <div id="result_dashboard" class="hidden space-y-6">
 
-      <!-- 1. Tóm tắt Quyết định Xét xử (Hero Card) -->
-      <div class="bg-gradient-to-r from-slate-900 to-indigo-950 text-white rounded-2xl p-6 shadow-xl border border-indigo-800">
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div>
-            <div class="flex items-center gap-3 mb-2">
-              <span id="verdict_badge" class="px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider"></span>
-              <span class="text-xs text-slate-300">Độ tin cậy: <strong id="confidence_val" class="text-amber-300 font-bold"></strong></span>
+      <!-- SECTION 0: Multi-Domain Intelligence Banner -->
+      <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white rounded-2xl p-6 shadow-xl border border-indigo-800">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-2">
+              <span id="multi_domain_badge" class="px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-amber-400 text-amber-950 shadow"></span>
+              <span class="text-xs text-slate-300">Cơ sở pháp lý: <strong id="primary_law_display" class="text-slate-100 font-semibold"></strong></span>
             </div>
-            <h3 class="text-2xl font-bold text-white tracking-tight" id="crime_title_display"></h3>
-            <p class="text-xs text-slate-300 mt-1" id="statutory_bounds_display"></p>
+            <h3 class="text-2xl font-extrabold text-white tracking-tight" id="case_title_display"></h3>
+            <p class="text-xs text-slate-300 mt-2 leading-relaxed bg-white/5 p-3 rounded-xl border border-white/10" id="combined_summary_display"></p>
           </div>
-          <div class="bg-white/10 backdrop-blur rounded-xl px-6 py-4 border border-white/15 text-center min-w-[200px]">
-            <p class="text-xs font-medium text-slate-300 uppercase tracking-wider">Mức án tù tham chiếu khung</p>
-            <p class="text-3xl font-extrabold text-amber-300 mt-1" id="sentence_val">0.00 năm</p>
-            <p class="text-[11px] text-slate-300 mt-1">RandomForest + Statutory Guardrails</p>
+
+          <!-- Domain Probability Scores -->
+          <div class="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/15 min-w-[280px]">
+            <p class="text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-2 flex items-center justify-between">
+              <span>Phân bổ xác suất lĩnh vực:</span>
+              <span class="text-amber-300">5 Quan hệ pháp luật</span>
+            </p>
+            <div id="domain_scores_bars" class="space-y-1.5 text-xs"></div>
           </div>
         </div>
       </div>
 
-      <!-- 2. Thẻ Đương sự & Tình tiết pháp lý -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- SECTION A: CRIMINAL LAW SPECIALIZED CARDS (If Criminal Domain) -->
+      <div id="criminal_section" class="space-y-6">
 
-        <!-- Đương sự -->
-        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
-          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
-            <span>👥</span> ĐƯƠNG SỰ ĐÃ NHẬN DIỆN & CÁ THỂ HÓA HÌNH PHẠT
-          </h4>
-          <div id="parties_list" class="space-y-3 text-sm"></div>
-        </div>
-
-        <!-- Tình tiết Tăng nặng / Giảm nhẹ -->
-        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
-          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
-            <span>⚖️</span> TÌNH TIẾT TĂNG NẶNG & GIẢM NHẸ (Đ.51, Đ.52 BLHS)
-          </h4>
-          <div class="space-y-3">
+        <!-- Criminal Hero Card -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-              <p class="text-xs font-semibold text-rose-700 uppercase mb-1">Tình tiết tăng nặng (Điều 52):</p>
-              <div id="agg_list" class="text-xs space-y-1"></div>
+              <div class="flex items-center gap-3 mb-2">
+                <span id="verdict_badge" class="px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider"></span>
+                <span class="text-xs text-slate-500">Độ tin cậy: <strong id="confidence_val" class="text-indigo-700 font-bold"></strong></span>
+              </div>
+              <h4 class="text-xl font-bold text-slate-900" id="crim_title_display"></h4>
+              <p class="text-xs text-slate-600 mt-1" id="statutory_bounds_display"></p>
             </div>
-            <div class="pt-2 border-t border-slate-100">
-              <p class="text-xs font-semibold text-emerald-700 uppercase mb-1">Tình tiết giảm nhẹ (Điều 51):</p>
-              <div id="mit_list" class="text-xs space-y-1"></div>
+            <div class="bg-indigo-50 border border-indigo-200 rounded-xl px-6 py-4 text-center min-w-[220px]">
+              <p class="text-xs font-semibold text-indigo-900 uppercase tracking-wider">Mức án tù tham chiếu khung</p>
+              <p class="text-3xl font-extrabold text-indigo-700 mt-1" id="sentence_val">0.00 năm</p>
+              <p class="text-[11px] text-indigo-600 mt-1 font-medium" id="sentence_suspended_status">Tù có thời hạn</p>
             </div>
+          </div>
+        </div>
+
+        <!-- SPECIAL CARD A: 7 HÌNH PHẠT CHÍNH (ĐIỀU 32 BLHS 2015) -->
+        <div class="bg-white rounded-2xl shadow-sm border border-indigo-200 p-6">
+          <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-100">
+            <div>
+              <h4 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
+                <span class="w-6 h-6 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-xs">A</span>
+                HỆ THỐNG 7 HÌNH PHẠT CHÍNH (ĐIỀU 32 KHOẢN 1 BLHS 2015)
+              </h4>
+              <p class="text-xs text-slate-500 mt-0.5">Đối với mỗi tội phạm, người phạm tội chỉ bị áp dụng một hình phạt chính duy nhất</p>
+            </div>
+            <span class="badge bg-indigo-100 text-indigo-800 text-xs font-bold">Khoản 1 Điều 32</span>
+          </div>
+          <div id="principal_penalties_grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3"></div>
+        </div>
+
+        <!-- SPECIAL CARD B: 7 HÌNH PHẠT BỔ SUNG (ĐIỀU 32 BLHS 2015) -->
+        <div class="bg-white rounded-2xl shadow-sm border border-amber-200 p-6">
+          <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-100">
+            <div>
+              <h4 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
+                <span class="w-6 h-6 rounded-lg bg-amber-600 text-white flex items-center justify-center text-xs">B</span>
+                HỆ THỐNG 7 HÌNH PHẠT BỔ SUNG (ĐIỀU 32 KHOẢN 2 BLHS 2015)
+              </h4>
+              <p class="text-xs text-slate-500 mt-0.5">Có thể áp dụng một hoặc nhiều hình phạt bổ sung đối với một tội phạm</p>
+            </div>
+            <span class="badge bg-amber-100 text-amber-900 text-xs font-bold">Khoản 2 Điều 32</span>
+          </div>
+          <div id="supplementary_penalties_grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3"></div>
+        </div>
+
+        <!-- Biện pháp tư pháp (Điều 46, 47, 48 BLHS) -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
+            <span>🛡️</span> CÁC BIỆN PHÁP TƯ PHÁP ÁP DỤNG (ĐIỀU 46, 47, 48 BLHS 2015)
+          </h4>
+          <div id="judicial_measures_list" class="space-y-2 text-xs"></div>
+        </div>
+
+        <!-- Đương sự & Tình tiết tăng nặng giảm nhẹ -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+            <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
+              <span>👥</span> CÁ THỂ HÓA HÌNH PHẠT THEO VAI TRÒ ĐƯƠNG SỰ
+            </h4>
+            <div id="parties_list" class="space-y-3 text-sm"></div>
+          </div>
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+            <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
+              <span>⚖️</span> TÌNH TIẾT TĂNG NẶNG (Đ.52) & GIẢM NHẸ (Đ.51)
+            </h4>
+            <div class="space-y-3">
+              <div>
+                <p class="text-xs font-semibold text-rose-700 uppercase mb-1">Tình tiết tăng nặng (Điều 52):</p>
+                <div id="agg_list" class="text-xs space-y-1"></div>
+              </div>
+              <div class="pt-2 border-t border-slate-100">
+                <p class="text-xs font-semibold text-emerald-700 uppercase mb-1">Tình tiết giảm nhẹ (Điều 51):</p>
+                <div id="mit_list" class="text-xs space-y-1"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Temporal Reasoning & Án lệ TANDTC -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+            <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
+              <span>⏳</span> SUY LUẬN HIỆU LỰC THEO THỜI GIAN (ĐIỀU 7 BLHS)
+            </h4>
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between py-1 border-b border-slate-100">
+                <span class="text-slate-500">Văn bản áp dụng:</span>
+                <span id="temp_doc" class="font-bold text-indigo-700"></span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-100">
+                <span class="text-slate-500">Căn cứ thời điểm:</span>
+                <span id="temp_basis" class="font-medium text-slate-700"></span>
+              </div>
+              <div class="py-1">
+                <span class="text-slate-500 block mb-1">Quy định chuyển tiếp:</span>
+                <p id="temp_note" class="bg-slate-50 p-2.5 rounded border border-slate-200 text-slate-700 leading-relaxed"></p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+            <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
+              <span>🏛️</span> ÁN LỆ CHÍNH THỨC CỦA TAND TỐI CAO
+            </h4>
+            <div id="precedents_list" class="space-y-2 text-xs"></div>
           </div>
         </div>
 
       </div>
 
-      <!-- 3. Suy luận thời gian & Án lệ -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- SECTION B: NON-CRIMINAL DOMAIN SPECIALIZED CARDS -->
+      <div id="non_criminal_section" class="hidden space-y-6">
 
-        <!-- Temporal Reasoning -->
-        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
-          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
-            <span>⏳</span> SUY LUẬN PHÁP LÝ THEO THỜI GIAN (ĐIỀU 7 BLHS)
-          </h4>
-          <div class="space-y-2 text-xs">
-            <div class="flex justify-between py-1 border-b border-slate-100">
-              <span class="text-slate-500">Văn bản áp dụng:</span>
-              <span id="temp_doc" class="font-bold text-indigo-700"></span>
+        <!-- Dynamic Domain Hero Card -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+          <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div>
+              <span id="non_crim_domain_badge" class="badge bg-indigo-100 text-indigo-800 mb-2"></span>
+              <h4 class="text-xl font-extrabold text-slate-900" id="non_crim_title"></h4>
+              <p class="text-xs text-slate-600 mt-1" id="non_crim_subtitle"></p>
             </div>
-            <div class="flex justify-between py-1 border-b border-slate-100">
-              <span class="text-slate-500">Căn cứ thời điểm:</span>
-              <span id="temp_basis" class="font-medium text-slate-700"></span>
-            </div>
-            <div class="py-1">
-              <span class="text-slate-500 block mb-1">Quy định chuyển tiếp:</span>
-              <p id="temp_note" class="bg-slate-50 p-2.5 rounded border border-slate-200 text-slate-700 leading-relaxed"></p>
+            <div id="non_crim_metric_box" class="bg-slate-50 border border-slate-200 rounded-xl px-6 py-4 text-center min-w-[220px]">
+              <!-- Dynamically populated metric (e.g. Court fee, 8% penalty, time limit) -->
             </div>
           </div>
         </div>
 
-        <!-- Án lệ TANDTC -->
-        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
-          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
-            <span>🏛️</span> ÁN LỆ CHÍNH THỨC CỦA HỘI ĐỒNG THẨM PHÁN TANDTC
-          </h4>
-          <div id="precedents_list" class="space-y-2 text-xs"></div>
+        <!-- Dynamic Domain Analysis Details -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+            <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
+              <span>📋</span> ĐÁNH GIÁ CĂN CỨ VÀ TÍNH HỢP PHÁP
+            </h4>
+            <div id="non_crim_assessment_box" class="space-y-2 text-xs text-slate-700 leading-relaxed"></div>
+          </div>
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+            <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
+              <span>⚠️</span> RỦI RO PHÁP LÝ & ĐIỀU CẤM LUẬT ĐỊNH
+            </h4>
+            <div id="non_crim_warnings_box" class="space-y-2 text-xs"></div>
+          </div>
         </div>
 
       </div>
 
-      <!-- 4. Bản án thực tế tương đồng (Case-Based Reasoning) -->
-      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
-        <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
-          <span>📚</span> BẢN ÁN TIỀN LỆ TƯƠNG ĐỒNG TRONG KHO DỮ LIỆU TAND (CASE-BASED REASONING)
-        </h4>
-        <div id="similar_cases_list" class="space-y-2 text-xs"></div>
+      <!-- SECTION C: DISPUTE RESOLUTION ROADMAP (All Domains) -->
+      <div class="bg-gradient-to-br from-indigo-50/70 to-slate-50 rounded-2xl shadow-sm border border-indigo-200 p-6">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h4 class="font-extrabold text-indigo-950 text-base flex items-center gap-2">
+              <span>🗺️</span> LỘ TRÌNH GIẢI QUYẾT TRANH CHẤP TỐI ƯU (DISPUTE RESOLUTION ROADMAP)
+            </h4>
+            <p class="text-xs text-indigo-700 mt-0.5">Quy trình từng bước bảo vệ quyền và lợi ích hợp pháp theo trình tự luật định</p>
+          </div>
+          <span class="badge bg-indigo-200 text-indigo-900 text-xs font-bold">5 Bước chuẩn hóa</span>
+        </div>
+        <div id="resolution_roadmap_steps" class="space-y-3"></div>
       </div>
 
-      <!-- 5. Hàng rào Bảo vệ Tính nhất quán Pháp lý (Guardrails) -->
-      <div class="bg-white rounded-xl shadow-sm border border-emerald-200 p-5">
+      <!-- SECTION D: CONSISTENCY GUARDRAILS (All Domains) -->
+      <div class="bg-white rounded-2xl shadow-sm border border-emerald-200 p-5">
         <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-2">
           <span>🛡️</span> HÀNG RÀO NHẤT QUÁN PHÁP LÝ (CONSISTENCY GUARDRAILS)
         </h4>
@@ -355,13 +477,16 @@ Khoảng 21 giờ ngày 15/04/2023, do mâu thuẫn tại quán nước, bị c�
 
   </main>
 
-  <footer class="text-center text-xs text-slate-500 py-6 border-t border-slate-200 mt-12">
-    Legal AI Vietnam &copy; 2026 • Đại học Công nghệ Thông tin (UIT) - ĐHQG TP.HCM • Hệ Thống Hỗ Trợ Ra Quyết Định Xét Xử Hình Sự
+  <!-- Footer -->
+  <footer class="text-center text-xs text-slate-500 py-6 border-t border-slate-200 mt-12 bg-white">
+    Legal AI Vietnam &copy; 2026 • Đại học Công nghệ Thông tin (UIT) - ĐHQG TP.HCM • Hệ Thống Trí Tuệ Nhân Tạo Pháp Lý Đa Lĩnh Vực
   </footer>
 
+  <!-- App Script -->
   <script>
     const PRESETS = {
       forgery_vstep: {
+        domain: 'criminal',
         personal: `- Bị cáo: N Nữ sinh viên năm cuối ngành Công nghệ thông tin tại TP.HCM, gia đình khó khăn do bạo lực gia đình; mẹ mắc bệnh loãng xương nặng, em trai bị nhược thị. N làm gia sư để trang trải sinh hoạt, học phí và chi phí chữa bệnh cho mẹ.
 - Bị cáo: P Người trung gian, môi giới để N liên hệ với đường dây làm giả CCCD.
 - Bị cáo: Hoàng Người trực tiếp nhận làm giả CCCD, gắn ảnh của N vào thông tin của người khác và yêu cầu thanh toán trước khi giao.
@@ -375,24 +500,92 @@ Trưa ngày 19/01/2024, N sử dụng tài khoản Zalo cá nhân hỗ trợ l�
 Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng người; hành vi làm giả, sử dụng giấy tờ giả và tổ chức thi hộ; chứng cứ điện tử, dòng tiền, vật chứng; tình tiết giảm nhẹ, tăng nặng và hậu quả pháp lý đối với từng người.`
       },
       injury: {
+        domain: 'criminal',
         personal: `- Bị cáo: Nguyễn Văn An (SN 1995), trú tại TP.HCM, chưa có tiền án tiền sự.\n- Bị hại: Trần Quốc Bình (SN 1998), bị thương tật 35% sức khỏe.`,
         case: `Khoảng 21 giờ ngày 15/04/2023, do mâu thuẫn bộc phát tại quán nước, bị cáo Nguyễn Văn An đã dùng dao bấm (hung khí nguy hiểm) đâm vào ngực anh Trần Quốc Bình làm anh Bình bị tổn hại 35% sức khỏe. Sau khi gây án, bị cáo đã thành khẩn khai báo, tự nguyện bồi thường toàn bộ 50.000.000 đồng và được gia đình bị hại xin giảm nhẹ hình phạt.`
       },
       robbery: {
+        domain: 'criminal',
         personal: `- Bị cáo 1: Hoàng Văn Nam (SN 1990), có 1 tiền án về tội trộm cắp tài sản (chưa xóa án tích).\n- Bị cáo 2: Đỗ Văn Tuấn (SN 1994), đồng phạm giúp sức.\n- Bị hại: Chị Lê Thị Mai (SN 2000), bị cướp xe máy trị giá 35 triệu đồng.`,
-        case: `Đêm ngày 10/08/2022, Nam và Tuấn bàn bạc dùng dao khống chế chị Mai tại đoạn đường vắng để chiếm đoạt chiếc xe máy trị giá 35.000.000 đồng. Các bị cáo đã đe dọa dùng vũ lực ngay tức khắc khiến chị Mai không thể chống cự. Sau khi bị bắt, Nam và Tuấn đã thành khẩn nhận tội, xe máy đã được thu hồi trả lại cho bị hại.`
-      },
-      snatching: {
-        personal: `- Bị cáo: Phan Văn Đức (SN 1997), có 1 tiền sự về hành vi gây rối trật tự công cộng.\n- Bị hại: Chị Nguyễn Thị Lan (SN 1995), bị giật túi xách bên trong có 15.000.000 đồng.`,
-        case: `Chiều ngày 12/05/2023, bị cáo Phan Văn Đức điều khiển xe máy phân khối lớn áp sát từ phía sau giật mạnh túi xách của chị Lan đang đi xe trên đường phố rồi tăng ga tẩu thoát. Hành vi cướp giật trên đường giao thông gây nguy hiểm cho người đi đường. Bị cáo đã ăn năn hối cải và bồi thường thiệt hại.`
+        case: `Đêm ngày 10/08/2022, Nam và Tuấn bàn bạc mang dao bấm khống chế chị Mai tại đoạn đường vắng để chiếm đoạt chiếc xe máy trị giá 35.000.000 đồng. Các bị cáo đã đe dọa dùng vũ lực ngay tức khắc khiến chị Mai không thể chống cự. Sau khi bị bắt, Nam và Tuấn đã thành khẩn nhận tội, xe máy đã được thu hồi trả lại cho bị hại.`
       },
       not_guilty: {
+        domain: 'criminal',
         personal: `- Bị cáo: Vũ Trọng Hưng (SN 1988), nguyên là thủ quỹ công ty.\n- Đơn vị liên quan: Công ty TNHH Thương mại X.`,
         case: `Cáo trạng truy tố bị cáo Vũ Trọng Hưng về hành vi tham ô tài sản số tiền 200.000.000 đồng. Tuy nhiên, tại phiên tòa, chứng từ kế toán và kết quả giám định tài chính xác định toàn bộ số tiền trên đã được nhập quỹ đúng quy định và có chữ ký xác nhận của kế toán trưởng. Không có thiệt hại xảy ra và không có chứng cứ chứng minh ý thức chiếm đoạt của bị cáo.`
+      },
+      civil_loan: {
+        domain: 'civil',
+        personal: `- Nguyên đơn: Bà Lê Thị Mai (Bên cho vay)\n- Bị đơn: Ông Nguyễn Văn Hùng (Bên vay nợ)`,
+        case: `Ngày 10/01/2023, bà Mai cho ông Hùng vay số tiền 800.000.000 đồng theo Giấy biên nhận vay tiền, thời hạn vay 06 tháng, lãi suất thỏa thuận 30%/năm. Đến hạn trả nợ, ông Hùng không trả nợ gốc và nợ lãi. Bà Mai khởi kiện tại TAND yêu cầu ông Hùng trả toàn bộ 800.000.000 đồng gốc và tiền lãi tính theo mức 30%/năm.`
+      },
+      civil_inheritance: {
+        domain: 'civil',
+        personal: `- Nguyên đơn: Ông Trần Văn A (con trưởng)\n- Bị đơn: Bà Trần Thị B (con thứ)`,
+        case: `Cha mẹ mất năm 2018 không để lại di chúc. Di sản thừa kế là thửa đất diện tích 300m2 tại Huyện C có Giấy chứng nhận quyền sử dụng đất. Bà B tự ý chiếm giữ và xây nhà trên toàn bộ diện tích, từ chối chia thừa kế cho các đồng thừa kế khác theo quy định pháp luật.`
+      },
+      admin_land: {
+        domain: 'administrative',
+        personal: `- Người khởi kiện: Hộ gia đình ông Đặng Văn Nam\n- Người bị kiện: Ủy ban nhân dân và Chủ tịch UBND Quận K, TP.Đà Nẵng`,
+        case: `Chủ tịch UBND Quận K ban hành Quyết định thu hồi đất số 1234/QĐ-UBND và Quyết định phê duyệt phương án bồi thường giải phóng mặt bằng với mức giá bồi thường 5.000.000 đồng/m2, thấp hơn nhiều so với giá thị trường 25.000.000 đồng/m2. Đồng thời, UBND ban hành Quyết định cưỡng chế thu hồi đất khi chưa giải quyết khiếu nại của công dân.`
+      },
+      admin_penalty: {
+        domain: 'administrative',
+        personal: `- Người khởi kiện: Công ty Cổ phần Thương mại Alpha\n- Người bị kiện: Đội trưởng Đội Quản lý thị trường số 3`,
+        case: `Đội trưởng Đội QLTT số 3 ban hành Quyết định xử phạt vi phạm hành chính số 89/QĐ-XPHC phạt tiền 80.000.000 đồng và tịch thu toàn bộ lô hàng hóa trị giá 200.000.000 đồng. Công ty cho rằng mức phạt này vượt quá thẩm quyền xử phạt luật định của Đội trưởng (tối đa 25.000.000 đồng theo Luật XLVPHC).`
+      },
+      com_penalty_8pct: {
+        domain: 'commercial',
+        personal: `- Nguyên đơn: Công ty Cổ phần Đầu tư Công nghệ Hoàng Long\n- Bị đơn: Công ty TNHH Thiết bị Công nghiệp Việt Nhật`,
+        case: `Hai bên ký Hợp đồng mua bán thiết bị máy móc trị giá 2.000.000.000 đồng. Bên bán giao hàng chậm tiến độ 15 ngày. Điều 8 của Hợp đồng quy định: 'Bên vi phạm tiến độ giao hàng phải chịu phạt 15% tổng giá trị hợp đồng'. Bên mua yêu cầu bên bán nộp phạt vi phạm số tiền 300.000.000 đồng. Hợp đồng có thỏa thuận giải quyết tranh chấp tại Trung tâm Trọng tài Quốc tế Việt Nam (VIAC).`
+      },
+      disc_pregnant: {
+        domain: 'disciplinary',
+        personal: `- Người khiếu nại: Chị Nguyễn Thị Hương (Chuyên viên Nhân sự)\n- Người sử dụng lao động: Công ty TNHH May mặc Tân Tiến`,
+        case: `Chị Hương đang mang thai tháng thứ 5 (có giấy khám thai bệnh viện). Do sức khỏe yếu, chị Hương nghỉ 03 ngày đi khám bệnh có nộp đơn nhưng chưa được duyệt. Giám đốc công ty ra Quyết định sa thải chị Hương với lý do tự ý bỏ việc 03 ngày liên tục, không tổ chức cuộc họp xử lý kỷ luật có sự tham gia của Công đoàn.`
+      },
+      disc_wage_cut: {
+        domain: 'disciplinary',
+        personal: `- Người lao động: Anh Lê Văn Hùng (Công nhân vận hành máy)\n- Doanh nghiệp: Công ty Cổ phần Cơ khí Chế tạo Máy Việt Hàn`,
+        case: `Trong ca làm việc ngày 12/07/2023, anh Hùng làm hỏng linh kiện máy trị giá 3.000.000 đồng. Giám đốc công ty ban hành Thông báo kỷ luật trừ 50% tiền lương tháng 7/2023 của anh Hùng để phạt vi phạm kỷ luật lao động.`
       }
     };
 
+    let selectedForcedDomain = null;
     let currentInputMode = 'single';
+
+    function setDomainFilter(dom) {
+      selectedForcedDomain = dom;
+      const buttons = {
+        all: document.getElementById('btn_domain_all'),
+        criminal: document.getElementById('btn_domain_criminal'),
+        civil: document.getElementById('btn_domain_civil'),
+        administrative: document.getElementById('btn_domain_administrative'),
+        commercial: document.getElementById('btn_domain_commercial'),
+        disciplinary: document.getElementById('btn_domain_disciplinary'),
+      };
+
+      const labels = {
+        null: '🌐 Tự động nhận diện (Multi-Domain Dispatcher)',
+        criminal: '⚖️ Hình sự (Điều 32 BLHS 2015)',
+        civil: '🤝 Dân sự & Hợp đồng (BLDS 2015)',
+        administrative: '🏛️ Hành chính & Tranh chấp CQNN (LTTHC 2015)',
+        commercial: '💼 Kinh doanh Thương mại (LTM 2005 & VIAC)',
+        disciplinary: '👔 Kỷ luật & Lao động (BLLĐ 2019)'
+      };
+
+      document.getElementById('active_domain_label').textContent = labels[dom];
+
+      Object.keys(buttons).forEach(k => {
+        const btn = buttons[k];
+        const isMatch = (dom === null && k === 'all') || (dom === k);
+        if (isMatch) {
+          btn.className = 'text-xs px-3 py-1.5 rounded-lg font-bold transition shadow-sm bg-indigo-700 text-white border border-indigo-700';
+        } else {
+          btn.className = 'text-xs px-3 py-1.5 rounded-lg font-medium transition text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200';
+        }
+      });
+    }
 
     function switchInputTab(mode) {
       currentInputMode = mode;
@@ -416,15 +609,7 @@ Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng
 
     function changeModelEngine() {
       const select = document.getElementById('model_engine_select');
-      const val = select.value;
-      const labels = {
-        offline_hybrid: "Đang dùng: Heuristic Rules + Random Forest (Offline 100%, Phản hồi tức thì)",
-        qwen_ollama: "Đang dùng: Qwen2.5 (3B / 7B qua Ollama Local Server - http://localhost:11434)",
-        vietnamese_llm: "Đang dùng: Vietnamese LLM (PhoGPT / Vistral-7B Local & FastEmbed)",
-        claude_openai: "Đang dùng: Claude 3.5 Sonnet / OpenAI GPT-4o (Cloud API)",
-        kaggle_gpu: "Đang dùng: Kaggle Cloud GPU Endpoint (Host qua Ngrok/FastAPI trên T4 GPU)"
-      };
-      console.log("[Engine Changed]:", labels[val]);
+      console.log("[Engine switched]:", select.value);
     }
 
     function loadPreset(key) {
@@ -433,13 +618,16 @@ Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng
         document.getElementById('personal_info').value = p.personal;
         document.getElementById('case_info').value = p.case;
         document.getElementById('freeform_text').value = `${p.personal}\n\n${p.case}`;
+        if (p.domain) {
+          setDomainFilter(p.domain);
+        }
       }
     }
 
     async function triggerAutoSplit() {
       const text = document.getElementById('freeform_text').value.trim();
       if (!text) {
-        alert("Vui lòng nhập hoặc dán nội dung vào ô Toàn văn hồ sơ trước khi phân tách!");
+        alert("Vui lòng nhập hoặc dán nội dung vào ô trước khi phân tách!");
         return;
       }
 
@@ -456,7 +644,6 @@ Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng
         document.getElementById('personal_info').value = res.personal_info || "";
         document.getElementById('case_info').value = res.case_info || "";
 
-        // Chuyển sang Tab 2 Khung để người dùng nhìn thấy kết quả
         switchInputTab('double');
 
         const statusMsg = document.getElementById('split_status_msg');
@@ -480,7 +667,6 @@ Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng
         };
         reader.readAsText(file, 'UTF-8');
       } else {
-        // Tải lên endpoint parser của backend
         const formData = new FormData();
         formData.append('file', file);
         fetch('/api/v1/documents/upload', {
@@ -489,14 +675,14 @@ Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng
         })
         .then(r => r.json())
         .then(data => {
-          if (data && data.text) {
-            document.getElementById('freeform_text').value = data.text;
+          if (data && data.extracted_text) {
+            document.getElementById('freeform_text').value = data.extracted_text;
           } else {
-            alert(`Đã nhận file ${file.name}. Vui lòng mở và copy nội dung dạng văn bản vào ô.`);
+            alert(`Đã nhận file ${file.name}. Vui lòng dán văn bản trực tiếp.`);
           }
         })
         .catch(err => {
-          alert(`Đã chọn file ${file.name}. Nếu là PDF/DOCX, bạn có thể copy nội dung trực tiếp vào ô.`);
+          alert(`Đã chọn file ${file.name}.`);
         });
       }
     }
@@ -507,7 +693,7 @@ Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng
       if (currentInputMode === 'single') {
         const freeText = document.getElementById('freeform_text').value.trim();
         if (!freeText) {
-          alert("Vui lòng nhập hoặc dán nội dung hồ sơ vụ án vào ô nhập liệu!");
+          alert("Vui lòng nhập nội dung hồ sơ vào ô nhập liệu!");
           return;
         }
         payload = { full_text: freeText };
@@ -515,16 +701,20 @@ Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng
         const personalInfo = document.getElementById('personal_info').value.trim();
         const caseInfo = document.getElementById('case_info').value.trim();
         if (!personalInfo || !caseInfo) {
-          alert("Vui lòng nhập đầy đủ cả 2 khung: 1. Thông tin cá nhân và 2. Thông tin vụ án!");
+          alert("Vui lòng nhập đầy đủ cả 2 khung thông tin!");
           return;
         }
         payload = { personal_info: personalInfo, case_info: caseInfo };
       }
 
-      // UI loading state
+      if (selectedForcedDomain) {
+        payload.domain = selectedForcedDomain;
+      }
+
+      // UI Loading state
       document.getElementById('submit_btn').disabled = true;
       document.getElementById('btn_icon').textContent = '⏳';
-      document.getElementById('btn_text').textContent = 'ĐANG XỬ LÝ...';
+      document.getElementById('btn_text').textContent = 'ĐANG PHÂN TÍCH...';
       document.getElementById('loading_state').classList.remove('hidden');
       document.getElementById('result_dashboard').classList.add('hidden');
       document.getElementById('error_box').classList.add('hidden');
@@ -549,12 +739,86 @@ Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng
       } finally {
         document.getElementById('submit_btn').disabled = false;
         document.getElementById('btn_icon').textContent = '⚖️';
-        document.getElementById('btn_text').textContent = 'PHÂN TÍCH & DỰ ĐOÁN KẾT QUẢ XÉT XỬ';
+        document.getElementById('btn_text').textContent = 'PHÂN TÍCH PHÁP LÝ & ĐỀ XUẤT GIẢI QUYẾT';
         document.getElementById('loading_state').classList.add('hidden');
       }
     }
 
     function renderResults(data) {
+      const multi = data.multi_domain || {};
+      const primaryDomain = multi.primary_domain || 'criminal';
+      const isCriminal = primaryDomain === 'criminal';
+
+      // SECTION 0: Multi-Domain Intelligence Banner
+      const domainNamesVi = {
+        criminal: "1. Pháp luật Hình sự (Bộ luật Hình sự 2015)",
+        civil: "2. Dân sự & Hợp đồng (Bộ luật Dân sự 2015)",
+        administrative: "3. Hành chính & Tranh chấp CQNN (Luật TTHC 2015)",
+        commercial: "4. Kinh doanh Thương mại & Trọng tài (Luật Thương mại 2005)",
+        disciplinary: "5. Kỷ luật & Lao động (Bộ luật Lao động 2019)"
+      };
+
+      document.getElementById('multi_domain_badge').textContent = domainNamesVi[primaryDomain] || multi.primary_domain_name;
+      document.getElementById('primary_law_display').textContent = multi.primary_law || 'Văn bản quy phạm pháp luật Việt Nam';
+      document.getElementById('case_title_display').textContent = isCriminal
+        ? (data.detected_crime_name + " (Điều " + (data.detected_articles || []).join(', ') + " BLHS)")
+        : ((multi.specific_analysis || {}).dispute_name || (multi.specific_analysis || {}).target_description || (multi.specific_analysis || {}).discipline_matter || "Vụ việc pháp lý");
+
+      document.getElementById('combined_summary_display').textContent = multi.combined_summary || "Đã phân tích toàn diện hồ sơ.";
+
+      // Render Domain Scores
+      const scoresBox = document.getElementById('domain_scores_bars');
+      scoresBox.innerHTML = '';
+      const scores = multi.domain_scores || {};
+      const domainLabels = {
+        criminal: "Hình sự",
+        civil: "Dân sự",
+        administrative: "Hành chính",
+        commercial: "Thương mại",
+        disciplinary: "Kỷ luật"
+      };
+
+      Object.entries(scores).forEach(([dom, sc]) => {
+        const pct = Math.round(sc * 100);
+        const isBest = dom === primaryDomain;
+        scoresBox.innerHTML += `
+          <div>
+            <div class="flex justify-between text-[11px] mb-0.5">
+              <span class="${isBest ? 'font-bold text-amber-300' : 'text-slate-300'}">${domainLabels[dom] || dom}</span>
+              <span class="${isBest ? 'font-bold text-amber-300' : 'text-slate-400'}">${pct}%</span>
+            </div>
+            <div class="w-full bg-white/20 rounded-full h-1.5 overflow-hidden">
+              <div class="${isBest ? 'bg-amber-400' : 'bg-slate-400'} h-1.5 rounded-full" style="width: ${Math.max(5, pct)}%"></div>
+            </div>
+          </div>
+        `;
+      });
+
+      // Show/Hide Domain-Specific Sections
+      const crimSection = document.getElementById('criminal_section');
+      const nonCrimSection = document.getElementById('non_criminal_section');
+
+      if (isCriminal) {
+        crimSection.classList.remove('hidden');
+        nonCrimSection.classList.add('hidden');
+        renderCriminalDetails(data);
+      } else {
+        crimSection.classList.add('hidden');
+        nonCrimSection.classList.remove('hidden');
+        renderNonCriminalDetails(multi);
+      }
+
+      // SECTION C: Dispute Resolution Roadmap
+      renderRoadmap(multi, data);
+
+      // SECTION D: Consistency Guardrails
+      renderGuardrails(data);
+
+      document.getElementById('result_dashboard').classList.remove('hidden');
+      document.getElementById('result_dashboard').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function renderCriminalDetails(data) {
       const pred = data.predicted_outcome || {};
       const isGuilty = pred.predicted_outcome === 'guilty';
       const years = Number(pred.predicted_sentence_years || 0);
@@ -572,10 +836,112 @@ Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng
 
       document.getElementById('confidence_val').textContent = conf + '%';
       document.getElementById('sentence_val').textContent = years.toFixed(2) + ' năm';
-      document.getElementById('crime_title_display').textContent = data.detected_crime_name + ' (Điều ' + (data.detected_articles || []).join(', ') + ' BLHS)';
+      document.getElementById('crim_title_display').textContent = data.detected_crime_name + ' (Điều ' + (data.detected_articles || []).join(', ') + ' BLHS)';
 
       const bounds = data.statutory_bounds || {};
       document.getElementById('statutory_bounds_display').textContent = `Khung hình phạt luật định tham chiếu: ${bounds.min} - ${bounds.max} năm tù (Trung điểm: ${bounds.mid} năm)`;
+
+      const pPen = pred.principal_penalty || {};
+      document.getElementById('sentence_suspended_status').textContent = pPen.is_suspended
+        ? 'Cho hưởng Án treo (Điều 65 BLHS)'
+        : (pPen.formatted || 'Tù có thời hạn (Điều 38 BLHS)');
+
+      // A. 7 HÌNH PHẠT CHÍNH (ĐIỀU 32 BLHS)
+      const princGrid = document.getElementById('principal_penalties_grid');
+      princGrid.innerHTML = '';
+      const allPrincipals = (data.article_32_penalties || {}).principal_penalties || [];
+      const currentPrincCode = pPen.type || 'tu_co_thoi_han';
+
+      allPrincipals.forEach(p => {
+        const isApplied = (p.code === currentPrincCode && isGuilty);
+        const card = document.createElement('div');
+        card.className = `p-3.5 rounded-xl border transition flex flex-col justify-between ${
+          isApplied
+            ? 'bg-indigo-50 border-indigo-500 shadow-md ring-2 ring-indigo-300'
+            : 'bg-slate-50/70 border-slate-200 opacity-80'
+        }`;
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-[11px] font-bold text-slate-500">${p.article}</span>
+              ${isApplied
+                ? '<span class="badge bg-indigo-600 text-white text-[10px]">ĐANG ÁP DỤNG</span>'
+                : '<span class="badge bg-slate-200 text-slate-600 text-[10px]">KHÔNG ÁP DỤNG</span>'}
+            </div>
+            <strong class="text-sm font-extrabold ${isApplied ? 'text-indigo-950' : 'text-slate-800'} block mb-1">${p.name}</strong>
+            <p class="text-[11px] text-slate-600 leading-snug line-clamp-3">${p.description}</p>
+          </div>
+          ${isApplied ? `
+            <div class="mt-2.5 pt-2 border-t border-indigo-200 text-xs font-bold text-indigo-900">
+              ⚖️ Đề xuất: ${pPen.formatted || p.name}
+            </div>
+          ` : `
+            <div class="mt-2.5 pt-2 border-t border-slate-200 text-[10px] text-slate-500">
+              Điều kiện: ${p.conditions || 'Theo luật định'}
+            </div>
+          `}
+        `;
+        princGrid.appendChild(card);
+      });
+
+      // B. 7 HÌNH PHẠT BỔ SUNG (ĐIỀU 32 BLHS)
+      const supGrid = document.getElementById('supplementary_penalties_grid');
+      supGrid.innerHTML = '';
+      const allSups = (data.article_32_penalties || {}).supplementary_penalties || [];
+      const appliedSups = pred.supplementary_penalties || [];
+      const appliedSupTypes = appliedSups.map(s => s.type);
+
+      allSups.forEach(s => {
+        const isApplied = appliedSupTypes.includes(s.code);
+        const matchedApplied = appliedSups.find(a => a.type === s.code);
+        const card = document.createElement('div');
+        card.className = `p-3.5 rounded-xl border transition flex flex-col justify-between ${
+          isApplied
+            ? 'bg-amber-50 border-amber-500 shadow-md ring-2 ring-amber-300'
+            : 'bg-slate-50/70 border-slate-200 opacity-80'
+        }`;
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-[11px] font-bold text-slate-500">${s.article}</span>
+              ${isApplied
+                ? '<span class="badge bg-amber-600 text-white text-[10px]">ĐỀ XUẤT ÁP DỤNG</span>'
+                : '<span class="badge bg-slate-200 text-slate-600 text-[10px]">KHÔNG ÁP DỤNG</span>'}
+            </div>
+            <strong class="text-sm font-extrabold ${isApplied ? 'text-amber-950' : 'text-slate-800'} block mb-1">${s.name}</strong>
+            <p class="text-[11px] text-slate-600 leading-snug line-clamp-3">${s.description}</p>
+          </div>
+          ${isApplied ? `
+            <div class="mt-2.5 pt-2 border-t border-amber-200 text-xs font-bold text-amber-950">
+              ✓ Áp dụng: ${matchedApplied ? (matchedApplied.duration || matchedApplied.amount || matchedApplied.name) : 'Theo BLHS'}
+            </div>
+          ` : `
+            <div class="mt-2.5 pt-2 border-t border-slate-200 text-[10px] text-slate-500">
+              Điều kiện: Tùy nghi hoặc bắt buộc theo điều khoản định khung
+            </div>
+          `}
+        `;
+        supGrid.appendChild(card);
+      });
+
+      // Biện pháp tư pháp (Điều 46 - 49)
+      const judList = document.getElementById('judicial_measures_list');
+      judList.innerHTML = '';
+      const jMeasures = pred.judicial_measures || [];
+      if (jMeasures.length === 0) {
+        judList.innerHTML = '<p class="text-slate-400 italic p-2 bg-slate-50 rounded">Không áp dụng biện pháp tư pháp đặc biệt trong vụ việc này.</p>';
+      } else {
+        jMeasures.forEach(jm => {
+          judList.innerHTML += `
+            <div class="p-2.5 bg-indigo-50 border border-indigo-200 rounded-lg text-indigo-950 flex items-start gap-2">
+              <span class="text-indigo-600 font-bold">✓</span>
+              <div>
+                <strong>${jm.name}</strong>
+              </div>
+            </div>
+          `;
+        });
+      }
 
       // Parties
       const partiesList = document.getElementById('parties_list');
@@ -596,14 +962,14 @@ Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng
           </div>
           ${p.individual_penalty_recommendation ? `
             <div class="mt-1 p-2.5 bg-amber-50/80 border border-amber-200 rounded-lg text-xs text-amber-950 leading-relaxed font-medium">
-              ⚖️ <strong class="text-amber-900">Khuyến nghị cá thể hóa hình phạt:</strong> ${p.individual_penalty_recommendation}
+              ⚖️ <strong class="text-amber-900">Cá thể hóa hình phạt:</strong> ${p.individual_penalty_recommendation}
             </div>
           ` : ''}
         `;
         partiesList.appendChild(div);
       });
 
-      // Aggravating
+      // Aggravating / Mitigating
       const aggList = document.getElementById('agg_list');
       aggList.innerHTML = '';
       if ((data.aggravating_factors || []).length === 0) {
@@ -614,7 +980,6 @@ Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng
         });
       }
 
-      // Mitigating
       const mitList = document.getElementById('mit_list');
       mitList.innerHTML = '';
       if ((data.mitigating_factors || []).length === 0) {
@@ -628,14 +993,14 @@ Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng
       // Temporal
       const temp = data.temporal_analysis || {};
       document.getElementById('temp_doc').textContent = temp.document_id || 'BLHS 2015';
-      document.getElementById('temp_basis').textContent = 'Căn cứ ngày xảy ra hành vi: ' + (data.incident_date || 'N/A');
+      document.getElementById('temp_basis').textContent = 'Căn cứ thời điểm xảy ra hành vi: ' + (data.incident_date || 'N/A');
       document.getElementById('temp_note').textContent = temp.transitional_note || 'Áp dụng quy định có lợi theo Điều 7 BLHS 2015 và Nghị quyết 41/2017/QH14.';
 
       // Precedents
       const precList = document.getElementById('precedents_list');
       precList.innerHTML = '';
       if ((data.relevant_precedents || []).length === 0) {
-        precList.innerHTML = '<p class="text-slate-400 italic p-2 bg-slate-50 rounded">Không phát hiện án lệ tương đồng trực tiếp cho hành vi này.</p>';
+        precList.innerHTML = '<p class="text-slate-400 italic p-2 bg-slate-50 rounded">Không phát hiện án lệ tương đồng trực tiếp cho vụ việc này.</p>';
       } else {
         data.relevant_precedents.forEach(p => {
           precList.innerHTML += `
@@ -649,27 +1014,118 @@ Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng
           `;
         });
       }
+    }
 
-      // Similar Cases (Case-Based Reasoning)
-      const simList = document.getElementById('similar_cases_list');
-      simList.innerHTML = '';
-      if ((data.similar_cases || []).length === 0) {
-        simList.innerHTML = '<p class="text-slate-400 italic p-2 bg-slate-50 rounded">Chưa tìm thấy bản án tiền lệ tương đồng trong cơ sở dữ liệu.</p>';
+    function renderNonCriminalDetails(multi) {
+      const spec = multi.specific_analysis || {};
+      const domain = multi.primary_domain;
+
+      document.getElementById('non_crim_domain_badge').textContent = multi.primary_domain_name;
+      document.getElementById('non_crim_title').textContent = spec.dispute_name || spec.target_description || spec.discipline_matter || "Vụ việc tranh chấp";
+      document.getElementById('non_crim_subtitle').textContent = `Căn cứ pháp luật: ${(spec.applicable_laws || []).slice(0, 3).join(' • ')}`;
+
+      // Metric Box
+      const metricBox = document.getElementById('non_crim_metric_box');
+      metricBox.innerHTML = '';
+
+      if (domain === 'civil') {
+        metricBox.innerHTML = `
+          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Ước tính Án phí Sơ thẩm</p>
+          <p class="text-2xl font-extrabold text-indigo-700 mt-1">${spec.estimated_court_fee_formatted || '300.000 VNĐ'}</p>
+          <p class="text-[11px] text-slate-500 mt-0.5">Theo NQ 326/2016/UBTVQH14</p>
+          <p class="text-xs font-bold text-slate-700 mt-2">Giá trị yêu cầu: ${spec.claim_amount_formatted || 'N/A'}</p>
+        `;
+      } else if (domain === 'commercial') {
+        metricBox.innerHTML = `
+          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Trần Phạt Vi Phạm Tối Đa (8%)</p>
+          <p class="text-2xl font-extrabold text-amber-600 mt-1">${spec.max_legal_penalty_formatted || '8% giá trị'}</p>
+          <p class="text-[11px] text-slate-500 mt-0.5">Theo Điều 301 Luật Thương mại 2005</p>
+          <p class="text-xs font-bold text-slate-700 mt-2">Tài phán: ${spec.forum_recommendation || 'Trọng tài VIAC'}</p>
+        `;
+      } else if (domain === 'administrative') {
+        metricBox.innerHTML = `
+          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Thời hiệu khởi kiện TAND</p>
+          <p class="text-2xl font-extrabold text-rose-600 mt-1">${spec.time_limit_court || '01 năm'}</p>
+          <p class="text-[11px] text-slate-500 mt-0.5">Theo Điều 116 Luật TTHC 2015</p>
+          <p class="text-xs font-bold text-slate-700 mt-2">Thời hiệu khiếu nại: ${spec.time_limit_complaint || '90 ngày'}</p>
+        `;
+      } else if (domain === 'disciplinary') {
+        metricBox.innerHTML = `
+          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Tính Hợp Pháp QĐ Kỷ Luật</p>
+          <p class="text-xl font-extrabold ${spec.is_discipline_valid ? 'text-emerald-600' : 'text-rose-600'} mt-1">
+            ${spec.is_discipline_valid ? 'HỢP PHÁP' : 'CÓ DẤU HIỆU TRÁI LUẬT'}
+          </p>
+          <p class="text-[11px] text-slate-500 mt-0.5">Đối chiếu Điều 124, 127 BLLĐ 2019</p>
+          <p class="text-xs font-bold text-slate-700 mt-2">Bồi thường: ${spec.compensation_entitlement ? 'Áp dụng Điều 41 BLLĐ' : 'Không'}</p>
+        `;
+      }
+
+      // Assessment box
+      const assessBox = document.getElementById('non_crim_assessment_box');
+      assessBox.innerHTML = `
+        <p class="bg-slate-50 p-3 rounded-xl border border-slate-200">${spec.legal_assessment || spec.legal_evaluation || 'Đã phân tích hồ sơ pháp lý.'}</p>
+        ${spec.statute_of_limitations_note ? `<p class="p-2.5 bg-blue-50 text-blue-900 border border-blue-200 rounded-lg font-medium">⏱️ <strong>Thời hiệu:</strong> ${spec.statute_of_limitations_note}</p>` : ''}
+        ${spec.urgent_temporary_measures ? `<p class="p-2.5 bg-amber-50 text-amber-950 border border-amber-200 rounded-lg font-medium">🚨 <strong>Biện pháp khẩn cấp tạm thời:</strong> ${Array.isArray(spec.urgent_temporary_measures) ? spec.urgent_temporary_measures.join(', ') : spec.urgent_temporary_measures}</p>` : ''}
+      `;
+
+      // Warnings box
+      const warnBox = document.getElementById('non_crim_warnings_box');
+      warnBox.innerHTML = '';
+      const warnings = spec.risk_warnings || spec.procedural_violations || spec.critical_notes || [];
+      if (warnings.length === 0) {
+        warnBox.innerHTML = '<p class="text-emerald-700 bg-emerald-50 p-3 rounded-xl border border-emerald-200">✓ Không phát hiện dấu hiệu vi phạm điều cấm hoặc nguy cơ vô hiệu điều khoản.</p>';
       } else {
-        data.similar_cases.forEach(c => {
-          simList.innerHTML += `
-            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <div class="flex items-center justify-between">
-                <strong class="text-indigo-900 font-bold">${c.judgment_document_id || 'Bản án TAND'}</strong>
-                <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-mono font-semibold">Độ tương đồng: ${Math.round((c.score||0)*100)}%</span>
-              </div>
-              <p class="text-slate-700 text-xs line-clamp-2 leading-relaxed">${c.content}</p>
+        warnings.forEach(w => {
+          warnBox.innerHTML += `
+            <div class="p-2.5 bg-rose-50 text-rose-800 border border-rose-200 rounded-lg flex items-start gap-2">
+              <span class="font-bold text-rose-600">⚠️</span>
+              <div>${w}</div>
             </div>
           `;
         });
       }
+    }
 
-      // Guardrails
+    function renderRoadmap(multi, data) {
+      const roadmapBox = document.getElementById('resolution_roadmap_steps');
+      roadmapBox.innerHTML = '';
+      const spec = multi.specific_analysis || {};
+      const domain = multi.primary_domain;
+
+      let steps = spec.suggested_steps || spec.action_steps || spec.dispute_resolution_steps || [];
+
+      if (!steps || steps.length === 0) {
+        if (domain === 'criminal') {
+          steps = [
+            "Bước 1: Cơ quan điều tra tiến hành khởi tố vụ án, khởi tố bị can và thu thập tài liệu, vật chứng.",
+            "Bước 2: Viện kiểm sát nhân dân ban hành Cáo trạng truy tố bị can ra trước Tòa án nhân dân.",
+            "Bước 3: Tòa án nhân dân thụ lý hồ sơ, chuẩn bị xét xử và mở phiên tòa sơ thẩm công khai.",
+            "Bước 4: Hội đồng xét xử cá thể hóa hình phạt, áp dụng Điều 32 BLHS (7 hình phạt chính & 7 hình phạt bổ sung).",
+            "Bước 5: Tuyên án và giải thích quyền kháng cáo bản án trong thời hạn 15 ngày kể từ ngày tuyên án."
+          ];
+        } else {
+          steps = [
+            "Bước 1: Tiếp nhận và kiểm tra toàn bộ hồ sơ, hợp đồng, chứng từ, quyết định hành chính.",
+            "Bước 2: Tiến hành thương lượng, đối thoại trực tiếp hoặc hòa giải tiền tố tụng.",
+            "Bước 3: Nộp đơn khiếu nại hoặc đơn khởi kiện tại cơ quan tài phán có thẩm quyền.",
+            "Bước 4: Tham gia phiên họp kiểm tra việc giao nộp, công khai chứng cứ và phiên xét xử / giải quyết.",
+            "Bước 5: Nhận bản án / quyết định có hiệu lực pháp luật và yêu cầu cơ quan thi hành án thi hành."
+          ];
+        }
+      }
+
+      steps.forEach((st, idx) => {
+        const stepNum = idx + 1;
+        roadmapBox.innerHTML += `
+          <div class="p-3.5 bg-white rounded-xl border border-indigo-100 shadow-sm flex items-start gap-3">
+            <span class="w-7 h-7 rounded-lg bg-indigo-700 text-white font-extrabold flex items-center justify-center text-xs shrink-0">${stepNum}</span>
+            <div class="text-xs text-slate-700 font-medium leading-relaxed">${st}</div>
+          </div>
+        `;
+      });
+    }
+
+    function renderGuardrails(data) {
       const guardBox = document.getElementById('guardrails_box');
       if ((data.consistency_warnings || []).length > 0) {
         guardBox.innerHTML = '<ul class="space-y-1 text-amber-700 font-medium">' +
@@ -677,20 +1133,19 @@ Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng
           '</ul>';
       } else {
         guardBox.innerHTML = `
-          <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-800">
-            <strong>✓ 100% Tuân thủ Hàng rào Nhất quán Pháp lý:</strong>
-            <ul class="list-disc list-inside mt-1 space-y-0.5 text-[11px] text-emerald-700">
-              <li>Mức án tù không âm (Zero-negative Guaranteed: ≥ 0.0 năm).</li>
-              <li>Nếu phán quyết vô tội, mức án tù bắt buộc gán cứng về 0.0 năm.</li>
-              <li>Mức án dự đoán phù hợp với khung hình phạt luật định và tỷ lệ tình tiết tăng nặng / giảm nhẹ.</li>
-              <li>Áp dụng nguyên tắc cá thể hóa hình phạt và Điều 54, Điều 65 BLHS cho các bị cáo có nhiều tình tiết giảm nhẹ.</li>
+          <div class="p-3.5 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-900">
+            <strong class="text-emerald-950 font-bold">✓ 100% Tuân thủ Hàng rào Nhất quán Pháp lý Toàn diện:</strong>
+            <ul class="list-disc list-inside mt-1.5 space-y-1 text-xs text-emerald-800">
+              <li>Mức hình phạt tù không âm (Zero-negative Guaranteed: ≥ 0.0 năm). Tuyên bố vô tội gán mức án = 0.0 năm.</li>
+              <li>Tuân thủ nguyên tắc chỉ áp dụng 01 hình phạt chính duy nhất trong số 7 hình phạt chính (Khoản 1 Điều 32 BLHS).</li>
+              <li>Không áp dụng phạt tiền và trục xuất vừa là hình phạt chính vừa là hình phạt bổ sung (Khoản 2 Điều 32 BLHS).</li>
+              <li>Kiểm soát nghiêm ngặt các trường hợp cấm tử hình/chung thân (Điều 40: Dưới 18 tuổi, phụ nữ có thai/nuôi con nhỏ, người đủ 75 tuổi).</li>
+              <li>Án treo chỉ áp dụng khi hình phạt tù không quá 03 năm và đủ điều kiện nhân thân (Điều 65 BLHS).</li>
+              <li>Kiểm soát trần phạt vi phạm 8% (Điều 301 LTM) và trần lãi suất vay 20%/năm (Điều 468 BLDS).</li>
             </ul>
           </div>
         `;
       }
-
-      document.getElementById('result_dashboard').classList.remove('hidden');
-      document.getElementById('result_dashboard').scrollIntoView({ behavior: 'smooth' });
     }
 
     // Auto-load preset forgery_vstep on start

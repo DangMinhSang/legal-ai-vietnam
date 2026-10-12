@@ -85,3 +85,62 @@ class ConsistencyChecker:
                 f"Cảnh báo nghiêm trọng: Mức án dự đoán ({predicted_years} năm) vượt quá mức tối đa của khung hình phạt ({max_years} năm)."
             )
         return warnings
+
+    def validate_penalties_consistency(
+        self,
+        principal_penalty_code: str,
+        supplementary_penalty_codes: list[str],
+        age: int = 25,
+        is_pregnant_or_nursing: bool = False,
+        is_foreigner: bool = False,
+        sentence_years: float = 0.0,
+        is_suspended: bool = False,
+    ) -> list[str]:
+        """Kiểm tra tính hợp hiến, hợp pháp của hình phạt theo Điều 32, Điều 40 và Chương XII BLHS 2015."""
+        warnings: list[str] = []
+
+        # 1. Điều 32 Khoản 2 điểm e, g: Không áp dụng trùng phạt tiền/trục xuất vừa là hình phạt chính vừa là bổ sung
+        if principal_penalty_code == "phat_tien" and "phat_tien_bo_sung" in supplementary_penalty_codes:
+            warnings.append(
+                "Vi phạm Điều 32 Khoản 2 Điểm e BLHS 2015: Phạt tiền chỉ được áp dụng là hình phạt bổ sung khi KHÔNG áp dụng là hình phạt chính."
+            )
+
+        if principal_penalty_code == "truc_xuat" and "truc_xuat_bo_sung" in supplementary_penalty_codes:
+            warnings.append(
+                "Vi phạm Điều 32 Khoản 2 Điểm g BLHS 2015: Trục xuất chỉ được áp dụng là hình phạt bổ sung khi KHÔNG áp dụng là hình phạt chính."
+            )
+
+        # 2. Điều 37: Trục xuất chỉ áp dụng cho người nước ngoài
+        if (principal_penalty_code == "truc_xuat" or "truc_xuat_bo_sung" in supplementary_penalty_codes) and not is_foreigner:
+            warnings.append(
+                "Vi phạm Điều 37 BLHS 2015: Hình phạt Trục xuất chỉ áp dụng đối với người nước ngoài hoặc người không quốc tịch."
+            )
+
+        # 3. Điều 40: Điều kiện không áp dụng hình phạt Tử hình
+        if principal_penalty_code == "tu_hinh":
+            if age < 18:
+                warnings.append(
+                    f"Vi phạm nghiêm trọng Điều 40 Khoản 2 & Điều 98 BLHS: Tuyệt đối không áp dụng hình phạt Tử hình đối với người dưới 18 tuổi khi phạm tội (tuổi hiện tại: {age})."
+                )
+            if is_pregnant_or_nursing:
+                warnings.append(
+                    "Vi phạm nghiêm trọng Điều 40 Khoản 2 BLHS: Tuyệt đối không áp dụng hình phạt Tử hình đối với phụ nữ có thai hoặc phụ nữ đang nuôi con dưới 36 tháng tuổi."
+                )
+            if age >= 75:
+                warnings.append(
+                    f"Vi phạm Điều 40 Khoản 2 BLHS: Không áp dụng hình phạt Tử hình đối với người đủ 75 tuổi trở lên khi phạm tội hoặc khi xét xử (tuổi: {age})."
+                )
+
+        # 4. Điều 39 & Điều 98: Không áp dụng Tù chung thân với người dưới 18 tuổi
+        if principal_penalty_code == "tu_chung_than" and age < 18:
+            warnings.append(
+                f"Vi phạm Điều 39 & Điều 98 BLHS: Không áp dụng hình phạt Tù chung thân đối với người dưới 18 tuổi phạm tội (tuổi: {age})."
+            )
+
+        # 5. Điều 65: Án treo chỉ áp dụng khi hình phạt tù không quá 03 năm
+        if is_suspended and sentence_years > 3.0:
+            warnings.append(
+                f"Vi phạm Điều 65 Khoản 1 BLHS: Án treo chỉ được áp dụng khi mức hình phạt tù không quá 03 năm (mức án hiện tại: {sentence_years} năm)."
+            )
+
+        return warnings

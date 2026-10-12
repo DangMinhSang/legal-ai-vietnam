@@ -1,0 +1,138 @@
+{
+  "version": "1.0.0",
+  "description": "Bộ benchmark kiểm thử đa lĩnh vực pháp luật Việt Nam (Criminal, Civil, Administrative, Commercial, Disciplinary)",
+  "domains_covered": [
+    "criminal",
+    "civil",
+    "administrative",
+    "commercial",
+    "disciplinary"
+  ],
+  "total_cases": 11,
+  "cases": [
+    {
+      "id": "crim-01",
+      "domain": "criminal",
+      "title": "Làm giả CCCD và tổ chức thi hộ chứng chỉ VSTEP",
+      "input": "- Bị cáo: N (Nữ sinh viên năm cuối tại TP.HCM, gia đình hoàn cảnh khó khăn, mẹ bệnh nặng, lần đầu phạm tội).\n- Bị cáo: Hoàng (Người trực tiếp làm giả 2 CCCD gắn chip thu 2.300.000 đồng).\n- Bị cáo: P (Môi giới liên hệ giữa N và Hoàng).\n- Bị cáo: M, A (Người nhờ thi hộ).\n\nHành vi: N nhận lời thi hộ VSTEP cho M và A, nhờ Hoàng làm 2 CCCD giả dán ảnh N để vào phòng thi. N thu lợi bất chính 3.050.000 đồng. N đã nộp lại toàn bộ tiền thu lợi bất chính, tích cực hợp tác với cơ quan công an bắt giữ các đối tượng.",
+      "expected_law": "Điều 341 Bộ luật Hình sự 2015 (sửa đổi 2017)",
+      "expected_penalties": {
+        "principal": "Tù có thời hạn từ 2 đến 3 năm (Xem xét cho hưởng Án treo theo Điều 65 BLHS đối với N)",
+        "supplementary": "Phạt tiền bổ sung từ 10.000.000 đến 30.000.000 đồng (Khoản 2 Điều 32 & Khoản 3 Điều 341)",
+        "judicial_measure": "Tịch thu tiêu hủy 2 CCCD giả; tịch thu nộp ngân sách 3.050.000 đồng (Điều 47 BLHS)"
+      }
+    },
+    {
+      "id": "crim-02",
+      "domain": "criminal",
+      "title": "Cố ý gây thương tích do mâu thuẫn bộc phát",
+      "input": "- Bị cáo: Nguyễn Văn An (SN 1995, chưa có tiền án tiền sự).\n- Bị hại: Trần Quốc Bình (SN 1998, tổn thương cơ thể 35%).\n\nHành vi: Do xích mích tại quán ăn, An dùng dao bấm đâm vào vùng vai của anh Bình gây thương tật 35%. Sau khi gây án, An đã bồi thường 50.000.000 đồng, thành khẩn khai báo và được bị hại xin giảm nhẹ hình phạt.",
+      "expected_law": "Điều 134 Khoản 2 Điểm đ Bộ luật Hình sự 2015",
+      "expected_penalties": {
+        "principal": "Tù có thời hạn từ 2 đến 3 năm (Xem xét cho hưởng án treo)",
+        "supplementary": "Không áp dụng",
+        "judicial_measure": "Bồi thường dân sự theo Điều 48 BLHS"
+      }
+    },
+    {
+      "id": "crim-03",
+      "domain": "criminal",
+      "title": "Cướp tài sản có tổ chức và vũ khí nguy hiểm",
+      "input": "- Bị cáo 1: Hoàng Văn Nam (SN 1990, có 1 tiền án chưa xóa án tích, tái phạm).\n- Bị cáo 2: Đỗ Văn Tuấn (SN 1994, đồng phạm giúp sức).\n- Bị hại: Chị Lê Thị Mai (bị cướp xe máy trị giá 35.000.000 đồng).\n\nHành vi: Nam và Tuấn mang theo dao bấm chặn đường vắng, đe dọa dùng vũ lực ngay tức khắc để cướp xe máy.",
+      "expected_law": "Điều 168 Khoản 2 Bộ luật Hình sự 2015",
+      "expected_penalties": {
+        "principal": "Tù có thời hạn từ 7 đến 10 năm tù giam (Nam) và 7 đến 8 năm tù giam (Tuấn)",
+        "supplementary": "Phạt tiền bổ sung 10 - 20 triệu đồng; Quản chế 01 năm sau khi chấp hành xong án tù (Điều 43 BLHS)",
+        "judicial_measure": "Tịch thu tiêu hủy dao bấm (Điều 47 BLHS)"
+      }
+    },
+    {
+      "id": "civ-01",
+      "domain": "civil",
+      "title": "Tranh chấp hợp đồng vay nợ và kiểm soát lãi suất trần 20%",
+      "input": "Nguyên đơn: Bà Lê Thị Mai.\nBị đơn: Ông Nguyễn Văn Hùng.\n\nNội dung: Ngày 10/01/2023, bà Mai cho ông Hùng vay số tiền 800.000.000 đồng theo Giấy biên nhận vay tiền, thời hạn vay 06 tháng, lãi suất thỏa thuận 30%/năm. Hết hạn, ông Hùng không trả cả nợ gốc và nợ lãi. Bà Mai khởi kiện yêu cầu ông Hùng trả toàn bộ 800 triệu đồng gốc và tiền lãi tính theo mức 30%/năm.",
+      "expected_law": "Điều 463, Điều 466, Điều 468 Bộ luật Dân sự 2015",
+      "dispute_resolution": {
+        "interest_cap_rule": "Điều 468 BLDS: Lãi suất trần tối đa 20%/năm. Mức lãi 30%/năm vượt quá 10%/năm, phần lãi vượt trần bị vô hiệu.",
+        "court_fee_estimate": "36.000.000 đồng (án phí sơ thẩm có giá ngạch theo Nghị quyết 326/2016/UBTVQH14)",
+        "recommended_steps": "Thương lượng -> Hòa giải tiền tố tụng tại Tòa án -> Khởi kiện tại TAND cấp huyện nơi bị đơn cư trú"
+      }
+    },
+    {
+      "id": "civ-02",
+      "domain": "civil",
+      "title": "Tranh chấp chia di sản thừa kế quyền sử dụng đất",
+      "input": "Nguyên đơn: Ông Trần Văn A (con trưởng).\nBị đơn: Bà Trần Thị B (con thứ).\n\nNội dung: Cha mẹ mất năm 2018 không để lại di chúc. Di sản thừa kế là thửa đất diện tích 300m2 tại Huyện C do cha mẹ đứng tên Giấy chứng nhận quyền sử dụng đất. Bà B tự ý xây nhà và canh tác trên toàn bộ thửa đất, từ chối phân chia di sản cho các đồng thừa kế khác.",
+      "expected_law": "Điều 609, Điều 612, Điều 623, Điều 651 Bộ luật Dân sự 2015",
+      "dispute_resolution": {
+        "statute_of_limitations": "Thời hiệu khởi kiện chia thừa kế bất động sản là 30 năm kể từ thời điểm mở thừa kế (năm 2018).",
+        "recommended_steps": "Hòa giải tại UBND xã/phường (thủ tục hòa giải tranh chấp đất đai) -> Khởi kiện phân chia di sản theo pháp luật tại TAND cấp tỉnh/huyện"
+      }
+    },
+    {
+      "id": "adm-01",
+      "domain": "administrative",
+      "title": "Khiếu kiện Quyết định thu hồi đất và bồi thường GPMB của UBND",
+      "input": "Người khởi kiện: Hộ gia đình ông Đặng Văn Nam.\nNgười bị kiện: Ủy ban nhân dân và Chủ tịch UBND Quận K, TP.Đà Nẵng.\n\nNội dung: Ngày 15/08/2023, Chủ tịch UBND Quận K ban hành Quyết định thu hồi đất số 1234/QĐ-UBND và Quyết định phê duyệt phương án bồi thường, hỗ trợ tái định cư với mức giá bồi thường 5.000.000 đồng/m2 trong khi giá thị trường là 25.000.000 đồng/m2. Đồng thời, UBND ban hành Quyết định cưỡng chế thu hồi đất khi chưa giải quyết xong khiếu nại của công dân.",
+      "expected_law": "Luật Tố tụng Hành chính 2015, Luật Đất đai, Luật Khiếu nại 2011",
+      "dispute_resolution": {
+        "two_track_strategy": "Kênh 1: Khiếu nại lần 1 đến Chủ tịch UBND quận (90 ngày) | Kênh 2: Khởi kiện trực tiếp vụ án hành chính tại TAND cấp tỉnh/huyện (01 năm)",
+        "urgent_temporary_measure": "Đề nghị Tòa án áp dụng BPKCTT: 'Tạm đình chỉ việc thi hành quyết định cưỡng chế thu hồi đất' (Khoản 1 Điều 68 Luật TTHC 2015)"
+      }
+    },
+    {
+      "id": "adm-02",
+      "domain": "administrative",
+      "title": "Khiếu kiện Quyết định xử phạt vi phạm hành chính vượt thẩm quyền",
+      "input": "Người khởi kiện: Công ty Cổ phần Thương mại Alpha.\nNgười bị kiện: Đội trưởng Đội Quản lý thị trường số 3.\n\nNội dung: Đội trưởng Đội QLTT số 3 ban hành Quyết định xử phạt vi phạm hành chính số 89/QĐ-XPHC phạt tiền 80.000.000 đồng và tịch thu toàn bộ lô hàng hóa trị giá 200.000.000 đồng. Công ty Alpha cho rằng mức phạt này vượt quá thẩm quyền xử phạt của Đội trưởng theo Luật Xử lý vi phạm hành chính (thẩm quyền tối đa của Đội trưởng là 25.000.000 đồng).",
+      "expected_law": "Điều 45 Luật Xử lý vi phạm hành chính 2012 (sửa đổi 2020), Luật TTHC 2015",
+      "dispute_resolution": {
+        "jurisdiction_violation": "Vi phạm nghiêm trọng về thẩm quyền xử phạt theo Luật XLVPHC. Quyết định hành chính có căn cứ bị tuyên hủy toàn bộ.",
+        "action_steps": "Khởi kiện yêu cầu TAND tuyên hủy Quyết định số 89/QĐ-XPHC và bồi thường thiệt hại thực tế do giữ hàng hóa trái luật."
+      }
+    },
+    {
+      "id": "com-01",
+      "domain": "commercial",
+      "title": "Tranh chấp phạt vi phạm vượt mức trần 8% theo Điều 301 Luật Thương mại",
+      "input": "Nguyên đơn: Công ty Cổ phần Đầu tư Công nghệ Hoàng Long.\nBị đơn: Công ty TNHH Thiết bị Công nghiệp Việt Nhật.\n\nNội dung: Hai bên ký Hợp đồng mua bán thiết bị máy móc số 05/HĐMB trị giá 2.000.000.000 đồng. Bên bán giao hàng chậm tiến độ 15 ngày. Điều 8 của Hợp đồng quy định: 'Bên vi phạm tiến độ giao hàng phải chịu phạt 15% tổng giá trị hợp đồng'. Bên mua yêu cầu bên bán nộp phạt số tiền 300.000.000 đồng. Hai bên có điều khoản chọn Trọng tài VIAC giải quyết.",
+      "expected_law": "Điều 300, Điều 301 Luật Thương mại 2005; Luật Trọng tài Thương mại 2010",
+      "dispute_resolution": {
+        "statutory_ceiling_rule": "Điều 301 LTM: Mức phạt vi phạm do các bên thỏa thuận nhưng không quá 8% giá trị phần nghĩa vụ hợp đồng bị vi phạm (tương đương tối đa 160.000.000 đồng). Phần yêu cầu 140.000.000 đồng vượt quá 8% là vô hiệu.",
+        "arbitration_priority": "Có thỏa thuận trọng tài VIAC có hiệu lực, Tòa án phải từ chối thụ lý theo Điều 6 Luật Trọng tài Thương mại 2010."
+      }
+    },
+    {
+      "id": "com-02",
+      "domain": "commercial",
+      "title": "Tranh chấp sự kiện bất khả kháng và miễn trách nhiệm thương mại",
+      "input": "Nguyên đơn: Công ty Cổ phần Xuất nhập khẩu Thủy sản Biển Đông.\nBị đơn: Doanh nghiệp Vận tải Biển Đại Dương.\n\nNội dung: Hợp đồng vận chuyển 50 tấn thủy sản đông lạnh từ Cần Thơ đi Hải Phòng. Trên đường vận chuyển, tàu gặp bão lớn số 5 làm hỏng hệ thống lạnh dẫn đến toàn bộ hàng hóa hư hỏng. Bên vận tải viện dẫn Điều 294 Luật Thương mại về Sự kiện bất khả kháng để từ chối bồi thường 1.500.000.000 đồng.",
+      "expected_law": "Điều 294, Điều 295 Luật Thương mại 2005; Điều 156 Bộ luật Dân sự 2015",
+      "dispute_resolution": {
+        "force_majeure_assessment": "Bên vi phạm phải thông báo ngay bằng văn bản cho bên kia về trường hợp miễn trách nhiệm và thực hiện mọi biện pháp hợp lý để hạn chế tổn thất (Điều 295 LTM). Nếu không thông báo kịp thời, vẫn phải bồi thường."
+      }
+    },
+    {
+      "id": "disc-01",
+      "domain": "disciplinary",
+      "title": "Sa thải trái pháp luật đối với lao động nữ đang mang thai",
+      "input": "Người khiếu nại: Chị Nguyễn Thị Hương (Chuyên viên Nhân sự).\nNgười bị khiếu nại: Công ty TNHH May mặc Tân Tiến.\n\nNội dung: Chị Hương đang mang thai tháng thứ 5 (có giấy khám thai của bệnh viện). Do sức khỏe yếu, chị Hương có 03 ngày nghỉ việc đi khám bệnh có nộp đơn nhưng chưa được Trưởng phòng duyệt. Ngày 20/09/2023, Giám đốc công ty ra Quyết định sa thải chị Hương với lý do tự ý bỏ việc 03 ngày liên tục.",
+      "expected_law": "Điều 122, Điều 124, Điều 125, Điều 137 Bộ luật Lao động 2019",
+      "dispute_resolution": {
+        "illegality": "Vi phạm nghiêm trọng Khoản 4 Điều 122 & Khoản 3 Điều 137 BLLĐ: Nghiêm cấm xử lý kỷ luật và sa thải lao động nữ đang mang thai.",
+        "compensation_rights": "Áp dụng Điều 41 BLLĐ: Buộc nhận lại làm việc, trả đủ lương những ngày không được làm việc + bồi thường thêm ít nhất 02 tháng tiền lương."
+      }
+    },
+    {
+      "id": "disc-02",
+      "domain": "disciplinary",
+      "title": "Phạt tiền, trừ 50% lương tháng vi phạm điều cấm Điều 127 BLLĐ",
+      "input": "Người lao động: Anh Lê Văn Hùng (Công nhân vận hành máy).\nDoanh nghiệp: Công ty Cổ phần Cơ khí Chế tạo Máy Việt Hàn.\n\nNội dung: Trong ca làm việc ngày 12/07/2023, anh Hùng thao tác sai quy trình làm hỏng linh kiện máy trị giá 3.000.000 đồng. Giám đốc công ty ban hành Thông báo kỷ luật trừ 50% tiền lương tháng 7/2023 của anh Hùng để phạt vi phạm kỷ luật lao động.",
+      "expected_law": "Điều 127, Điều 129 Bộ luật Lao động 2019",
+      "dispute_resolution": {
+        "statutory_prohibition": "Khoản 2 Điều 127 BLLĐ: Nghiêm cấm dùng hình thức phạt tiền, cắt lương thay việc xử lý kỷ luật lao động. Việc trừ lương phạt vi phạm là hoàn toàn trái luật.",
+        "legal_remedy": "Công ty phải hoàn trả lại toàn bộ số tiền lương đã trừ trái phép; nếu có thiệt hại tài sản chỉ được xử lý trách nhiệm vật chất theo Điều 129 BLLĐ (khấu trừ không quá 30% tiền lương tháng sau khi đóng BHXH, thuế)."
+      }
+    }
+  ]
+}

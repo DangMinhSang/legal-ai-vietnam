@@ -142,3 +142,55 @@ async def test_orchestrate_case_analysis_endpoint(client: AsyncClient):
     assert "predicted_sentence_years" in resp_data["predicted_outcome"]
     assert resp_data["processing_time_ms"] >= 0
 
+
+@pytest.mark.asyncio
+async def test_auto_split_endpoint(client: AsyncClient):
+    """Test auto-split endpoint /api/v1/analysis/auto_split."""
+    payload = {
+        "text": "- Bị cáo: Trần Văn Nam (SN 1999)\n- Bị hại: Lê Văn Hoàng\n\nKhoảng 20h ngày 12/03/2023, Nam dùng dao đâm Hoàng gây thương tích 25%."
+    }
+    res = await client.post("/api/v1/analysis/auto_split", json=payload)
+    assert res.status_code == 200
+    data = res.json()
+    assert data["success"] is True
+    assert "personal_info" in data["data"]
+    assert "case_info" in data["data"]
+    assert data["data"]["parties_count"] >= 1
+
+
+@pytest.mark.asyncio
+async def test_web_analyze_endpoint(client: AsyncClient):
+    """Test web analyze endpoint /api/v1/analysis/web_analyze."""
+    payload = {
+        "personal_info": "- Bị cáo: Nguyễn Văn X, chưa có tiền án\n- Bị hại: Trần Y",
+        "case_info": "Vào ngày 15/05/2023, bị cáo trộm cắp xe máy 30 triệu đồng, đã trả lại tài sản và thành khẩn khai báo.",
+    }
+    res = await client.post("/api/v1/analysis/web_analyze", json=payload)
+    assert res.status_code == 200
+    data = res.json()
+    assert data["success"] is True
+    assert "parties" in data
+    assert "predicted_outcome" in data
+    assert "multi_domain" in data
+    assert data["multi_domain"]["primary_domain"] == "criminal"
+    assert "article_32_penalties" in data
+    assert len(data["article_32_penalties"]["principal_penalties"]) == 7
+    assert len(data["article_32_penalties"]["supplementary_penalties"]) == 7
+
+
+@pytest.mark.asyncio
+async def test_multi_domain_endpoint(client: AsyncClient):
+    """Test multi-domain analysis endpoint /api/v1/analysis/multi_domain."""
+    payload = {
+        "text": "Công ty X và Công ty Y tranh chấp hợp đồng mua bán trị giá 1 tỷ đồng, yêu cầu phạt vi phạm hợp đồng 10% và giải quyết tại Trọng tài VIAC.",
+        "domain": "commercial",
+    }
+    res = await client.post("/api/v1/analysis/multi_domain", json=payload)
+    assert res.status_code == 200
+    data = res.json()
+    assert data["success"] is True
+    res_data = data["data"]
+    assert res_data["primary_domain"] == "commercial"
+    assert "domain_specific_analysis" in res_data
+    assert res_data["domain_specific_analysis"]["arbitration_clause_found"] is True
+

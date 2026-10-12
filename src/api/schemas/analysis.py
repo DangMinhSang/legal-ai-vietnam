@@ -97,6 +97,7 @@ class WebAnalysisRequest(BaseModel):
     personal_info: str = Field(default="", description="1. Thông tin cá nhân (Bị cáo, Bị hại, nhiều người)")
     case_info: str = Field(default="", description="2. Thông tin vụ án (Hành vi, thời gian, công cụ, hậu quả)")
     full_text: str = Field(default="", description="Toàn văn vụ án / cáo trạng tự do (tùy chọn)")
+    domain: str | None = Field(default=None, description="Lĩnh vực chỉ định (tùy chọn: criminal, civil, administrative, commercial, disciplinary)")
 
 
 class AutoSplitRequest(BaseModel):
@@ -111,6 +112,29 @@ class AutoSplitResponse(BaseModel):
     personal_info: str
     case_info: str
     parties_count: int = 0
+
+
+class MultiDomainAnalysisRequest(BaseModel):
+    """Yêu cầu phân tích vụ việc đa lĩnh vực pháp luật (Hình sự, Dân sự, Hành chính, Thương mại, Kỷ luật)."""
+
+    text: str = Field(default="", description="Toàn văn mô tả vụ việc / tranh chấp")
+    personal_info: str = Field(default="", description="Thông tin các bên / đương sự (tùy chọn)")
+    case_info: str = Field(default="", description="Diễn biến tình tiết tranh chấp (tùy chọn)")
+    domain: str | None = Field(default=None, description="Lĩnh vực chỉ định (tùy chọn: criminal, civil, administrative, commercial, disciplinary)")
+
+
+class MultiDomainAnalysisResponse(BaseModel):
+    """Kết quả phân tích pháp lý đa lĩnh vực toàn diện."""
+
+    primary_domain: str
+    primary_domain_name: str
+    domain_scores: dict[str, float]
+    primary_law: str
+    domain_specific_analysis: dict[str, Any]
+    secondary_domains_detected: list[str] = Field(default_factory=list)
+    combined_summary: str
+    processing_time_ms: int = 0
+
 
 
 

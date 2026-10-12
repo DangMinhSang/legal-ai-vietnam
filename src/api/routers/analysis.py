@@ -22,6 +22,8 @@ from src.api.schemas.analysis import (
     CaseOrchestrationResponse,
     LegalProvisionItem,
     LegalProvisionsRequest,
+    MultiDomainAnalysisRequest,
+    MultiDomainAnalysisResponse,
     SimilarCaseItem,
     SimilarCasesRequest,
     WebAnalysisRequest,
@@ -31,7 +33,6 @@ from src.db.models import (
     AnalysisResultModel,
     Document,
     JudgmentDocument,
-    LegalDocument,
     LegalProvision,
 )
 from src.fact_extraction.extractor import CaseFactExtractor
@@ -506,6 +507,8 @@ async def web_analyze_case(
     db: AsyncSession = Depends(get_db),
 ) -> dict[str, Any]:
     """Phân tích vụ án từ 2 khung nhập liệu hoặc 1 văn bản tự do phục vụ Web Demo."""
+    from src.legal_domains.criminal import CriminalPenaltySystem
+    from src.legal_domains.dispatcher import LegalDomainDispatcher
     from src.orchestration.case_parser import parse_two_inputs
     from src.orchestration.orchestrator import CaseAnalysisOrchestrator
 
@@ -522,6 +525,15 @@ async def web_analyze_case(
         judgment_date=parsed.judgment_date,
         session=db,
         input_features=parsed.features,
+    )
+
+    # Phân tích đa lĩnh vực pháp luật (Hình sự, Dân sự, Hành chính, Thương mại, Kỷ luật)
+    full_corpus = request.full_text or f"{request.personal_info}\n{request.case_info}"
+    multi_res = LegalDomainDispatcher.dispatch(
+        text=full_corpus,
+        forced_domain=request.domain,
+        personal_info=request.personal_info,
+        case_info=request.case_info,
     )
 
     temp_analysis = dict(output.temporal_analysis)
@@ -562,6 +574,65 @@ async def web_analyze_case(
             "max": parsed.features.get("statutory_max", 0.0),
             "mid": parsed.features.get("statutory_mid", 0.0),
         },
+        # Bổ sung thông tin Đa lĩnh vực & Hệ thống 7 hình phạt chính, 7 hình phạt bổ sung Điều 32
+        "multi_domain": {
+            "primary_domain": multi_res.primary_domain.value,
+            "primary_domain_name": multi_res.primary_domain_name,
+            "domain_scores": multi_res.domain_scores,
+            "primary_law": multi_res.primary_law,
+            "specific_analysis": multi_res.domain_specific_analysis,
+            "secondary_domains": multi_res.secondary_domains_detected,
+            "combined_summary": multi_res.combined_summary,
+        },
+        "article_32_penalties": {
+            "title": "Hệ thống Hình phạt theo Điều 32 Bộ luật Hình sự 2015 (sửa đổi 2017)",
+            "principal_penalties": CriminalPenaltySystem.get_all_principal_penalties(),
+            "supplementary_penalties": CriminalPenaltySystem.get_all_supplementary_penalties(),
+        },
     }
+
+
+@router.post("/multi_domain", response_model=APIResponse[MultiDomainAnalysisResponse])
+async def analyze_multi_domain(
+    request: MultiDomainAnalysisRequest,
+) -> APIResponse[MultiDomainAnalysisResponse]:
+    """Phân tích hồ sơ vụ việc pháp lý đa lĩnh vực (Hình sự, Dân sự, Hành chính, Thương mại, Kỷ luật)."""
+    from src.legal_domains.dispatcher import LegalDomainDispatcher
+
+    start_time = time.perf_counter()
+    full_text = request.text or f"{request.personal_info}\n{request.case_info}".strip()
+
+    if not full_text:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Nội dung văn bản vụ việc không được để trống",
+        )
+
+    result = LegalDomainDispatcher.dispatch(
+        text=full_text,
+        forced_domain=request.domain,
+        personal_info=request.personal_info,
+        case_info=request.case_info,
+    )
+
+    duration_ms = int((time.perf_counter() - start_time) * 1000)
+
+    data = MultiDomainAnalysisResponse(
+        primary_domain=result.primary_domain.value,
+        primary_domain_name=result.primary_domain_name,
+        domain_scores=result.domain_scores,
+        primary_law=result.primary_law,
+        domain_specific_analysis=result.domain_specific_analysis,
+        secondary_domains_detected=result.secondary_domains_detected,
+        combined_summary=result.combined_summary,
+        processing_time_ms=duration_ms,
+    )
+
+    return APIResponse[MultiDomainAnalysisResponse](
+        success=True,
+        data=data,
+        message="Phân tích đa lĩnh vực pháp luật thành công",
+    )
+
 
 
