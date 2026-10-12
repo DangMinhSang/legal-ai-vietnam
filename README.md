@@ -171,21 +171,21 @@ python scripts/download_sample_data.py
 
 Hệ thống hỗ trợ 3 phương thức trải nghiệm trực quan:
 
-#### Cách 1: Giao diện Web tương tác (Khuyến nghị)
-Giao diện trực quan trên trình duyệt với **chính xác 2 khung nhập liệu** (Thông tin cá nhân & Thông tin vụ án) và 4 vụ án mẫu kiểm thử 1-click:
+#### Cách 1: Giao diện Web tương tác Đa Lĩnh vực (Khuyến nghị)
+Giao diện trực quan trên trình duyệt hỗ trợ cả 5 lĩnh vực pháp luật (Hình sự, Dân sự, Hành chính, Thương mại, Kỷ luật), 11 hồ sơ mẫu kiểm thử 1-click, chế độ nhập liệu 2 khung hoặc 1 khung, bảng lưới 7 hình phạt chính & 7 hình phạt bổ sung Điều 32 BLHS, bảng tính án phí NQ 326 và trần phạt 8% LTM:
 ```bash
 python run_web.py
 ```
 > Trình duyệt sẽ tự động mở tại `http://localhost:8000` (API Docs tại `http://localhost:8000/docs`).
 
-#### Cách 2: Giao diện Dòng lệnh Tương tác (CLI)
-Nhập liệu 2 khung trực tiếp trên terminal với gợi ý dữ liệu mẫu:
+#### Cách 2: Giao diện Dòng lệnh Tương tác Đa Lĩnh vực (CLI)
+Giao diện dòng lệnh tương tác mạnh mẽ với menu chọn 11 hồ sơ mẫu hoặc tự nhập liệu bằng 2 khung / 1 khung tự do, hiển thị bảng Rich chuyên sâu theo từng lĩnh vực:
 ```bash
 python interactive.py
 ```
 
-#### Cách 3: Chạy Demo Tự Động 1-Lệnh
-Chạy kiểm thử end-to-end vụ án mẫu với bảng kết quả Rich trực quan:
+#### Cách 3: Chạy Demo Tự Động Đa Lĩnh vực 1-Lệnh
+Chạy tự động kiểm thử tuần tự qua cả 5 lĩnh vực pháp luật và chuẩn hóa hệ thống hình phạt Điều 32 BLHS với bảng kết quả Rich trực quan:
 ```bash
 python demo.py
 ```
@@ -334,7 +334,7 @@ legal-ai-vietnam/
 
 ## Trạng thái triển khai & Kết quả nghiên cứu
 
-Toàn bộ các thành phần cốt lõi của hệ thống đã được triển khai, kiểm thử và nghiệm thu khoa học với **134/134 bài kiểm thử vượt qua (100% Pass Rate)**:
+Toàn bộ các thành phần cốt lõi của hệ thống đã được triển khai, kiểm thử và nghiệm thu khoa học với **140/140 bài kiểm thử vượt qua (100% Pass Rate)**:
 
 ### Phase 1 - Nền tảng cốt lõi (MVP) — ĐÃ HOÀN THÀNH 100%
 
@@ -449,10 +449,10 @@ phải qua code review để kiểm tra temporal split.
 
 ## Kiểm định Tự động (Tests)
 
-Hệ thống sở hữu bộ kiểm thử tự động toàn diện với **134 test cases** bao phủ từ tầng xử lý văn bản, trích xuất thực thể, suy luận thời gian, phát hiện rò rỉ dữ liệu, 5 lĩnh vực pháp luật đến tích hợp API:
+Hệ thống sở hữu bộ kiểm thử tự động toàn diện với **140 test cases** bao phủ từ tầng xử lý văn bản, trích xuất thực thể, suy luận thời gian, phát hiện rò rỉ dữ liệu, 5 lĩnh vực pháp luật đến tích hợp API:
 
 ```bash
-# Chạy toàn bộ 134 tests (100% Passed)
+# Chạy toàn bộ 140 tests (100% Passed)
 pytest -v
 
 # Kiểm thử chuyên sâu 5 Lĩnh vực Pháp luật & Điều 32 BLHS

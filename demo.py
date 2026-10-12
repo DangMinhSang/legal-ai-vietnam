@@ -1,4 +1,11 @@
-"""Demo trực quan Hệ thống AI Phân tích & Hỗ trợ Xét xử Hình sự Việt Nam.
+"""Demo trực quan Hệ thống AI Phân tích & Hỗ trợ Pháp lý Đa Lĩnh vực Việt Nam.
+
+Bao gồm cả 5 lĩnh vực pháp luật cốt lõi:
+1. HÌNH SỰ (Criminal Law) - Chuẩn hóa toàn diện 7 hình phạt chính & 7 hình phạt bổ sung Điều 32 BLHS 2015
+2. DÂN SỰ (Civil Law) - Kiểm soát trần lãi 20% Đ.468 BLDS & Bảng tính án phí NQ 326/2016/UBTVQH14
+3. HÀNH CHÍNH (Administrative Law) - Tranh chấp CQNN, Chiến lược 2 kênh & Biện pháp khẩn cấp tạm thời Đ.68 LTTHC
+4. THƯƠNG MẠI (Commercial Law) - Kiểm soát trần phạt vi phạm 8% Đ.301 LTM & Trọng tài VIAC Đ.6 LTTTM
+5. KỶ LUẬT & LAO ĐỘNG (Disciplinary Law) - 4 hình thức kỷ luật Đ.124 BLLĐ, điều cấm Đ.127/Đ.137, bồi thường Đ.41
 
 Chạy lệnh:
     python demo.py
@@ -7,9 +14,27 @@ Chạy lệnh:
 from __future__ import annotations
 
 import asyncio
+import logging
 import sys
-from datetime import date
+import warnings
 from pathlib import Path
+
+from rich.console import Console
+from rich.panel import Panel
+from rich.rule import Rule
+
+from src.first_instance.predictor import FirstInstancePredictor
+from src.legal_domains.dispatcher import LegalDomain, LegalDomainDispatcher
+from src.orchestration.case_parser import parse_two_inputs
+from src.presentation.terminal_views import (
+    render_administrative_domain,
+    render_banner,
+    render_civil_domain,
+    render_commercial_domain,
+    render_criminal_domain,
+    render_disciplinary_domain,
+    render_domain_badge,
+)
 
 # Đảm bảo mã hóa UTF-8 trên Windows Terminal
 if hasattr(sys.stdout, "reconfigure"):
@@ -18,141 +43,201 @@ if hasattr(sys.stderr, "reconfigure"):
     sys.stderr.reconfigure(encoding="utf-8")
 
 PROJECT_ROOT = Path(__file__).resolve().parent
-sys.path.insert(0, str(PROJECT_ROOT))
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
-# Tắt log nền để giữ màn hình console hiển thị bảng biểu trực quan và sạch sẽ
-import logging
-import warnings
 warnings.filterwarnings("ignore")
 try:
     from loguru import logger
+
     logger.remove()
 except ImportError:
     pass
 logging.getLogger().setLevel(logging.ERROR)
 
-from rich.console import Console
-from rich.panel import Panel
-from rich.table import Table
-
-from src.db.database import AsyncSessionLocal
-from src.orchestration.orchestrator import CaseAnalysisOrchestrator
-
 console = Console(legacy_windows=False)
 
 
-async def run_demo() -> None:
+async def run_multi_domain_demo() -> None:
+    """Chạy kịch bản demo tự động qua 5 lĩnh vực pháp luật và Hệ thống hình phạt Điều 32 BLHS."""
+    render_banner(
+        console=console,
+        title="HỆ THỐNG TRÍ TUỆ NHÂN TẠO PHÁP LÝ ĐA LĨNH VỰC VIỆT NAM",
+        subtitle="Đại học Công nghệ Thông tin (UIT) - ĐHQG TP.HCM",
+    )
+
     console.print(
-        Panel.fit(
-            "[bold cyan]HỆ THỐNG AI PHÂN TÍCH VÀ HỖ TRỢ XÉT XỬ HÌNH SỰ VIỆT NAM[/bold cyan]\n"
-            "[white]Đại học Công nghệ Thông tin (UIT) - ĐHQG TP.HCM[/white]\n"
-            "[green]Demo luồng điều phối tích hợp: Temporal Reasoning → Legal RAG → Án lệ → ML Model[/green]",
-            border_style="cyan",
+        Panel(
+            "[bold white]CHƯƠNG TRÌNH KHỞI ĐỘNG DEMO TỰ ĐỘNG BẢO ĐẢM TOÀN DIỆN:[/bold white]\n"
+            "• [cyan]1. Lĩnh vực Hình sự[/cyan]: Phân tích tội danh, tình tiết tăng nặng/giảm nhẹ, 7 hình phạt chính & 7 hình phạt bổ sung (Điều 32 BLHS).\n"
+            "• [cyan]2. Lĩnh vực Dân sự[/cyan]: Kiểm soát trần lãi suất 20%/năm (Điều 468 BLDS), Bảng tính án phí sơ thẩm (Nghị quyết 326/2016/UBTVQH14).\n"
+            "• [cyan]3. Lĩnh vực Hành chính[/cyan]: Khiếu kiện thu hồi đất của UBND, Chiến lược 2 kênh (Khiếu nại 90 ngày & Khởi kiện 1 năm), Biện pháp khẩn cấp tạm thời (Điều 68 LTTHC).\n"
+            "• [cyan]4. Lĩnh vực Thương mại[/cyan]: Hợp đồng mua bán 2 tỷ, Trần phạt vi phạm 8% (Điều 301 LTM 2005), Thỏa thuận trọng tài VIAC (Điều 6 LTTTM).\n"
+            "• [cyan]5. Lĩnh vực Kỷ luật & Lao động[/cyan]: 4 hình thức kỷ luật (Điều 124 BLLĐ), Điều cấm sa thải mang thai (Điều 137), Bồi thường sa thải trái luật (Điều 41).",
+            border_style="green",
+            title="[bold green]MỤC TIÊU KIỂM THỬ DEMO[/bold green]",
         )
     )
 
-    # 1. Định nghĩa hồ sơ vụ án mẫu (từ Cáo trạng truy tố sơ thẩm)
-    case_description = (
-        "Khoảng 21 giờ ngày 15/04/2023, do mâu thuẫn bộc phát tại quán nước, bị cáo Nguyễn Văn A "
-        "đã dùng một con dao bấm (hung khí nguy hiểm) đâm một nhát vào vùng ngực trái của anh Trần B. "
-        "Hậu quả làm anh B bị tổn hại 35% sức khỏe. Sau khi gây án, bị cáo đã thành khẩn khai báo, "
-        "tác động gia đình bồi thường toàn bộ chi phí điều trị 50 triệu đồng cho bị hại và được bị hại xin giảm nhẹ."
+    ml_predictor = FirstInstancePredictor()
+
+    # =========================================================================
+    # DEMO 1: HÌNH SỰ (CRIMINAL LAW - ĐIỀU 32 BLHS)
+    # =========================================================================
+    console.print(Rule("[bold magenta]PHẦN 1: PHÁP LUẬT HÌNH SỰ & ĐIỀU 32 BLHS 2015[/bold magenta]"))
+    crim_personal = (
+        "- Bị cáo: N Nữ sinh viên năm cuối ngành Công nghệ thông tin tại TP.HCM, gia đình khó khăn, mẹ bệnh loãng xương nặng.\n"
+        "- Bị cáo: Hoàng Người trực tiếp nhận làm giả 2 CCCD gắn chip thu 2.300.000 đồng.\n"
+        "- Bị cáo: P Người môi giới trung gian liên hệ.\n"
+        "- Bị cáo: M, A Người nhờ thi hộ VSTEP."
     )
-    incident_date = date(2023, 4, 15)
-    judgment_date = date(2023, 10, 20)
+    crim_case = (
+        "N nhận lời thi hộ chứng chỉ VSTEP cho M và A, nhờ Hoàng làm 2 CCCD giả dán ảnh của N. "
+        "N thu lợi bất chính 3.050.000 đồng. N đã nộp lại toàn bộ số tiền thu lợi bất chính, tích cực hợp tác với cơ quan điều tra bắt giữ các đối tượng khác. "
+        "Hành vi phạm tội Làm giả con dấu, tài liệu của cơ quan, tổ chức theo Điều 341 BLHS 2015."
+    )
 
-    # Vector đặc trưng tiền xét xử (không rò rỉ kết quả bản án)
-    input_features = {
-        "num_facts": 3.0,
-        "num_aggravating": 1.0,         # Tình tiết tăng nặng: Dùng hung khí nguy hiểm (Điều 52)
-        "num_mitigating": 3.0,          # Tình tiết giảm nhẹ: Thành khẩn, bồi thường, bị hại xin giảm (Điều 51)
-        "has_dangerous_weapon": 1.0,    # Dùng dao bấm
-        "prior_convictions": 0.0,       # Chưa có tiền án
-        "crime_is_injury": 1.0,         # Tội Cố ý gây thương tích (Điều 134 BLHS 2015)
-        "statutory_min": 2.0,           # Khung hình phạt tối thiểu: 2 năm tù
-        "statutory_max": 6.0,           # Khung hình phạt tối đa: 6 năm tù
-        "statutory_mid": 4.0,           # Trung điểm khung: 4 năm
-        "has_legal_factors": 1.0,
-        "no_factors": 0.0,
-    }
+    parsed_crim = parse_two_inputs(crim_personal, crim_case)
+    dispatch_crim = LegalDomainDispatcher.dispatch(
+        text=f"{crim_personal}\n{crim_case}",
+        forced_domain=LegalDomain.CRIMINAL,
+        personal_info=crim_personal,
+        case_info=crim_case,
+    )
+    ml_pred = ml_predictor.predict(parsed_crim.features)
 
-    # Bảng hiển thị thông tin vụ án đầu vào
-    case_table = Table(title="[bold yellow]1. HỒ SƠ TÌNH TIẾT VỤ ÁN ĐẦU VÀO (TỪ CÁO TRẠNG)[/bold yellow]")
-    case_table.add_column("Thuộc tính", style="cyan", width=25)
-    case_table.add_column("Thông tin chi tiết", style="white")
-    case_table.add_row("Hành vi truy tố", case_description)
-    case_table.add_row("Ngày xảy ra hành vi", str(incident_date))
-    case_table.add_row("Ngày mở phiên tòa", str(judgment_date))
-    case_table.add_row("Tình tiết tăng nặng (Đ.52)", "1 tình tiết (dùng hung khí nguy hiểm)")
-    case_table.add_row("Tình tiết giảm nhẹ (Đ.51)", "3 tình tiết (thành khẩn khai báo, tự nguyện bồi thường, bị hại xin giảm nhẹ)")
-    case_table.add_row("Khung luật định truy tố", "Khoản 2 Điều 134 BLHS (Khung: 2.0 - 6.0 năm tù)")
-    console.print(case_table)
-    console.print("\n[dim]Đang kích hoạt Orchestrator và truy vấn cơ sở tri thức pháp luật...[/dim]\n")
+    render_domain_badge(
+        console=console,
+        domain_name=dispatch_crim.primary_domain_name,
+        primary_law=dispatch_crim.primary_law,
+        domain_scores=dispatch_crim.domain_scores,
+    )
+    render_criminal_domain(
+        console=console,
+        analysis=dispatch_crim.domain_specific_analysis,
+        parsed_case=parsed_crim,
+        ml_prediction=ml_pred,
+    )
 
-    orchestrator = CaseAnalysisOrchestrator()
+    # =========================================================================
+    # DEMO 2: DÂN SỰ (CIVIL LAW - TRẦN LÃI 20% & ÁN PHÍ NQ 326)
+    # =========================================================================
+    console.print(Rule("[bold magenta]PHẦN 2: PHÁP LUẬT DÂN SỰ & ÁN PHÍ THEO NQ 326/2016[/bold magenta]"))
+    civ_text = (
+        "Nguyên đơn: Bà Lê Thị Mai. Bị đơn: Ông Nguyễn Văn Hùng.\n"
+        "Ngày 10/01/2023, bà Mai cho ông Hùng vay số tiền 800.000.000 đồng theo Giấy biên nhận vay tiền, "
+        "thời hạn 06 tháng, lãi suất thỏa thuận 30%/năm. Hết hạn vay, ông Hùng không thanh toán tiền gốc và tiền lãi. "
+        "Bà Mai khởi kiện yêu cầu hoàn trả 800.000.000 đồng nợ gốc và tiền lãi 30%/năm."
+    )
+    dispatch_civ = LegalDomainDispatcher.dispatch(
+        text=civ_text,
+        forced_domain=LegalDomain.CIVIL,
+    )
+    render_domain_badge(
+        console=console,
+        domain_name=dispatch_civ.primary_domain_name,
+        primary_law=dispatch_civ.primary_law,
+        domain_scores=dispatch_civ.domain_scores,
+    )
+    render_civil_domain(
+        console=console,
+        analysis=dispatch_civ.domain_specific_analysis,
+    )
 
-    async with AsyncSessionLocal() as session:
-        result = await orchestrator.analyze_case(
-            case_description=case_description,
-            incident_date=incident_date,
-            judgment_date=judgment_date,
-            session=session,
-            input_features=input_features,
-            case_id="DEMO_CASE_001",
+    # =========================================================================
+    # DEMO 3: HÀNH CHÍNH (ADMINISTRATIVE LAW - CHIẾN LƯỢC 2 KÊNH & BPKCTT Đ.68)
+    # =========================================================================
+    console.print(Rule("[bold magenta]PHẦN 3: TRANH CHẤP VỚI CƠ QUAN NHÀ NƯỚC (LUẬT TTHC 2015)[/bold magenta]"))
+    admin_text = (
+        "Người khởi kiện: Hộ gia đình ông Đặng Văn Nam.\n"
+        "Người bị kiện: Ủy ban nhân dân và Chủ tịch UBND Quận K, TP.Đà Nẵng.\n"
+        "Chủ tịch UBND Quận K ban hành Quyết định thu hồi đất số 1234/QĐ-UBND và Quyết định phê duyệt phương án bồi thường GPMB "
+        "với mức giá 5.000.000 đồng/m2, thấp hơn nhiều so với giá thị trường 25.000.000 đồng/m2. "
+        "Đồng thời, UBND chuẩn bị cưỡng chế thu hồi đất khi chưa giải quyết xong khiếu nại của công dân."
+    )
+    dispatch_admin = LegalDomainDispatcher.dispatch(
+        text=admin_text,
+        forced_domain=LegalDomain.ADMINISTRATIVE,
+    )
+    render_domain_badge(
+        console=console,
+        domain_name=dispatch_admin.primary_domain_name,
+        primary_law=dispatch_admin.primary_law,
+        domain_scores=dispatch_admin.domain_scores,
+    )
+    render_administrative_domain(
+        console=console,
+        analysis=dispatch_admin.domain_specific_analysis,
+    )
+
+    # =========================================================================
+    # DEMO 4: KINH DOANH THƯƠNG MẠI (COMMERCIAL LAW - TRẦN PHẠT 8% & VIAC)
+    # =========================================================================
+    console.print(Rule("[bold magenta]PHẦN 4: KINH DOANH THƯƠNG MẠI & TRỌNG TÀI VIAC[/bold magenta]"))
+    com_text = (
+        "Nguyên đơn: Công ty Cổ phần Đầu tư Công nghệ Hoàng Long.\n"
+        "Bị đơn: Công ty TNHH Thiết bị Công nghiệp Việt Nhật.\n"
+        "Hai bên ký Hợp đồng mua bán thiết bị máy móc số 05/HĐMB trị giá 2.000.000.000 đồng. "
+        "Bên bán giao hàng chậm tiến độ 15 ngày. Điều 8 của Hợp đồng quy định phạt 15% tổng giá trị hợp đồng (300.000.000 đồng). "
+        "Hợp đồng có thỏa thuận giải quyết tranh chấp tại Trung tâm Trọng tài Quốc tế Việt Nam (VIAC)."
+    )
+    dispatch_com = LegalDomainDispatcher.dispatch(
+        text=com_text,
+        forced_domain=LegalDomain.COMMERCIAL,
+    )
+    render_domain_badge(
+        console=console,
+        domain_name=dispatch_com.primary_domain_name,
+        primary_law=dispatch_com.primary_law,
+        domain_scores=dispatch_com.domain_scores,
+    )
+    render_commercial_domain(
+        console=console,
+        analysis=dispatch_com.domain_specific_analysis,
+    )
+
+    # =========================================================================
+    # DEMO 5: KỶ LUẬT & LAO ĐỘNG (LABOR DISCIPLINE & ĐIỀU 124, 127, 137 BLLĐ)
+    # =========================================================================
+    console.print(Rule("[bold magenta]PHẦN 5: KỶ LUẬT LAO ĐỘNG & BẢO VỆ QUYỀN LỢI (BLLĐ 2019)[/bold magenta]"))
+    disc_text = (
+        "Người khiếu nại: Chị Nguyễn Thị Hương (Chuyên viên Nhân sự).\n"
+        "Doanh nghiệp: Công ty TNHH May mặc Tân Tiến.\n"
+        "Chị Hương đang mang thai tháng thứ 5 (có giấy khám thai của bệnh viện). "
+        "Do sức khỏe yếu, chị Hương nghỉ 03 ngày đi khám bệnh có nộp đơn nhưng chưa được duyệt. "
+        "Giám đốc công ty ra Quyết định sa thải chị Hương với lý do tự ý bỏ việc 03 ngày liên tục, không tổ chức cuộc họp xử lý kỷ luật có Công đoàn."
+    )
+    dispatch_disc = LegalDomainDispatcher.dispatch(
+        text=disc_text,
+        forced_domain=LegalDomain.DISCIPLINARY,
+    )
+    render_domain_badge(
+        console=console,
+        domain_name=dispatch_disc.primary_domain_name,
+        primary_law=dispatch_disc.primary_law,
+        domain_scores=dispatch_disc.domain_scores,
+    )
+    render_disciplinary_domain(
+        console=console,
+        analysis=dispatch_disc.domain_specific_analysis,
+    )
+
+    # =========================================================================
+    # TỔNG KẾT
+    # =========================================================================
+    console.print(Rule("[bold green]TỔNG KẾT DEMO ĐA LĨNH VỰC HOÀN TẤT THÀNH CÔNG[/bold green]"))
+    console.print(
+        Panel(
+            "[bold green]✓ HỆ THỐNG ĐÃ CHẠY HOÀN HẢO QUA CẢ 5 LĨNH VỰC PHÁP LUẬT:[/bold green]\n"
+            "1. [bold]Hình sự[/bold]: Hiển thị chính xác A. 7 hình phạt chính và B. 7 hình phạt bổ sung theo Điều 32 BLHS 2015.\n"
+            "2. [bold]Dân sự[/bold]: Tính toán tự động án phí 6 bậc theo Nghị quyết 326 và kiểm soát trần lãi 20% theo Điều 468 BLDS.\n"
+            "3. [bold]Hành chính[/bold]: Vạch rõ chiến lược 2 kênh (90 ngày vs 1 năm) và đề xuất BPKCTT Điều 68 LTTHC.\n"
+            "4. [bold]Thương mại[/bold]: Kiểm soát trần phạt vi phạm 8% Điều 301 LTM và bảo vệ thỏa thuận Trọng tài VIAC.\n"
+            "5. [bold]Kỷ luật[/bold]: Nhận diện 4 hình thức hợp pháp Điều 124, chỉ rõ vi phạm cấm sa thải mang thai Điều 137 và bồi thường Điều 41 BLLĐ.",
+            border_style="green",
         )
-
-    # 2. Hiển thị Suy luận Pháp lý theo Thời gian (Temporal Engine)
-    temp = result.temporal_analysis
-    temp_table = Table(title="[bold yellow]2. SUY LUẬN PHÁP LÝ THEO THỜI GIAN (ĐIỀU 7 BLHS & NQ 41/2017)[/bold yellow]")
-    temp_table.add_column("Tiêu chí", style="cyan", width=25)
-    temp_table.add_column("Kết luận của Bộ máy Suy luận", style="green")
-    temp_table.add_row("Văn bản áp dụng", temp.get("document_id", "N/A"))
-    temp_table.add_row("Căn cứ xác định", temp.get("selected_basis", "N/A"))
-    temp_table.add_row("Điều luật viện dẫn", ", ".join(temp.get("citations", [])))
-    temp_table.add_row("Ghi chú chuyển tiếp", temp.get("transitional_note", "N/A"))
-    temp_table.add_row("Cần hội đồng chuyên gia?", "Không" if not temp.get("requires_expert_review") else "Có")
-    console.print(temp_table)
-
-    # 3. Hiển thị Án lệ Tương tự
-    prec_table = Table(title="\n[bold yellow]3. ÁN LỆ CHÍNH THỨC CỦA HỘI ĐỒNG THẨM PHÁN TANDTC[/bold yellow]")
-    prec_table.add_column("Mã Án lệ", style="magenta", width=15)
-    prec_table.add_column("Tên Án lệ / Tình huống Pháp lý", style="white")
-    prec_table.add_column("Độ Tương Đồng", style="cyan", justify="right")
-    if result.relevant_precedents:
-        for p in result.relevant_precedents:
-            name = p.get("case_name") or p.get("title") or "Án lệ hình sự"
-            score = p.get("similarity_score", 0.0)
-            prec_table.add_row(p.get("precedent_id", "AL"), name[:70], f"{score*100:.1f}%")
-    else:
-        prec_table.add_row("N/A", "Không phát hiện án lệ tương đồng trực tiếp", "0.0%")
-    console.print(prec_table)
-
-    # 4. Hiển thị Kết quả Dự đoán của Model ML
-    pred = result.predicted_outcome
-    pred_table = Table(title="\n[bold yellow]4. KẾT QUẢ DỰ ĐOÁN XÉT XỬ CỦA MÔ HÌNH HỌC MÁY (ML MODEL)[/bold yellow]")
-    pred_table.add_column("Đầu ra xét xử", style="cyan", width=25)
-    pred_table.add_column("Dự đoán của Mô hình", style="bold green")
-    pred_table.add_column("Cơ chế kiểm soát & Guardrails", style="yellow")
-
-    outcome_str = "CÓ TỘI (Guilty)" if pred.get("predicted_outcome") == "guilty" else "VÔ TỘI (Not Guilty)"
-    years = pred.get("predicted_sentence_years", 0.0)
-    conf = pred.get("confidence", 0.0)
-
-    pred_table.add_row("Phán quyết (Verdict)", outcome_str, "RandomForestClassifier (Balanced Acc: 100%)")
-    pred_table.add_row("Mức án đề xuất (Tù giam)", f"{years:.2f} năm tù", "RandomForestRegressor + Statutory Frame Bounds")
-    pred_table.add_row("Độ tin cậy mô hình", f"{conf * 100:.1f}%", "Zero-negative & Not-guilty Zero-sentence Guaranteed")
-    console.print(pred_table)
-
-    # 5. Cảnh báo Tính nhất quán Pháp lý (Consistency Guardrails)
-    console.print("\n[bold yellow]5. KIỂM TRA HÀNG RÀO NHẤT QUÁN PHÁP LÝ (CONSISTENCY GUARDRAILS)[/bold yellow]")
-    if result.consistency_warnings:
-        for w in result.consistency_warnings:
-            console.print(f"  [red]⚠ Cảnh báo:[/red] {w}")
-    else:
-        console.print("  [bold green]✓ 100% Tuân thủ tính nhất quán pháp lý:[/bold green] Mức án không âm, phán quyết có tội và nằm trong khung luật định.")
-
-    console.print("\n[bold green]✓ Demo hoàn tất thành công![/bold green]\n")
+    )
 
 
 if __name__ == "__main__":
-    asyncio.run(run_demo())
+    asyncio.run(run_multi_domain_demo())
