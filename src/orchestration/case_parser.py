@@ -158,15 +158,22 @@ def extract_parties(personal_info: str) -> list[PartyInfo]:
         name = extract_single_party_name(line)
         role_det = infer_role_detail(line)
 
-        # Tiền án / tiền sự
+        # Tiền án / tiền sự — phân biệt "có tiền án" vs "CHƯA có tiền án"
         priors = 0
         p_match = re.search(r"(\d+)\s+tiền án", lower)
         if p_match:
             priors = int(p_match.group(1))
-        elif "có tiền án" in lower or "tái phạm" in lower:
+        elif re.search(r"(?<!chưa\s)(?<!không\s)(?<!không có\s)\bcó tiền án\b", lower):
+            priors = 1
+        elif "tái phạm nguy hiểm" in lower or "là tái phạm" in lower:
             priors = 1
 
-        is_recid = "tái phạm" in lower or priors > 0
+        # is_recidivist: chỉ khi thực sự có tiền án hoặc văn bản ghi rõ tái phạm
+        _negation = any(phrase in lower for phrase in [
+            "chưa có tiền án", "không có tiền án", "không tiền án", "chưa tiền án",
+            "chưa có tiền sự", "lần đầu phạm tội", "chưa từng phạm tội",
+        ])
+        is_recid = (priors > 0 and not _negation) or "tái phạm nguy hiểm" in lower
 
         parties.append(
             PartyInfo(
@@ -343,7 +350,14 @@ def parse_two_inputs(
     if any(kw in lower_full for kw in ["côn đồ", "tính chất côn đồ", "hung hãn"]):
         agg_factors.append("Có tính chất côn đồ")
 
-    if has_recidivism or any(kw in lower_full for kw in ["tái phạm", "tái phạm nguy hiểm"]):
+    # Tái phạm: chỉ ghi nhận khi CÓ tiền án rõ ràng (prior_convictions > 0 từ personal_info)
+    # HOẶC văn bản tố tụng ghi rõ "tái phạm nguy hiểm" / "là tái phạm" / "bị coi là tái phạm"
+    # KHÔNG được match sai do chữ "tài" trong "tài sản", "tái" trong các từ khác
+    _tai_pham_explicit = any(
+        phrase in lower_full
+        for phrase in ["tái phạm nguy hiểm", "là tái phạm", "bị coi là tái phạm", "tiền án tái phạm", "tình tiết tái phạm"]
+    )
+    if max_priors > 0 or has_recidivism or _tai_pham_explicit:
         agg_factors.append("Tái phạm hoặc tái phạm nguy hiểm")
 
     if any(kw in lower_full for kw in ["trẻ em", "dưới 16 tuổi", "người già", "phụ nữ có thai"]):
@@ -396,45 +410,172 @@ def parse_two_inputs(
 
     # Danh mục kiểm tra tội phạm chuyên sâu trong BLHS 2015
     crime_checks = [
-        # Nhóm Tội xâm phạm trật tự quản lý hành chính
+        # ══════════════════════════════════════════════════════════════════
+        # NHÓM 1 — Tội xâm phạm TÍNH MẠNG, SỨC KHỎE con người (Chương XIV BLHS 2015)
+        # Đặt LÊN TRÊN để ưu tiên khi vụ án có hại thương tích / tử vong
+        # ══════════════════════════════════════════════════════════════════
+        (
+            "123",
+            "Tội giết người",
+            [
+                "giết người", "cướp đi sinh mạng", "gây chết người", "làm chết người",
+                "tử vong tại chỗ", "tước đoạt tính mạng",
+            ],
+        ),
+        (
+            "125",
+            "Tội giết người do vượt quá giới hạn phòng vệ chính đáng hoặc do bị kích động mạnh",
+            [
+                "kích động mạnh", "tinh thần bị kích động mạnh", "phòng vệ chính đáng",
+                "vượt quá giới hạn phòng vệ",
+            ],
+        ),
+        (
+            "128",
+            "Tội vô ý làm chết người",
+            ["vô ý làm chết người", "vô ý gây tử vong"],
+        ),
+        (
+            "134",
+            "Tội cố ý gây thương tích hoặc gây tổn hại cho sức khỏe của người khác",
+            [
+                # Các từ khóa đặc trưng — PHẢI ĐỦ CỤ THỂ để không bị nhầm sang 318
+                "cố ý gây thương tích",
+                "gây thương tích",
+                "đâm vào ngực",
+                "đâm vào bụng",
+                "đâm vào đầu",
+                "chém vào",
+                "chém đầu",
+                "đánh gãy",
+                "đấm đá gây thương tích",
+                "tổn hại sức khỏe",          # chỉ dùng khi đi kèm % thương tật
+                "tổn hại\\s+\\d+%",           # regex-style hint cho post-processing
+                "thương tật vĩnh viễn",
+                "bị thương tật",
+                "điều 134",
+            ],
+        ),
+        (
+            "135",
+            "Tội cố ý gây thương tích do vượt quá giới hạn phòng vệ chính đáng",
+            ["vượt quá phòng vệ", "phòng vệ chính đáng gây thương tích"],
+        ),
+
+        # ══════════════════════════════════════════════════════════════════
+        # NHÓM 2 — Tội xâm phạm SỞ HỮU (Chương XVI BLHS 2015)
+        # ══════════════════════════════════════════════════════════════════
+        (
+            "168",
+            "Tội cướp tài sản",
+            [
+                "cướp tài sản", "dùng vũ lực cướp", "khống chế cướp",
+                "đe dọa dùng vũ lực chiếm đoạt", "dùng vũ lực để chiếm đoạt",
+                "điều 168",
+            ],
+        ),
+        (
+            "169",
+            "Tội bắt cóc nhằm chiếm đoạt tài sản",
+            ["bắt cóc nhằm chiếm đoạt", "bắt cóc lấy tiền chuộc"],
+        ),
+        (
+            "170",
+            "Tội cưỡng đoạt tài sản",
+            ["cưỡng đoạt tài sản", "đe dọa để chiếm đoạt tài sản", "uy hiếp chiếm đoạt"],
+        ),
+        (
+            "171",
+            "Tội cướp giật tài sản",
+            [
+                # Cướp giật = CÔNG KHAI + NHANH CHÓNG bỏ chạy, không dùng vũ lực trước
+                "cướp giật",
+                "giật túi",           # giật túi / giật túi xách / giật chiếc túi
+                "giật điện thoại",
+                "giật dây chuyền",
+                "giật ví",
+                "giật chìa khóa",
+                "giật tài sản",
+                "giật và bỏ chạy",
+                "công khai chiếm đoạt",
+                "nhanh chóng tẩu thoát",
+                "chạy thoát",
+                "điều 171",
+            ],
+        ),
+        (
+            "172",
+            "Tội công nhiên chiếm đoạt tài sản",
+            ["công nhiên chiếm đoạt", "chiếm đoạt công khai không bỏ chạy"],
+        ),
+        (
+            "173",
+            "Tội trộm cắp tài sản",
+            [
+                "trộm cắp", "lén lút chiếm đoạt", "bẻ khóa trộm",
+                "đột nhập trộm", "lẻn vào trộm", "trộm xe máy",
+            ],
+        ),
+        (
+            "174",
+            "Tội lừa đảo chiếm đoạt tài sản",
+            ["lừa đảo", "gian dối chiếm đoạt", "thủ đoạn gian dối", "chiếm đoạt bằng thủ đoạn"],
+        ),
+        (
+            "175",
+            "Tội lạm dụng tín nhiệm chiếm đoạt tài sản",
+            ["lạm dụng tín nhiệm chiếm đoạt", "nhận tài sản rồi chiếm đoạt", "bỏ trốn chiếm đoạt"],
+        ),
+
+        # ══════════════════════════════════════════════════════════════════
+        # NHÓM 3 — Tội xâm phạm TRẬT TỰ QUẢN LÝ HÀNH CHÍNH (Chương XXII)
+        # ══════════════════════════════════════════════════════════════════
         (
             "341",
             "Tội làm giả con dấu, tài liệu của cơ quan, tổ chức; tội sử dụng con dấu hoặc tài liệu giả của cơ quan, tổ chức",
             [
-                "làm giả cccd",
-                "cccd giả",
-                "giấy tờ giả",
-                "tài liệu giả",
-                "con dấu giả",
-                "thi hộ",
-                "chứng chỉ giả",
-                "bằng giả",
-                "chứng minh nhân dân giả",
-                "làm giả con dấu",
-                "sử dụng tài liệu giả",
-                "sử dụng con dấu giả",
-                "làm giả tài liệu",
-                "làm giả giấy tờ",
-                "đường dây làm giả",
+                "làm giả cccd", "cccd giả", "giấy tờ giả", "tài liệu giả",
+                "con dấu giả", "thi hộ", "chứng chỉ giả", "bằng giả",
+                "chứng minh nhân dân giả", "làm giả con dấu", "sử dụng tài liệu giả",
+                "sử dụng con dấu giả", "làm giả tài liệu", "làm giả giấy tờ",
+                "đường dây làm giả", "điều 341",
             ],
         ),
-        ("123", "Tội giết người", ["giết người"]),
-        ("125", "Tội giết người do bị kích động mạnh", ["kích động mạnh", "tinh thần bị kích động"]),
-        ("128", "Tội vô ý làm chết người", ["vô ý làm chết người"]),
-        ("134", "Tội cố ý gây thương tích", ["cố ý gây thương tích", "thương tích", "tổn hại sức khỏe", "đâm trúng", "chém"]),
-        ("168", "Tội cướp tài sản", ["cướp tài sản", "dùng vũ lực cướp", "khống chế cướp"]),
-        ("171", "Tội cướp giật tài sản", ["cướp giật", "giật túi xách", "giật điện thoại", "giật dây chuyền"]),
-        ("173", "Tội trộm cắp tài sản", ["trộm cắp", "lén lút chiếm đoạt", "bẻ khóa trộm", "đột nhập trộm"]),
-        ("174", "Tội lừa đảo chiếm đoạt tài sản", ["lừa đảo", "gian dối chiếm đoạt", "thủ đoạn gian dối"]),
+
+        # ══════════════════════════════════════════════════════════════════
+        # NHÓM 4 — Tội phạm MA TÚY (Chương XX BLHS 2015)
+        # ══════════════════════════════════════════════════════════════════
         ("249", "Tội tàng trữ trái phép chất ma túy", ["tàng trữ trái phép chất ma túy", "cất giấu ma túy", "tàng trữ ma túy"]),
         ("250", "Tội vận chuyển trái phép chất ma túy", ["vận chuyển trái phép chất ma túy", "vận chuyển ma túy"]),
         ("251", "Tội mua bán trái phép chất ma túy", ["mua bán trái phép chất ma túy", "bán ma túy", "mua bán ma túy"]),
-        ("260", "Tội vi phạm quy định về tham gia giao thông", ["tham gia giao thông", "tai nạn giao thông", "vi phạm giao thông"]),
-        ("318", "Tội gây rối trật tự công cộng", ["gây rối trật tự", "đánh nhau nơi công cộng"]),
+
+        # ══════════════════════════════════════════════════════════════════
+        # NHÓM 5 — Tội phạm GIAO THÔNG & TRẬT TỰ CÔNG CỘNG
+        # ══════════════════════════════════════════════════════════════════
+        ("260", "Tội vi phạm quy định về tham gia giao thông đường bộ", ["tai nạn giao thông", "vi phạm giao thông", "điều khiển xe gây tai nạn"]),
+        ("318", "Tội gây rối trật tự công cộng", ["gây rối trật tự", "đánh nhau nơi công cộng", "điều 318"]),
     ]
 
     for art_code, cname, keywords in crime_checks:
-        if any(kw in lower_full for kw in keywords):
+        matched = False
+        for kw in keywords:
+            if kw in lower_full:
+                matched = True
+                break
+        # Điều 134 — phát hiện thêm bằng pattern % thương tật + công cụ gây thương tích
+        if not matched and art_code == "134":
+            if re.search(r"\d+\s*%\s*(?:sức\s*khỏe|thương\s*tật|thương\s*tích)", lower_full):
+                matched = True
+            elif re.search(r"(?:đâm|chém|chặt|đánh|đấm|đá)\b", lower_full) and re.search(r"(?:bị\s+thương|bị\s+tổn\s+hại|bị\s+chấn\s+thương|nhập\s+viện|cấp\s+cứu)", lower_full):
+                matched = True
+        # Điều 171 — giật + bỏ chạy (không cần từ "giật túi xách" chính xác)
+        if not matched and art_code == "171":
+            if re.search(r"(?:giật|cướp\s+giật)\b", lower_full) and re.search(r"(?:bỏ\s+chạy|tẩu\s+thoát|chạy\s+thoát|chạy\s+về\s+phía)", lower_full):
+                matched = True
+            elif re.search(r"giật\s+(?:chìa\s*khóa|túi|ví|điện\s*thoại|dây\s*chuyền|tài\s*sản)", lower_full):
+                matched = True
+
+        if matched:
             if art_code not in detected_articles:
                 detected_articles.append(art_code)
             detected_crime_name = cname
@@ -461,6 +602,88 @@ def parse_two_inputs(
             detected_clause = "1"
             stat_min, stat_max = 0.5, 2.0
             detected_crime_name += " (Khoản 1 Điều 341 BLHS)"
+
+    elif primary_art == "134":
+        # Điều 134 BLHS 2015: định khung theo % tổn hại sức khỏe
+        #   Khoản 1: < 11%  → cải tạo không giam giữ đến 3 năm hoặc tù 6 tháng - 3 năm
+        #   Khoản 2: 11%-30% → 2 - 6 năm
+        #   Khoản 3: 31%-60% → 5 - 10 năm
+        #   Khoản 4: > 60% hoặc chết người → 7 - 14 năm
+        pct_match = re.search(r"(\d+)\s*%\s*(?:sức\s*khỏe|thương\s*tật|thương\s*tích)", lower_full)
+        injury_pct = int(pct_match.group(1)) if pct_match else 0
+        if injury_pct >= 61 or any(kw in lower_full for kw in ["chết người", "tử vong do thương tích"]):
+            detected_clause = "4"
+            stat_min, stat_max = 7.0, 14.0
+            detected_crime_name += f" (Khoản 4 Điều 134 BLHS — tổn hại {injury_pct}% sức khỏe hoặc gây chết người)"
+        elif injury_pct >= 31:
+            detected_clause = "3"
+            stat_min, stat_max = 5.0, 10.0
+            detected_crime_name += f" (Khoản 3 Điều 134 BLHS — tổn hại {injury_pct}% sức khỏe)"
+        elif injury_pct >= 11:
+            detected_clause = "2"
+            stat_min, stat_max = 2.0, 6.0
+            detected_crime_name += f" (Khoản 2 Điều 134 BLHS — tổn hại {injury_pct}% sức khỏe)"
+        else:
+            detected_clause = "1"
+            stat_min, stat_max = 0.5, 3.0
+            detected_crime_name += " (Khoản 1 Điều 134 BLHS)"
+        # Nếu dùng hung khí nguy hiểm → là tình tiết định khung tăng nặng trong cùng khoản
+        if has_weapon and injury_pct == 0:
+            # Không biết % → giữ Khoản 1 nhưng note hung khí
+            detected_crime_name = detected_crime_name.rstrip(")") + ", sử dụng hung khí nguy hiểm)"
+
+    elif primary_art == "171":
+        # Điều 171 BLHS 2015: định khung theo giá trị tài sản BỊ CHIẾM ĐOẠT THỰC TẾ
+        #   Khoản 1: dưới 50 triệu hoặc chưa chiếm đoạt được → 1 - 5 năm
+        #   Khoản 2: 50tr - dưới 200tr → 3 - 10 năm
+        #   Khoản 3: 200tr - dưới 500tr → 7 - 15 năm
+        #   Khoản 4: từ 500tr trở lên → 12 - 20 năm
+        # Cướp giật chỉ định khung theo tài sản THỰC SỰ chiếm đoạt được, không phải ý định
+        # Tìm giá trị tài sản thực tế chiếm đoạt được (không phải giá trị xe dự định lấy)
+        asset_vals: list[float] = []
+        # Tìm pattern giá trị tài sản thực tế bị giật được
+        for m_num, m_unit in re.findall(r"(\d{1,3}(?:[.,]\d{3})*(?:[.,]\d+)?)\s*(tỷ|triệu|nghìn|ngàn|đồng|vnd)", lower_full):
+            raw = float(m_num.replace(".", "").replace(",", "."))
+            if "tỷ" in m_unit:
+                asset_vals.append(raw * 1_000_000_000)
+            elif "triệu" in m_unit:
+                asset_vals.append(raw * 1_000_000)
+            elif m_unit in ("nghìn", "ngàn"):
+                asset_vals.append(raw * 1_000)
+            else:
+                asset_vals.append(raw)
+
+        # Kiểm tra xem có "chưa chiếm đoạt được" / "thu hồi toàn bộ" không
+        not_seized = any(kw in lower_full for kw in [
+            "chưa chiếm đoạt được", "chưa lấy được", "thu hồi toàn bộ",
+            "bị bắt trước khi", "bị khống chế", "chưa kịp", "không lấy được",
+        ])
+        # Giá trị túi/chìa khóa/ví thực tế giật được (thường nhỏ)
+        # Xe/tài sản chưa chiếm đoạt được → không tính vào định khung
+        actual_seized_val = min(asset_vals) if (asset_vals and not_seized) else (max(asset_vals) if asset_vals else 0.0)
+        if not_seized:
+            # Chưa chiếm đoạt được tài sản chính → định khung theo tài sản thực tế giật được (túi, ví, chìa khóa)
+            # Thường nhỏ hơn 50 triệu → Khoản 1
+            detected_clause = "1"
+            stat_min, stat_max = 1.0, 5.0
+            detected_crime_name += " (Khoản 1 Điều 171 BLHS — chưa chiếm đoạt được tài sản chính, phạm tội chưa đạt)"
+        elif actual_seized_val >= 500_000_000:
+            detected_clause = "4"
+            stat_min, stat_max = 12.0, 20.0
+            detected_crime_name += f" (Khoản 4 Điều 171 BLHS — tài sản ≥ 500 triệu)"
+        elif actual_seized_val >= 200_000_000:
+            detected_clause = "3"
+            stat_min, stat_max = 7.0, 15.0
+            detected_crime_name += f" (Khoản 3 Điều 171 BLHS — tài sản 200-500 triệu)"
+        elif actual_seized_val >= 50_000_000:
+            detected_clause = "2"
+            stat_min, stat_max = 3.0, 10.0
+            detected_crime_name += f" (Khoản 2 Điều 171 BLHS — tài sản 50-200 triệu)"
+        else:
+            detected_clause = "1"
+            stat_min, stat_max = 1.0, 5.0
+            detected_crime_name += " (Khoản 1 Điều 171 BLHS)"
+
     else:
         stat_min, stat_max = STATUTORY_PENALTY_BOUNDS.get(primary_art, (1.0, 5.0))
 
