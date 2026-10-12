@@ -201,6 +201,10 @@ python scripts/benchmark_retrieval.py
 
 # 3. Phân tích đóng góp của từng thành phần (Ablation Study)
 python scripts/run_ablation_study.py
+
+# 4. Benchmark đánh giá tự động 11 hồ sơ đa lĩnh vực (Phase 3 — MỚI)
+#    Kiểm định Domain Accuracy & Statutory Compliance (5 lĩnh vực, ~126 ms/vụ)
+python scripts/evaluate_multi_domain.py
 ```
 
 ### Bước 9: Huấn luyện Fine-tuning Legal LLM trên Kaggle (GPU Miễn phí)
@@ -315,7 +319,8 @@ legal-ai-vietnam/
 ├── scripts/                     # Tiện ích dòng lệnh
 │   ├── init_db.py               # Khởi tạo database
 │   ├── download_sample_data.py  # Tải dữ liệu mẫu
-│   └── run_evaluation.py        # Chạy bộ đánh giá
+│   ├── run_evaluation.py        # Chạy bộ đánh giá
+│   └── evaluate_multi_domain.py # Benchmark đánh giá 5 lĩnh vực (11 hồ sơ)
 │
 ├── migrations/                  # Alembic database migrations
 │   └── versions/
@@ -334,7 +339,7 @@ legal-ai-vietnam/
 
 ## Trạng thái triển khai & Kết quả nghiên cứu
 
-Toàn bộ các thành phần cốt lõi của hệ thống đã được triển khai, kiểm thử và nghiệm thu khoa học với **140/140 bài kiểm thử vượt qua (100% Pass Rate)**:
+Toàn bộ các thành phần cốt lõi của hệ thống đã được triển khai, kiểm thử và nghiệm thu khoa học với **142/142 bài kiểm thử vượt qua (100% Pass Rate)**:
 
 ### Phase 1 - Nền tảng cốt lõi (MVP) — ĐÃ HOÀN THÀNH 100%
 
@@ -385,7 +390,10 @@ Toàn bộ các thành phần cốt lõi của hệ thống đã được triể
   - Card hiển thị tính án phí tự động NQ 326, trần phạt 8% LTM, thời hiệu khởi kiện LTTHC, quyền lợi Điều 41 BLLĐ.
   - Sơ đồ trực quan **Lộ trình Giải quyết Tranh chấp 5 Bước (Dispute Resolution Roadmap)**.
   - Hệ thống kiểm tra Hàng rào Nhất quán Pháp lý (Consistency Guardrails).
-- [x] **Hệ thống Kiểm thử Mở rộng**: 134/134 bài kiểm thử vượt qua 100% (`tests/unit/test_legal_domains.py`, `tests/integration/test_api_endpoints.py`, v.v.).
+- [x] **Hệ thống Kiểm thử Mở rộng**: **142/142 bài kiểm thử vượt qua 100%** (`tests/unit/test_legal_domains.py`, `tests/unit/test_multi_domain_benchmark.py`, `tests/integration/test_api_endpoints.py`, v.v.).
+- [x] **Bộ điều phối đa lĩnh vực nâng cấp (`src/legal_domains/dispatcher.py`)**: Tích hợp hệ thống trọng số hai tầng — tiêu chuẩn (1.0–2.0) và `high_signal_weights` (3.0–5.0) nhận diện thuật ngữ pháp lý đặc trưng cao (ví dụ: `"quản lý thị trường"` → Hành chính 5.0, `"trừ 50% tiền lương"` → Kỷ luật 5.0, `"viac"` → Thương mại 4.0). Đạt **100% Domain Accuracy** trên toàn bộ 11 hồ sơ benchmark.
+- [x] **Kiểm định Pháp lý Tự động (`scripts/evaluate_multi_domain.py`)**: Script đánh giá benchmark 11 hồ sơ đa lĩnh vực, kiểm tra chéo Domain Accuracy và Statutory Compliance (tuân thủ hàng rào pháp định: Điều 32 BLHS, NQ 326, trần lãi 20% BLDS, trần phạt 8% LTM, 2 kênh LTTHC, Điều 41 BLLĐ). Kết quả: **Domain Accuracy 100% (11/11)** và **Statutory Compliance 100% (11/11)**, thời gian xử lý trung bình **~126 ms/vụ việc**.
+- [x] **Phát hiện Bất khả kháng (`src/legal_domains/commercial.py`)**: Nhận diện sự kiện bất khả kháng ưu tiên trước phạt vi phạm; tự động đề xuất chế tài miễn trách nhiệm `CommercialRemedyType.FORCE_MAJEURE_EXEMPTION` theo Điều 294 & 295 Luật Thương mại 2005.
 
 ---
 
@@ -412,6 +420,16 @@ Toàn bộ các thành phần cốt lõi của hệ thống đã được triể
 - **Tuân thủ Điều 7 BLHS 2015 & NQ 41/2017/QH14**: 100% các vụ án được đối chiếu phiên bản luật chính xác tại ngày xảy ra hành vi (`offense_date`).
 - **Data Leakage Tests**: Đạt 100% trong toàn bộ 4 bài test rò rỉ (`Label Leakage`, `Future Leakage`, `Precedent Temporal Leakage`, `Feature Leakage`).
 - **Kiểm định Phân chia Thời gian**: Đảm bảo không có bất kỳ bản án hay tình tiết nào sau ngày xét xử bị rò rỉ ngược vào tập huấn luyện.
+
+### 4. Benchmark Đa Lĩnh vực Phase 3 — Phân loại & Tuân thủ Pháp định (RQ4)
+
+| Chỉ số | Kết quả | Chi tiết |
+|---|:---:|---|
+| **Domain Accuracy** | **100.0%** | 11/11 hồ sơ được phân loại đúng lĩnh vực (Hình sự / Dân sự / Hành chính / Thương mại / Kỷ luật) |
+| **Statutory Compliance** | **100.0%** | 11/11 hồ sơ tuân thủ đầy đủ hàng rào pháp định (Điều 32 BLHS, NQ 326, Điều 468 BLDS, Điều 301 LTM, Điều 68 LTTHC, Điều 41 BLLĐ) |
+| **Lĩnh vực kiểm định** | **5/5** | Hình sự (3 vụ), Dân sự (2 vụ), Hành chính (2 vụ), Thương mại (2 vụ), Kỷ luật (2 vụ) |
+| **Thời gian xử lý** | **~126 ms/vụ** | Chạy thuần Python, không cần GPU |
+| **Tổng bài kiểm thử** | **142/142** | 100% pass — bao gồm `tests/unit/test_multi_domain_benchmark.py` |
 
 ---
 

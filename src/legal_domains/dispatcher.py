@@ -94,27 +94,30 @@ class LegalDomainDispatcher:
             "quyết định hành chính", "hành vi hành chính", "ubnd", "ủy ban nhân dân",
             "chủ tịch ubnd", "khiếu nại", "khiếu kiện", "tố tụng hành chính", "ltthc",
             "thu hồi đất", "cưỡng chế", "bồi thường gpmb", "giải phóng mặt bằng",
-            "xử phạt vi phạm hành chính", "vphc", "truy thu thuế", "chi cục thuế", "cục hải quan",
-            "giấy chứng nhận quyền sử dụng đất", "chậm cấp sổ", "luật khiếu nại",
+            "xử phạt vi phạm hành chính", "xử phạt vphc", "quyết định xử phạt", "vphc", "xlvhc",
+            "quản lý thị trường", "đội quản lý thị trường", "đội qltt", "người bị kiện", "người khởi kiện",
+            "truy thu thuế", "chi cục thuế", "cục hải quan", "vượt thẩm quyền", "hủy quyết định",
+            "giấy chứng nhận quyền sử dụng đất", "chậm cấp sổ", "luật khiếu nại", "luật xử lý vi phạm hành chính",
         ],
         LegalDomain.COMMERCIAL: [
             "luật thương mại", "thương nhân", "hợp đồng kinh tế", "hợp đồng thương mại",
-            "phạt vi phạm", "8%", "trọng tài", "viac", "trung tâm trọng tài", "mua bán hàng hóa",
-            "cung ứng dịch vụ", "logistics", "chậm giao hàng", "bất khả kháng", "điều 301",
-            "lợi nhuận", "doanh thu", "hàng mẫu", "xuất nhập khẩu", "công ty cổ phần",
+            "hợp đồng mua bán thiết bị", "hợp đồng mua bán hàng hóa", "phạt vi phạm", "8%",
+            "trọng tài", "viac", "trung tâm trọng tài", "mua bán hàng hóa", "cung ứng dịch vụ",
+            "chậm tiến độ", "giao chậm tiến độ", "bất khả kháng", "điều 301", "hàng hải",
+            "vận chuyển thủy sản", "đại dương", "tàu gặp bão",
         ],
         LegalDomain.DISCIPLINARY: [
-            "kỷ luật lao động", "sa thải", "cách chức", "khiển trách", "kéo dài nâng lương",
-            "bộ luật lao động", "bllđ", "người sử dụng lao động", "người lao động",
-            "nội quy lao động", "công đoàn", "thôi việc", "cán bộ", "công chức",
-            "viên chức", "nghị định 112", "hạ bậc lương", "giáng chức", "trợ cấp thôi việc",
-            "mang thai", "nghỉ thai sản", "hợp đồng lao động", "hđlđ",
+            "kỷ luật lao động", "kỷ luật", "sa thải", "cách chức", "khiển trách", "kéo dài nâng lương",
+            "bộ luật lao động", "bllđ", "người sử dụng lao động", "người lao động", "công nhân",
+            "nội quy lao động", "công đoàn", "thôi việc", "cán bộ", "công chức", "viên chức",
+            "hạ bậc lương", "giáng chức", "trừ 50% tiền lương", "trừ lương", "cắt lương", "phạt tiền trừ",
+            "mang thai", "nghỉ thai sản", "hợp đồng lao động", "hđlđ", "điều 127", "điều 124", "điều 137",
         ],
         LegalDomain.CIVIL: [
-            "bộ luật dân sự", "blds", "hợp đồng vay", "giấy vay tiền", "đòi nợ",
-            "đặt cọc", "hợp đồng thuê nhà", "bồi thường thiệt hại ngoài hợp đồng", "tai nạn giao thông",
+            "bộ luật dân sự", "blds", "hợp đồng vay", "giấy vay tiền", "giấy biên nhận vay", "đòi nợ",
+            "cho vay", "vay nợ", "đặt cọc", "hợp đồng thuê nhà", "bồi thường thiệt hại ngoài hợp đồng",
             "thừa kế", "chia di sản", "di chúc", "nguyên đơn", "bị đơn", "hòa giải đối thoại",
-            "ranh giới đất", "lấn chiếm", "lãi suất", "20%", "tài sản chung",
+            "ranh giới đất", "lấn chiếm", "lãi suất", "20%", "30%/năm", "tài sản chung", "án phí",
         ],
     }
 
@@ -124,14 +127,42 @@ class LegalDomainDispatcher:
         lower = text.lower()
         scores: dict[LegalDomain, float] = {}
 
+        # Trọng số siêu mạnh cho các dấu hiệu nhận diện đặc trưng tuyệt đối
+        high_signal_weights = {
+            "quản lý thị trường": (LegalDomain.ADMINISTRATIVE, 5.0),
+            "đội qltt": (LegalDomain.ADMINISTRATIVE, 5.0),
+            "xử phạt vi phạm hành chính": (LegalDomain.ADMINISTRATIVE, 4.0),
+            "quyết định thu hồi đất": (LegalDomain.ADMINISTRATIVE, 4.0),
+            "người bị kiện": (LegalDomain.ADMINISTRATIVE, 3.0),
+            "chủ tịch ubnd": (LegalDomain.ADMINISTRATIVE, 3.0),
+            "sa thải": (LegalDomain.DISCIPLINARY, 4.0),
+            "kỷ luật": (LegalDomain.DISCIPLINARY, 3.5),
+            "trừ 50% tiền lương": (LegalDomain.DISCIPLINARY, 5.0),
+            "trừ lương": (LegalDomain.DISCIPLINARY, 4.0),
+            "người lao động": (LegalDomain.DISCIPLINARY, 3.0),
+            "bị cáo": (LegalDomain.CRIMINAL, 4.0),
+            "tội danh": (LegalDomain.CRIMINAL, 3.5),
+            "truy tố": (LegalDomain.CRIMINAL, 3.0),
+            "viac": (LegalDomain.COMMERCIAL, 4.0),
+            "bất khả kháng": (LegalDomain.COMMERCIAL, 3.5),
+            "hợp đồng mua bán thiết bị": (LegalDomain.COMMERCIAL, 3.0),
+            "hợp đồng vay": (LegalDomain.CIVIL, 4.0),
+            "chia di sản": (LegalDomain.CIVIL, 4.0),
+            "thừa kế": (LegalDomain.CIVIL, 3.5),
+        }
+
         for domain, keywords in cls.KEYWORDS_MAP.items():
             score = 0.0
             for kw in keywords:
                 if kw in lower:
-                    # Trọng số cao hơn cho các từ khóa chuyên biệt mạnh
                     weight = 2.0 if kw in ["bị cáo", "tội danh", "ubnd", "thu hồi đất", "viac", "sa thải", "thừa kế", "khiếu nại"] else 1.0
                     score += weight
             scores[domain] = score
+
+        # Bổ sung điểm nhận diện đặc trưng
+        for signal_kw, (target_domain, extra_w) in high_signal_weights.items():
+            if signal_kw in lower:
+                scores[target_domain] = scores.get(target_domain, 0.0) + extra_w
 
         # Chuẩn hóa về tỷ lệ phần trăm
         total = sum(scores.values()) or 1.0

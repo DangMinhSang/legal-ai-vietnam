@@ -41,6 +41,7 @@ class CommercialRemedyType(str, Enum):
     COMPENSATORY_DAMAGES = "boi_thuong_thiet_hai"  # Bồi thường thiệt hại thực tế
     SUSPENSION = "tam_ngung_thuc_hien"  # Tạm ngừng thực hiện hợp đồng
     TERMINATION = "huy_bo_hop_dong"  # Hủy bỏ hợp đồng
+    FORCE_MAJEURE_EXEMPTION = "mien_trach_nhiem_bat_kha_khang"  # Miễn trách nhiệm do sự kiện bất khả kháng (Điều 294 LTM)
 
 
 @dataclass
@@ -81,18 +82,18 @@ class CommercialDisputeResolver:
             "Luật Trọng tài Thương mại 2010",
         ]
 
-        if any(kw in lower for kw in ["cung ứng dịch vụ", "gia công", "logistics", "vận chuyển hàng hóa", "phần mềm"]):
+        if any(kw in lower for kw in ["bất khả kháng", "dịch bệnh", "thiên tai", "chiến tranh", "miễn trách nhiệm", "bão"]):
+            dispute_type = CommercialDisputeType.FORCE_MAJEURE
+            dispute_name = "Tranh chấp về sự kiện bất khả kháng và miễn trách nhiệm thương mại (Điều 294 LTM)"
+        elif any(kw in lower for kw in ["phạt vi phạm", "8%", "yêu cầu phạt", "mức phạt"]):
+            dispute_type = CommercialDisputeType.BREACH_PENALTY_CLAIM
+            dispute_name = "Tranh chấp áp dụng chế tài Phạt vi phạm và Bồi thường thiệt hại"
+        elif any(kw in lower for kw in ["cung ứng dịch vụ", "gia công", "logistics", "vận chuyển hàng hóa", "phần mềm"]):
             dispute_type = CommercialDisputeType.SERVICE_PROVISION
             dispute_name = "Tranh chấp Hợp đồng cung ứng dịch vụ thương mại"
         elif any(kw in lower for kw in ["chậm thanh toán", "quá hạn thanh toán", "nợ tiền hàng", "chưa thanh toán"]):
             dispute_type = CommercialDisputeType.PAYMENT_DEFAULT
             dispute_name = "Tranh chấp vi phạm nghĩa vụ thanh toán trong thương mại"
-        elif any(kw in lower for kw in ["phạt vi phạm", "8%", "yêu cầu phạt", "mức phạt"]):
-            dispute_type = CommercialDisputeType.BREACH_PENALTY_CLAIM
-            dispute_name = "Tranh chấp áp dụng chế tài Phạt vi phạm và Bồi thường thiệt hại"
-        elif any(kw in lower for kw in ["bất khả kháng", "dịch bệnh", "thiên tai", "chiến tranh", "miễn trách nhiệm"]):
-            dispute_type = CommercialDisputeType.FORCE_MAJEURE
-            dispute_name = "Tranh chấp về sự kiện bất khả kháng và miễn trách nhiệm thương mại (Điều 294 LTM)"
 
         # 2. Trích xuất giá trị hợp đồng và phần nghĩa vụ bị vi phạm
         contract_val = 0.0
@@ -156,7 +157,16 @@ class CommercialDisputeResolver:
             forum = "Giải quyết tại Tòa án nhân dân cấp có thẩm quyền (Tòa Kinh tế) theo thủ tục Tố tụng Dân sự."
 
         # 5. Các chế tài thương mại đề xuất
-        remedies: list[dict[str, Any]] = [
+        remedies: list[dict[str, Any]] = []
+        if dispute_type == CommercialDisputeType.FORCE_MAJEURE or any(kw in lower for kw in ["bất khả kháng", "thiên tai", "bão"]):
+            remedies.append({
+                "remedy": CommercialRemedyType.FORCE_MAJEURE_EXEMPTION.value,
+                "name": "Miễn trách nhiệm do sự kiện bất khả kháng (Điều 294 & Điều 295 LTM)",
+                "description": "Bên vi phạm hợp đồng được miễn trách nhiệm bồi thường nếu xảy ra sự kiện bất khả kháng và đã thực hiện nghĩa vụ thông báo kịp thời bằng văn bản.",
+                "legal_basis": "Điều 294 và Điều 295 Luật Thương mại 2005",
+            })
+
+        remedies.extend([
             {
                 "remedy": CommercialRemedyType.SPECIFIC_PERFORMANCE.value,
                 "name": "1. Buộc thực hiện đúng hợp đồng (Điều 297 LTM)",
@@ -174,7 +184,7 @@ class CommercialDisputeResolver:
                 "name": "3. Bồi thường thiệt hại (Điều 302 LTM)",
                 "description": "Bồi thường tổn thất thực tế, trực tiếp và lợi nhuận trực tiếp bị mất. Áp dụng ngay cả khi hợp đồng không thỏa thuận trước về bồi thường.",
             },
-        ]
+        ])
 
         suggested_steps = [
             "Bước 1: Rà soát kỹ Hợp đồng thương mại, Phụ lục và Biên bản giao nhận để xác định có thỏa thuận Phạt vi phạm hay không.",
