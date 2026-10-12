@@ -1,9 +1,9 @@
 {
   "model_version": "1.0.0",
-  "trained_at": "2026-10-12T12:26:49.210619",
+  "trained_at": "2026-10-12T13:56:19.029208",
   "temporal_split_date": "2022-01-01",
   "num_train_samples": 31,
-  "num_test_samples": 19,
+  "num_test_samples": 21,
   "feature_names": [
     "num_facts",
     "num_aggravating",
@@ -31,6 +31,7 @@
     "crime_is_drug_possession",
     "crime_is_traffic",
     "crime_is_public_disorder",
+    "crime_is_forgery",
     "statutory_min",
     "statutory_max",
     "statutory_mid",
@@ -46,7 +47,8 @@
     "crime_is_250",
     "crime_is_251",
     "crime_is_260",
-    "crime_is_318"
+    "crime_is_318",
+    "crime_is_341"
   ],
   "metrics": {
     "classification": {
@@ -56,9 +58,9 @@
       "f1": 1.0
     },
     "regression": {
-      "mae": 1.9181353302680397,
-      "rmse": 3.1457377580238592,
-      "r2": 0.6088541069468116
+      "mae": 1.8323370725363115,
+      "rmse": 2.993058327329715,
+      "r2": 0.6176293472220473
     }
   }
 }

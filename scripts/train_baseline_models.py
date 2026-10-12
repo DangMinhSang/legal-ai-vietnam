@@ -71,6 +71,7 @@ STATUTORY_PENALTY_BOUNDS: dict[str, tuple[float, float]] = {
     "251": (2.0, 15.0),    # Mua bán trái phép chất ma túy (2 - 15)
     "260": (1.0, 10.0),    # Vi phạm quy định về tham gia giao thông đường bộ (1 - 10)
     "318": (0.25, 7.0),    # Gây rối trật tự công cộng (0.25 - 7)
+    "341": (0.5, 7.0),     # Làm giả con dấu, tài liệu của CQ, TC; sử dụng tài liệu giả (0.5 - 7)
 }
 
 
@@ -128,6 +129,7 @@ def extract_case_features(case_json: dict[str, Any]) -> dict[str, float]:
         "crime_is_drug_possession": 1.0 if ("tàng trữ" in crime_type and "ma túy" in crime_type) else 0.0,
         "crime_is_traffic": 1.0 if "giao thông" in crime_type else 0.0,
         "crime_is_public_disorder": 1.0 if "gây rối" in crime_type else 0.0,
+        "crime_is_forgery": 1.0 if ("làm giả" in crime_type or "tài liệu giả" in crime_type or "con dấu" in crime_type or "341" in crime_type) else 0.0,
         # Khung hình phạt luật định (Statutory Penalty Bounds)
         "statutory_min": stat_min,
         "statutory_max": stat_max,

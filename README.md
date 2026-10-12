@@ -318,7 +318,7 @@ legal-ai-vietnam/
 
 ## Trạng thái triển khai & Kết quả nghiên cứu
 
-Toàn bộ các thành phần cốt lõi của hệ thống đã được triển khai, kiểm thử và nghiệm thu khoa học với **109/109 bài kiểm thử vượt qua (100% Pass Rate)**:
+Toàn bộ các thành phần cốt lõi của hệ thống đã được triển khai, kiểm thử và nghiệm thu khoa học với **111/111 bài kiểm thử vượt qua (100% Pass Rate)**:
 
 ### Phase 1 - Nền tảng cốt lõi (MVP) — ĐÃ HOÀN THÀNH 100%
 
@@ -327,8 +327,8 @@ Toàn bộ các thành phần cốt lõi của hệ thống đã được triể
 - [x] **Database Schema & 3 Nguồn tri thức**: Phân tách nghiêm ngặt Văn bản QPPL, Án lệ TANDTC và Bản án tham khảo (`src/db/models.py`).
 - [x] **Embedding Service đa ngữ**: Tải và nạp thành công mô hình `sentence-transformers/paraphrase-multilingual-mpnet-base-v2` (ONNX 768 chiều) với cơ chế Graceful Fallback (`src/services/embedding_service.py`).
 - [x] **Legal RAG Indexing (VBPL)**: Chunking cấu trúc pháp lý (Điều/Khoản/Điểm), BM25 FTS5 kết hợp Cosine Vector Search (`src/legal_rag/`).
-- [x] **Fact Extraction & 2-Input Parser**: Trích xuất thực thể bị cáo, bị hại, tình tiết tăng nặng (Đ.52), giảm nhẹ (Đ.51) và khung luật định qua `case_parser.py` và LLM (`src/fact_extraction/`).
-- [x] **Similar Case Retrieval**: Truy vấn bản án tương đồng có lọc điều luật và tính điểm tương đồng lai (`src/case_retrieval/`).
+- [x] **Fact Extraction & 2-Input Parser**: Trích xuất thực thể bị cáo (hỗ trợ cả tên 1 chữ cái tố tụng như N, P, M, A, T), bị hại, tình tiết tăng nặng (Đ.52), giảm nhẹ (Đ.51), khung luật định và cá thể hóa hình phạt qua `case_parser.py` và LLM (`src/fact_extraction/`).
+- [x] **Similar Case Retrieval & Case-Based Reasoning**: Truy vấn bản án tương đồng có lọc điều luật và tính điểm tương đồng lai (`src/case_retrieval/`).
 - [x] **Temporal Legal Engine (Điều 7 BLHS & NQ 41/2017)**: Tự động xác định phiên bản luật có hiệu lực tại thời điểm phạm tội, hỗ trợ quy tắc hồi tố có lợi (`src/temporal_legal_engine/`).
 - [x] **First Instance Prediction**: Dự đoán phán quyết (Có tội / Vô tội) và mức án (năm tù) kết hợp khung hình phạt luật định (`src/first_instance/`).
 - [x] **Validation & Consistency Guardrails**: Kiểm soát 100% tính nhất quán: mức án $\ge 0.0$ năm, vô tội $= 0.0$ năm, cảnh báo giảm nhẹ Điều 54 (`src/validation/`).
@@ -337,8 +337,8 @@ Toàn bộ các thành phần cốt lõi của hệ thống đã được triể
 
 ### Phase 2 - Mô hình Học máy & Phân tích Thời gian — ĐÃ HOÀN THÀNH 100%
 
-- [x] **Corpus Bản án Chuẩn hóa**: Xây dựng tập dữ liệu 50 bản án hình sự đa dạng 8 nhóm tội phạm đại diện với nhãn kiểm định phục vụ nghiên cứu (`scripts/generate_judgments_corpus.py`).
-- [x] **Train ML Models cho Sơ thẩm**: Huấn luyện Random Forest Classifier (100% Balanced Acc) và Regressor (MAE 1.92 năm) với khung luật định tham chiếu (`scripts/train_baseline_models.py`).
+- [x] **Corpus Bản án Chuẩn hóa**: Xây dựng tập dữ liệu 52 bản án hình sự đa dạng các nhóm tội phạm đại diện (bao gồm các bản án thực tế về Điều 341 BLHS) với nhãn kiểm định phục vụ nghiên cứu (`scripts/generate_judgments_corpus.py`).
+- [x] **Train ML Models cho Sơ thẩm**: Huấn luyện Random Forest Classifier (100% Balanced Acc) và Regressor (MAE 1.83 năm) với khung luật định tham chiếu (`scripts/train_baseline_models.py`).
 - [x] **Kiến trúc Dự đoán Phúc thẩm (Appeal Prediction)**: Xây dựng bộ đặc trưng và mô hình định hướng 4 kết quả phúc thẩm: y án, giảm nhẹ, tăng nặng, hủy án (`src/appeal_prediction/`).
 - [x] **Kiểm định Phân chia Thời gian (Chronological Split)**: Thiết lập mốc ranh giới thời gian `2022-01-01` (< 2022 train, $\ge$ 2022 test) triệt tiêu 100% Future Data Leakage (`tests/leakage/test_temporal_split.py`).
 - [x] **Đánh giá Benchmark Truy xuất (Legal RAG Benchmark)**: Kiểm định 15 kịch bản truy vấn pháp lý, đạt **Hit@3 = 100%**, **MRR = 0.8111**, tuân thủ 100% phân tách tri thức (`scripts/benchmark_retrieval.py`).
@@ -349,8 +349,8 @@ Toàn bộ các thành phần cốt lõi của hệ thống đã được triể
 - [x] **Giao diện Web Demo trực quan (Single Page App)**:
   - Phục vụ trực tiếp tại `python run_web.py` -> `http://localhost:8000`.
   - Hỗ trợ đúng **2 khung nhập liệu duy nhất**: Thông tin cá nhân & Thông tin vụ án.
-  - Tích hợp 4 preset vụ án 1-click (Cố ý gây thương tích, Cướp tài sản, Ma túy, Phòng vệ chính đáng tuyên vô tội).
-  - Trực quan hóa kết quả phân tích: đương sự, tình tiết Đ.51/Đ.52, án lệ TANDTC, phiên bản luật áp dụng và dự đoán xét xử.
+  - Tích hợp 5 preset vụ án 1-click (Làm giả CCCD & thi hộ VSTEP - Điều 341, Cố ý gây thương tích - Điều 134, Cướp tài sản - Điều 168, Cướp giật tài sản - Điều 171, Vô tội).
+  - Trực quan hóa kết quả phân tích: đương sự, tình tiết Đ.51/Đ.52, án lệ TANDTC, bản án tương đồng (CBR), phiên bản luật áp dụng và cá thể hóa hình phạt từng bị cáo.
 - [x] **Giao diện dòng lệnh tương tác (CLI)**: Chạy tại `python interactive.py` cho môi trường không có trình duyệt.
 - [ ] **Mở rộng quy mô cào dữ liệu lớn (>5.000 bản án)**: Đã có sẵn hạ tầng crawler (`toaan_crawler.py`), sẵn sàng thu thập hàng loạt khi triển khai cụm máy chủ và giải pháp vượt CAPTCHA.
 - [ ] **Fine-tuning LLM chuyên sâu**: Tinh chỉnh các mô hình mã nguồn mở (như Llama-3-Vietnamese, PhoGPT) khi được cấp tài nguyên tính toán GPU V100/A100.
@@ -364,8 +364,8 @@ Toàn bộ các thành phần cốt lõi của hệ thống đã được triể
 | Phương pháp | Balanced Accuracy | Macro F1 | MAE Mức án (năm) | Vi phạm Nhất quán |
 |---|:---:|:---:|:---:|:---:|
 | **Heuristic Baseline** | 50.0% | 0.095 | 4.74 | 0% |
-| **Tabular ML (Random Forest + GBR)** | **100.0%** | **1.000** | **1.92** | 0% |
-| **Full Pipeline (+ RAG Frame + Guardrails)** | **100.0%** | **1.000** | **1.93** | **0%** |
+| **Tabular ML (Random Forest + GBR)** | **100.0%** | **1.000** | **1.83** | 0% |
+| **Full Pipeline (+ RAG Frame + Guardrails)** | **100.0%** | **1.000** | **1.83** | **0%** |
 
 ### 2. Chất lượng Truy xuất Pháp lý (Legal RAG Benchmark)
 
@@ -418,10 +418,10 @@ phải qua code review để kiểm tra temporal split.
 
 ## Kiểm định Tự động (Tests)
 
-Hệ thống sở hữu bộ kiểm thử tự động toàn diện với **109 test cases** bao phủ từ tầng xử lý văn bản, trích xuất thực thể, suy luận thời gian đến phát hiện rò rỉ dữ liệu và tích hợp API:
+Hệ thống sở hữu bộ kiểm thử tự động toàn diện với **111 test cases** bao phủ từ tầng xử lý văn bản, trích xuất thực thể, suy luận thời gian đến phát hiện rò rỉ dữ liệu và tích hợp API:
 
 ```bash
-# Chạy toàn bộ 109 tests (100% Passed)
+# Chạy toàn bộ 111 tests (100% Passed)
 pytest
 
 # Chỉ chạy các bài kiểm thử suy luận pháp lý thời gian (Temporal Legal Reasoning)

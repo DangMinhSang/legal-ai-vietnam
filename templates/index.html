@@ -54,17 +54,20 @@
       <!-- Quick Preset Buttons -->
       <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap items-center gap-2">
         <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Chọn nhanh mẫu vụ án:</span>
+        <button onclick="loadPreset('forgery_vstep')" class="text-xs bg-amber-50 hover:bg-amber-100 hover:text-amber-900 text-amber-800 font-bold px-3 py-1.5 rounded-lg border border-amber-300 transition shadow-sm">
+          🪪 1. Làm giả CCCD & thi hộ VSTEP (Điều 341)
+        </button>
         <button onclick="loadPreset('injury')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
-          🔪 1. Cố ý gây thương tích (Điều 134)
+          🔪 2. Cố ý gây thương tích (Điều 134)
         </button>
         <button onclick="loadPreset('robbery')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
-          🔫 2. Cướp tài sản (Điều 168)
+          🔫 3. Cướp tài sản (Điều 168)
         </button>
         <button onclick="loadPreset('snatching')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
-          🏍️ 3. Cướp giật tài sản (Điều 171)
+          🏍️ 4. Cướp giật tài sản (Điều 171)
         </button>
         <button onclick="loadPreset('not_guilty')" class="text-xs bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
-          🕊️ 4. Vô tội / Không phạm tội
+          🕊️ 5. Vô tội / Không phạm tội
         </button>
       </div>
     </div>
@@ -87,7 +90,7 @@
           </p>
           <textarea
             id="personal_info"
-            rows="8"
+            rows="9"
             class="w-full text-sm rounded-lg border-slate-300 border focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 p-3 bg-slate-50/50 font-mono"
             placeholder="Ví dụ:
 - Bị cáo 1: Nguyễn Văn An, SN 1995, chưa có tiền án tiền sự.
@@ -115,7 +118,7 @@
           </p>
           <textarea
             id="case_info"
-            rows="8"
+            rows="9"
             class="w-full text-sm rounded-lg border-slate-300 border focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 p-3 bg-slate-50/50 font-mono"
             placeholder="Ví dụ:
 Khoảng 21 giờ ngày 15/04/2023, do mâu thuẫn tại quán nước, bị cáo Nguyễn Văn An và Lê Văn Cường đã dùng dao bấm (hung khí nguy hiểm) đâm vào ngực anh Trần Quốc Bình làm anh Bình bị tổn hại 35% sức khỏe. Sau khi gây án, các bị cáo thành khẩn khai báo, tự nguyện bồi thường 50.000.000 đồng và được gia đình bị hại xin giảm nhẹ hình phạt."
@@ -168,7 +171,7 @@ Khoảng 21 giờ ngày 15/04/2023, do mâu thuẫn tại quán nước, bị c�
             <p class="text-xs text-slate-300 mt-1" id="statutory_bounds_display"></p>
           </div>
           <div class="bg-white/10 backdrop-blur rounded-xl px-6 py-4 border border-white/15 text-center min-w-[200px]">
-            <p class="text-xs font-medium text-slate-300 uppercase tracking-wider">Mức án tù đề xuất</p>
+            <p class="text-xs font-medium text-slate-300 uppercase tracking-wider">Mức án tù tham chiếu khung</p>
             <p class="text-3xl font-extrabold text-amber-300 mt-1" id="sentence_val">0.00 năm</p>
             <p class="text-[11px] text-slate-300 mt-1">RandomForest + Statutory Guardrails</p>
           </div>
@@ -181,9 +184,9 @@ Khoảng 21 giờ ngày 15/04/2023, do mâu thuẫn tại quán nước, bị c�
         <!-- Đương sự -->
         <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
           <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
-            <span>👥</span> ĐƯƠNG SỰ ĐÃ NHẬN DIỆN
+            <span>👥</span> ĐƯƠNG SỰ ĐÃ NHẬN DIỆN & CÁ THỂ HÓA HÌNH PHẠT
           </h4>
-          <div id="parties_list" class="space-y-2 text-sm"></div>
+          <div id="parties_list" class="space-y-3 text-sm"></div>
         </div>
 
         <!-- Tình tiết Tăng nặng / Giảm nhẹ -->
@@ -239,7 +242,15 @@ Khoảng 21 giờ ngày 15/04/2023, do mâu thuẫn tại quán nước, bị c�
 
       </div>
 
-      <!-- 4. Hàng rào Bảo vệ Tính nhất quán Pháp lý (Guardrails) -->
+      <!-- 4. Bản án thực tế tương đồng (Case-Based Reasoning) -->
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+        <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
+          <span>📚</span> BẢN ÁN TIỀN LỆ TƯƠNG ĐỒNG TRONG KHO DỮ LIỆU TAND (CASE-BASED REASONING)
+        </h4>
+        <div id="similar_cases_list" class="space-y-2 text-xs"></div>
+      </div>
+
+      <!-- 5. Hàng rào Bảo vệ Tính nhất quán Pháp lý (Guardrails) -->
       <div class="bg-white rounded-xl shadow-sm border border-emerald-200 p-5">
         <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-2">
           <span>🛡️</span> HÀNG RÀO NHẤT QUÁN PHÁP LÝ (CONSISTENCY GUARDRAILS)
@@ -257,6 +268,19 @@ Khoảng 21 giờ ngày 15/04/2023, do mâu thuẫn tại quán nước, bị c�
 
   <script>
     const PRESETS = {
+      forgery_vstep: {
+        personal: `- Bị cáo: N Nữ sinh viên năm cuối ngành Công nghệ thông tin tại TP.HCM, gia đình khó khăn do bạo lực gia đình; mẹ mắc bệnh loãng xương nặng, em trai bị nhược thị. N làm gia sư để trang trải sinh hoạt, học phí và chi phí chữa bệnh cho mẹ.
+- Bị cáo: P Người trung gian, môi giới để N liên hệ với đường dây làm giả CCCD.
+- Bị cáo: Hoàng Người trực tiếp nhận làm giả CCCD, gắn ảnh của N vào thông tin của người khác và yêu cầu thanh toán trước khi giao.
+- Bị cáo: M Người nhờ N thi hộ chứng chỉ tiếng Anh VSTEP, cung cấp thông tin cá nhân để làm CCCD giả.
+- Bị cáo: A Người nhờ N thi hộ chứng chỉ tiếng Anh VSTEP, chuyển 1.200.000 đồng phục vụ chi phí làm CCCD giả.
+- Bị cáo: T Người trực tiếp vận chuyển, giao CCCD giả tại điểm hẹn ở cửa hàng Ministop, Quận 1.`,
+        case: `Do hoàn cảnh kinh tế khó khăn, áp lực học tập và nhu cầu trang trải học phí, chi phí chữa bệnh cho mẹ, N nhận lời thi hộ chứng chỉ tiếng Anh VSTEP cho M và A. Để qua mặt khâu kiểm tra danh tính tại phòng thi, N thông qua P liên hệ Hoàng (H) làm hai CCCD giả mang thông tin của người nhờ thi nhưng gắn ảnh của N. N đã thực hiện trót lọt hai lần thi hộ và thu lợi bất chính tổng cộng 3.050.000 đồng; riêng M, N chỉ nhận 800.000 đồng sau khi có kết quả đậu.
+
+Trưa ngày 19/01/2024, N sử dụng tài khoản Zalo cá nhân hỗ trợ lực lượng chức năng xác minh, liên lạc với P và xác định P đang ở Long An. N tiếp tục liên lạc, hẹn H giao CCCD giả mang tên A tại cửa hàng Ministop, địa chỉ 41–43 Đinh Tiên Hoàng, Quận 1, TP.HCM. Theo yêu cầu của H, N sử dụng 1.200.000 đồng do A chuyển và tự bỏ thêm 1.100.000 đồng để thanh toán đủ 2.300.000 đồng. Đến khoảng 22 giờ cùng ngày, lực lượng chức năng bắt quả tang T khi giao CCCD giả tại điểm hẹn, thu giữ tang vật. Sau đó, N đã nộp lại toàn bộ số tiền thu lợi bất chính.
+
+Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng người; hành vi làm giả, sử dụng giấy tờ giả và tổ chức thi hộ; chứng cứ điện tử, dòng tiền, vật chứng; tình tiết giảm nhẹ, tăng nặng và hậu quả pháp lý đối với từng người.`
+      },
       injury: {
         personal: `- Bị cáo: Nguyễn Văn An (SN 1995), trú tại TP.HCM, chưa có tiền án tiền sự.\n- Bị hại: Trần Quốc Bình (SN 1998), bị thương tật 35% sức khỏe.`,
         case: `Khoảng 21 giờ ngày 15/04/2023, do mâu thuẫn bộc phát tại quán nước, bị cáo Nguyễn Văn An đã dùng dao bấm (hung khí nguy hiểm) đâm vào ngực anh Trần Quốc Bình làm anh Bình bị tổn hại 35% sức khỏe. Sau khi gây án, bị cáo đã thành khẩn khai báo, tự nguyện bồi thường toàn bộ 50.000.000 đồng và được gia đình bị hại xin giảm nhẹ hình phạt.`
@@ -356,15 +380,23 @@ Khoảng 21 giờ ngày 15/04/2023, do mâu thuẫn tại quán nước, bị c�
       partiesList.innerHTML = '';
       (data.parties || []).forEach(p => {
         const div = document.createElement('div');
-        div.className = 'p-2.5 rounded-lg border border-slate-100 bg-slate-50 flex items-start justify-between gap-2';
+        div.className = 'p-3 rounded-xl border border-slate-200 bg-slate-50 flex flex-col gap-2';
         const isDef = p.role === 'Bị cáo';
         div.innerHTML = `
-          <div>
-            <span class="badge ${isDef ? 'bg-rose-100 text-rose-800' : 'bg-blue-100 text-blue-800'} mr-1.5">${p.role}</span>
-            <strong class="text-slate-800">${p.name}</strong>
-            <p class="text-xs text-slate-500 mt-0.5">${p.details}</p>
+          <div class="flex items-start justify-between gap-2">
+            <div>
+              <span class="badge ${isDef ? 'bg-rose-100 text-rose-800' : 'bg-blue-100 text-blue-800'} mr-1.5">${p.role}</span>
+              <strong class="text-slate-900 text-base font-bold">${p.name}</strong>
+              ${p.role_detail ? `<span class="ml-1 text-[11px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded-md font-medium">${p.role_detail}</span>` : ''}
+              <p class="text-xs text-slate-600 mt-1">${p.details}</p>
+            </div>
+            ${p.prior_convictions > 0 ? '<span class="badge bg-amber-100 text-amber-800 text-[10px]">' + p.prior_convictions + ' tiền án</span>' : '<span class="badge bg-emerald-50 text-emerald-700 text-[10px]">Tiền án: 0</span>'}
           </div>
-          ${p.prior_convictions > 0 ? '<span class="badge bg-amber-100 text-amber-800 text-[10px]">' + p.prior_convictions + ' tiền án</span>' : '<span class="badge bg-emerald-50 text-emerald-700 text-[10px]">Tiền án: 0</span>'}
+          ${p.individual_penalty_recommendation ? `
+            <div class="mt-1 p-2.5 bg-amber-50/80 border border-amber-200 rounded-lg text-xs text-amber-950 leading-relaxed font-medium">
+              ⚖️ <strong class="text-amber-900">Khuyến nghị cá thể hóa hình phạt:</strong> ${p.individual_penalty_recommendation}
+            </div>
+          ` : ''}
         `;
         partiesList.appendChild(div);
       });
@@ -408,9 +440,28 @@ Khoảng 21 giờ ngày 15/04/2023, do mâu thuẫn tại quán nước, bị c�
             <div class="p-2.5 rounded-lg bg-indigo-50/60 border border-indigo-100">
               <div class="flex items-center justify-between">
                 <strong class="text-indigo-900 font-semibold">${p.precedent_id || 'Án lệ TANDTC'}</strong>
-                <span class="text-[10px] bg-indigo-200/80 text-indigo-900 px-2 py-0.5 rounded font-mono">Tương đồng: ${Math.round((p.similarity_score||0)*100)}%</span>
+                <span class="text-[10px] bg-indigo-200/80 text-indigo-900 px-2 py-0.5 rounded font-mono">Tương đồng: ${Math.round((p.score||0)*100)}%</span>
               </div>
-              <p class="text-slate-600 mt-1 line-clamp-2">${p.case_name || p.title || p.summary || 'Tình huống pháp lý chuẩn của TANDTC'}</p>
+              <p class="text-slate-600 mt-1 line-clamp-2">${p.content || 'Tình huống pháp lý chuẩn của TANDTC'}</p>
+            </div>
+          `;
+        });
+      }
+
+      // Similar Cases (Case-Based Reasoning)
+      const simList = document.getElementById('similar_cases_list');
+      simList.innerHTML = '';
+      if ((data.similar_cases || []).length === 0) {
+        simList.innerHTML = '<p class="text-slate-400 italic p-2 bg-slate-50 rounded">Chưa tìm thấy bản án tiền lệ tương đồng trong cơ sở dữ liệu.</p>';
+      } else {
+        data.similar_cases.forEach(c => {
+          simList.innerHTML += `
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 flex flex-col gap-1">
+              <div class="flex items-center justify-between">
+                <strong class="text-indigo-900 font-bold">${c.judgment_document_id || 'Bản án TAND'}</strong>
+                <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-mono font-semibold">Độ tương đồng: ${Math.round((c.score||0)*100)}%</span>
+              </div>
+              <p class="text-slate-700 text-xs line-clamp-2 leading-relaxed">${c.content}</p>
             </div>
           `;
         });
@@ -430,6 +481,7 @@ Khoảng 21 giờ ngày 15/04/2023, do mâu thuẫn tại quán nước, bị c�
               <li>Mức án tù không âm (Zero-negative Guaranteed: ≥ 0.0 năm).</li>
               <li>Nếu phán quyết vô tội, mức án tù bắt buộc gán cứng về 0.0 năm.</li>
               <li>Mức án dự đoán phù hợp với khung hình phạt luật định và tỷ lệ tình tiết tăng nặng / giảm nhẹ.</li>
+              <li>Áp dụng nguyên tắc cá thể hóa hình phạt và Điều 54, Điều 65 BLHS cho các bị cáo có nhiều tình tiết giảm nhẹ.</li>
             </ul>
           </div>
         `;
@@ -439,9 +491,9 @@ Khoảng 21 giờ ngày 15/04/2023, do mâu thuẫn tại quán nước, bị c�
       document.getElementById('result_dashboard').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Auto-load preset injury on start
+    // Auto-load preset forgery_vstep on start
     window.addEventListener('DOMContentLoaded', () => {
-      loadPreset('injury');
+      loadPreset('forgery_vstep');
     });
   </script>
 </body>

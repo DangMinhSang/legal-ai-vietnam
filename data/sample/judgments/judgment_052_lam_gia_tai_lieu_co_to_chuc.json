@@ -1,0 +1,33 @@
+{
+  "id": "judgment_052_lam_gia_tai_lieu_co_to_chuc",
+  "case_number": "112/2022/HS-ST",
+  "court": "Tòa án nhân dân Quận 1, Thành phố Hồ Chí Minh",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2022-09-15",
+  "crime_type": "Tội làm giả con dấu, tài liệu của cơ quan, tổ chức; tội sử dụng con dấu hoặc tài liệu giả của cơ quan, tổ chức",
+  "applicable_articles": ["341"],
+  "defendant": {
+    "name": "Trần Quốc T",
+    "dob": "1990-08-20",
+    "birth_year": 1990,
+    "prior_convictions": 0
+  },
+  "facts_summary": "Trần Quốc T cùng đồng phạm nhận làm giả các loại giấy tờ tùy thân gồm Căn cước công dân và Giấy phép lái xe thông qua mạng xã hội Zalo, Telegram. T trực tiếp nhận phôi, in ấn và giao dịch với khách hàng. Hành vi phạm tội bị phát hiện khi các đối tượng đang giao 03 bộ tài liệu giả cho khách hàng tại địa bàn Quận 1.",
+  "aggravating_factors": [
+    "phạm tội có tổ chức",
+    "làm từ 02 đến 05 tài liệu giả"
+  ],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "ăn năn hối cải",
+    "phạm tội lần đầu",
+    "đã nộp lại số tiền thu lợi bất chính"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 2.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN QUẬN 1, THÀNH PHỐ HỒ CHÍ MINH\nBẢN ÁN SỐ: 112/2022/HS-ST NGÀY 15/09/2022 VỀ TỘI LÀM GIẢ CON DẤU, TÀI LIỆU CỦA CƠ QUAN, TỔ CHỨC\n\nNỘI DUNG VỤ ÁN:\nKhoảng tháng 05/2022, Trần Quốc T cùng đồng phạm lập nhóm liên lạc trên ứng dụng Zalo nhận làm giả giấy tờ tùy thân gồm CCCD và GPLX. Các đối tượng thu tiền từ 1.000.000đ đến 2.500.000đ cho mỗi giấy tờ giả. Ngày 10/08/2022, công an phát hiện bắt quả tang khi các đối tượng đang giao 03 giấy tờ giả.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nHành vi của bị cáo phạm vào điểm a, c khoản 2 Điều 341 Bộ luật Hình sự 2015. Bị cáo có nhiều tình tiết giảm nhẹ quy định tại điểm b, s khoản 1 Điều 51 BLHS.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Trần Quốc T phạm 'Tội làm giả con dấu, tài liệu của cơ quan, tổ chức'.\nÁp dụng điểm a, c khoản 2 Điều 341; điểm b, s khoản 1 Điều 51 BLHS: Xử phạt bị cáo Trần Quốc T 02 năm tù."
+}

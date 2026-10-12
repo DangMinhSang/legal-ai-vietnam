@@ -512,8 +512,10 @@ async def web_analyze_case(
                 "name": p.name,
                 "role": p.role,
                 "details": p.details,
+                "role_detail": p.role_detail,
                 "prior_convictions": p.prior_convictions,
                 "is_recidivist": p.is_recidivist,
+                "individual_penalty_recommendation": p.individual_penalty_recommendation,
             }
             for p in parsed.parties
         ],
@@ -521,11 +523,13 @@ async def web_analyze_case(
         "judgment_date": str(parsed.judgment_date),
         "detected_crime_name": parsed.detected_crime_name,
         "detected_articles": parsed.detected_articles,
+        "detected_clause": parsed.detected_clause,
         "aggravating_factors": parsed.aggravating_factors,
         "mitigating_factors": parsed.mitigating_factors,
         "temporal_analysis": temp_analysis,
         "relevant_laws": output.relevant_laws[:3],
         "relevant_precedents": output.relevant_precedents[:3],
+        "similar_cases": output.similar_cases[:3],
         "predicted_outcome": output.predicted_outcome,
         "consistency_warnings": output.consistency_warnings,
         "statutory_bounds": {

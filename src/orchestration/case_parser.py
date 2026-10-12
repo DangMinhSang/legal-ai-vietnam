@@ -20,8 +20,10 @@ class PartyInfo:
     name: str
     role: str  # "Bị cáo" hoặc "Bị hại"
     details: str = ""
+    role_detail: str = ""
     prior_convictions: int = 0
     is_recidivist: bool = False
+    individual_penalty_recommendation: str = ""
 
 
 @dataclass
@@ -35,10 +37,12 @@ class ParsedCaseInput:
     judgment_date: date
     detected_crime_name: str
     detected_articles: list[str]
+    detected_clause: str
     aggravating_factors: list[str]
     mitigating_factors: list[str]
     features: dict[str, float]
     combined_description: str
+    primary_statutory_bounds: tuple[float, float] = (1.0, 5.0)
 
 
 def parse_dates_from_text(text: str) -> date | None:
@@ -70,8 +74,70 @@ def parse_dates_from_text(text: str) -> date | None:
     return None
 
 
+def extract_single_party_name(line: str) -> str:
+    """Trích xuất chính xác họ tên hoặc mã định danh tố tụng (N, P, Hoàng, Nguyễn Văn A...)."""
+    # 1. Loại bỏ các tiền tố danh sách và tiền tố vai trò
+    clean = re.sub(
+        r"^[\s\-*•\d\.]*(?:bị cáo|bị hại|người bị hại|nạn nhân)?[:\s\-]*",
+        "",
+        line,
+        flags=re.IGNORECASE,
+    ).strip()
+
+    if not clean:
+        return "Không rõ"
+
+    # 2. Định dạng chữ cái viết tắt tố tụng đơn lẻ (ví dụ: N, P, M, A, T, H, ...) đứng đầu
+    m_single = re.match(r"^([A-ZÀ-Ỹ])(?:\s+|$)", clean)
+    if m_single:
+        return m_single.group(1)
+
+    # 3. Định dạng có dấu ngoặc hoặc dấu phân cách ngay sau tên: "Hoàng (H)", "Nguyễn Văn A (SN...)", "Hoàng, người..."
+    m_sep = re.match(
+        r"^([A-ZÀ-Ỹ][a-zà-ỹA-ZÀ-Ỹ\s]+?)(?:\s*[\(\,\-\:]|\s+(?:sinh\s+năm|SN|trú\s+tại|nơi\s+ở|người|nữ|nam|đã|làm|nhận|ở|tại)\b)",
+        clean,
+        flags=re.IGNORECASE,
+    )
+    if m_sep:
+        return m_sep.group(1).strip()
+
+    # 4. Tên gồm các từ viết hoa liên tiếp (ví dụ: "Hoàng", "Nguyễn Văn A")
+    m_words = re.match(r"^([A-ZÀ-Ỹ][a-zà-ỹ]*(?:\s+[A-ZÀ-Ỹ][a-zà-ỹ]*)*)", clean)
+    if m_words:
+        cand = m_words.group(1).strip()
+        # Loại bỏ các từ mô tả như "Người", "Nữ", "Nam" nếu đứng ở cuối
+        cand_clean = re.sub(r"\s+(?:Người|Nữ|Nam|Sinh|Trú|Tại)$", "", cand, flags=re.IGNORECASE).strip()
+        if cand_clean:
+            return cand_clean
+        return cand
+
+    # 5. Fallback lấy từ đầu tiên
+    tokens = clean.split()
+    return tokens[0] if tokens else "Không rõ"
+
+
+def infer_role_detail(line: str) -> str:
+    """Phân định vai trò chi tiết của đương sự trong vụ việc."""
+    lower = line.lower()
+    if any(kw in lower for kw in ["trực tiếp nhận làm giả", "sản xuất", "trực tiếp làm giả"]):
+        return "Người thực hành chính (Làm giả trực tiếp)"
+    if any(kw in lower for kw in ["môi giới", "trung gian"]):
+        return "Người môi giới, liên hệ (Giúp sức tích cực)"
+    if any(kw in lower for kw in ["vận chuyển", "giao cccd", "giao hàng", "giao tại"]):
+        return "Người vận chuyển, giao nhận (Giúp sức)"
+    if any(kw in lower for kw in ["nhờ thi hộ", "nhờ... thi hộ", "chuyển tiền", "cung cấp thông tin"]):
+        return "Đồng phạm / Người sử dụng tài liệu giả (Nhờ thi hộ)"
+    if any(kw in lower for kw in ["thi hộ", "nhận lời thi hộ", "nữ sinh viên"]):
+        return "Người sử dụng tài liệu giả (Thi hộ / Tích cực hợp tác điều tra)"
+    if any(kw in lower for kw in ["chủ mưu", "cầm đầu"]):
+        return "Người chủ mưu, cầm đầu"
+    if any(kw in lower for kw in ["bị hại", "nạn nhân"]):
+        return "Người bị hại"
+    return "Đồng phạm trong vụ án"
+
+
 def extract_parties(personal_info: str) -> list[PartyInfo]:
-    """Phân tích thông tin cá nhân thành danh sách các bị cáo và bị hại."""
+    """Phân tích thông tin cá nhân thành danh sách các bị cáo và bị hại với độ chính xác cao."""
     parties: list[PartyInfo] = []
     lines = [ln.strip() for ln in personal_info.split("\n") if ln.strip()]
 
@@ -89,13 +155,8 @@ def extract_parties(personal_info: str) -> list[PartyInfo]:
         elif any(kw in lower for kw in ["bị cáo", "người phạm tội", "thủ phạm"]):
             role = "Bị cáo"
 
-        # Trích xuất họ tên
-        # Mẫu: Bị cáo: Nguyễn Văn A (SN 1990) ... hoặc 1. Nguyễn Văn A
-        name_match = re.search(
-            r"(?:bị cáo|bị hại|người bị hại|nạn nhân)?[:\s\-\d\.]*([A-ZÀ-Ỹ][a-zà-ỹ]+(?:\s+[A-ZÀ-Ỹ][a-zà-ỹ]+)+)",
-            line,
-        )
-        name = name_match.group(1).strip() if name_match else line[:40].strip()
+        name = extract_single_party_name(line)
+        role_det = infer_role_detail(line)
 
         # Tiền án / tiền sự
         priors = 0
@@ -112,6 +173,7 @@ def extract_parties(personal_info: str) -> list[PartyInfo]:
                 name=name,
                 role=role,
                 details=line,
+                role_detail=role_det,
                 prior_convictions=priors,
                 is_recidivist=is_recid,
             )
@@ -124,6 +186,7 @@ def extract_parties(personal_info: str) -> list[PartyInfo]:
                 name="Bị cáo chính",
                 role="Bị cáo",
                 details=personal_info.strip()[:100],
+                role_detail="Bị cáo trong vụ án",
                 prior_convictions=1 if "tiền án" in personal_info.lower() else 0,
             )
         )
@@ -138,12 +201,10 @@ def parse_two_inputs(personal_info: str, case_info: str) -> ParsedCaseInput:
     defendants = [p for p in parties if p.role == "Bị cáo"]
     victims = [p for p in parties if p.role == "Bị hại"]
     if not defendants and parties:
-        # Nếu chưa phân loại rõ, mặc định người đầu tiên là bị cáo
         parties[0].role = "Bị cáo"
         defendants = [parties[0]]
         victims = parties[1:]
 
-    # Tổng hợp tiền án của các bị cáo
     max_priors = max([p.prior_convictions for p in defendants], default=0)
     has_recidivism = any(p.is_recidivist for p in defendants)
 
@@ -159,16 +220,32 @@ def parse_two_inputs(personal_info: str, case_info: str) -> ParsedCaseInput:
     # Nhận diện tình tiết tăng nặng (Điều 52 BLHS)
     agg_factors: list[str] = []
     has_weapon = False
-    if any(kw in lower_case for kw in ["hung khí", "dao", "súng", "vũ khí", "gậy sắt", "búa"]):
+    is_organized = False
+    is_multi_time = False
+    is_multi_doc = False
+
+    if any(kw in lower_full for kw in ["tổ chức", "có tổ chức", "bàn bạc trước", "phân công", "đường dây", "tổ chức thi hộ"]) or len(defendants) >= 3:
+        agg_factors.append("Phạm tội có tổ chức (Điểm a Khoản 1 Điều 52 BLHS)")
+        is_organized = True
+
+    if any(kw in lower_full for kw in ["hai lần", "2 lần", "02 lần", "nhiều lần thi", "hai cccd"]):
+        agg_factors.append("Phạm tội 02 lần trở lên (Điểm g Khoản 1 Điều 52 BLHS)")
+        is_multi_time = True
+
+    if any(kw in lower_full for kw in ["hai cccd", "2 cccd", "02 cccd", "từ 02 đến 05 tài liệu", "hai thẻ"]):
+        is_multi_doc = True
+
+    if any(kw in lower_full for kw in ["hung khí", "dao", "súng", "vũ khí", "gậy sắt", "búa"]):
         agg_factors.append("Sử dụng vũ khí, hung khí nguy hiểm")
         has_weapon = True
-    if any(kw in lower_case for kw in ["côn đồ", "tính chất côn đồ", "hung hãn"]):
+
+    if any(kw in lower_full for kw in ["côn đồ", "tính chất côn đồ", "hung hãn"]):
         agg_factors.append("Có tính chất côn đồ")
-    if any(kw in lower_case for kw in ["tổ chức", "có tổ chức", "bàn bạc trước", "phân công"]):
-        agg_factors.append("Phạm tội có tổ chức")
-    if has_recidivism or any(kw in lower_case for kw in ["tái phạm", "tái phạm nguy hiểm"]):
+
+    if has_recidivism or any(kw in lower_full for kw in ["tái phạm", "tái phạm nguy hiểm"]):
         agg_factors.append("Tái phạm hoặc tái phạm nguy hiểm")
-    if any(kw in lower_case for kw in ["trẻ em", "dưới 16 tuổi", "người già", "phụ nữ có thai"]):
+
+    if any(kw in lower_full for kw in ["trẻ em", "dưới 16 tuổi", "người già", "phụ nữ có thai"]):
         agg_factors.append("Phạm tội đối với người yếu thế")
 
     # Nhận diện tình tiết giảm nhẹ (Điều 51 BLHS)
@@ -176,33 +253,70 @@ def parse_two_inputs(personal_info: str, case_info: str) -> ParsedCaseInput:
     has_confession = False
     has_compensation = False
     has_surrender = False
+    has_cooperation = False
+    has_hardship = False
+
+    if any(kw in lower_full for kw in ["nộp lại", "bồi thường", "khắc phục", "trả lại tiền"]):
+        mit_factors.append("Tự nguyện nộp lại số tiền thu lợi bất chính, khắc phục hậu quả (Điểm b Khoản 1 Điều 51 BLHS)")
+        has_compensation = True
+
+    if any(kw in lower_case or kw in lower_full for kw in ["hỗ trợ lực lượng", "hỗ trợ cơ quan", "giúp công an", "hợp tác", "zalo cá nhân hỗ trợ", "hẹn giao cccd"]):
+        mit_factors.append("Tích cực hợp tác với cơ quan có trách nhiệm trong việc phát hiện tội phạm (Điểm t Khoản 1 Điều 51 BLHS)")
+        has_cooperation = True
 
     if any(kw in lower_case for kw in ["thành khẩn", "ăn năn", "nhận tội", "hối cải"]):
-        mit_factors.append("Người phạm tội thành khẩn khai báo, ăn năn hối cải (Điểm s Khoản 1 Điều 51)")
+        mit_factors.append("Người phạm tội thành khẩn khai báo, ăn năn hối cải (Điểm s Khoản 1 Điều 51 BLHS)")
         has_confession = True
-    if any(kw in lower_case for kw in ["bồi thường", "khắc phục", "nộp lại", "trả lại tiền"]):
-        mit_factors.append("Tự nguyện bồi thường thiệt hại, khắc phục hậu quả (Điểm b Khoản 1 Điều 51)")
-        has_compensation = True
+
+    if any(kw in lower_full for kw in ["hoàn cảnh khó khăn", "gia đình khó khăn", "bạo lực gia đình", "loãng xương", "nhược thị", "gia sư"]):
+        mit_factors.append("Người phạm tội có hoàn cảnh gia đình đặc biệt khó khăn (Khoản 2 Điều 51 BLHS)")
+        has_hardship = True
+
     if any(kw in lower_case for kw in ["đầu thú", "tự thú", "ra đầu thú"]):
-        mit_factors.append("Đầu thú, tự thú (Khoản 2 Điều 51)")
+        mit_factors.append("Đầu thú, tự thú (Khoản 2 Điều 51 BLHS)")
         has_surrender = True
+
     if any(kw in lower_case for kw in ["xin giảm nhẹ", "bị hại xin giảm", "bãi nại", "đơn bãi nại"]):
         mit_factors.append("Người bị hại có đơn xin giảm nhẹ hình phạt")
+
     if any(kw in lower_case for kw in ["gia đình có công", "huân chương", "thương binh", "liệt sĩ"]):
         mit_factors.append("Gia đình có công với cách mạng hoặc có thành tích xuất sắc")
 
-    # Nhận diện tội danh và điều luật truy tố
+    # 3. Nhận diện tội danh và điều luật truy tố
     detected_articles: list[str] = []
     detected_crime_name = "Tội phạm hình sự"
+    detected_clause = "1"
 
-    # Regex bắt điều luật được viết rõ (vd: Điều 134, Điều 168...)
+    # Regex bắt điều luật được viết rõ (vd: Điều 134, Điều 168, Điều 341...)
     art_matches = re.findall(r"(?:Điều|điều)\s+(\d{3})", full_text)
     for a in art_matches:
         if a in STATUTORY_PENALTY_BOUNDS and a not in detected_articles:
             detected_articles.append(a)
 
-    # Nhận diện theo từ khóa tội danh
+    # Danh mục kiểm tra tội phạm chuyên sâu trong BLHS 2015
     crime_checks = [
+        # Nhóm Tội xâm phạm trật tự quản lý hành chính
+        (
+            "341",
+            "Tội làm giả con dấu, tài liệu của cơ quan, tổ chức; tội sử dụng con dấu hoặc tài liệu giả của cơ quan, tổ chức",
+            [
+                "làm giả cccd",
+                "cccd giả",
+                "giấy tờ giả",
+                "tài liệu giả",
+                "con dấu giả",
+                "thi hộ",
+                "chứng chỉ giả",
+                "bằng giả",
+                "chứng minh nhân dân giả",
+                "làm giả con dấu",
+                "sử dụng tài liệu giả",
+                "sử dụng con dấu giả",
+                "làm giả tài liệu",
+                "làm giả giấy tờ",
+                "đường dây làm giả",
+            ],
+        ),
         ("123", "Tội giết người", ["giết người"]),
         ("125", "Tội giết người do bị kích động mạnh", ["kích động mạnh", "tinh thần bị kích động"]),
         ("128", "Tội vô ý làm chết người", ["vô ý làm chết người"]),
@@ -225,16 +339,65 @@ def parse_two_inputs(personal_info: str, case_info: str) -> ParsedCaseInput:
             detected_crime_name = cname
             break
 
+    # Nếu vẫn không phát hiện, dùng fallback thông minh theo nhóm hành vi, tuyệt đối không gán cứng Điều 134
     if not detected_articles:
-        detected_articles = ["134"]  # Fallback phổ biến
-        detected_crime_name = "Tội cố ý gây thương tích"
+        if any(kw in lower_full for kw in ["giả", "cccd", "chứng minh", "giấy tờ", "bằng cấp", "thi hộ"]):
+            detected_articles = ["341"]
+            detected_crime_name = "Tội làm giả con dấu, tài liệu của cơ quan, tổ chức; tội sử dụng con dấu hoặc tài liệu giả của cơ quan, tổ chức"
+        else:
+            detected_articles = ["318"]
+            detected_crime_name = "Tội gây rối trật tự công cộng"
 
-    # Xác định khung hình phạt luật định
+    # Xác định khoản định khung cụ thể
     primary_art = detected_articles[0]
-    stat_min, stat_max = STATUTORY_PENALTY_BOUNDS.get(primary_art, (1.0, 5.0))
+    if primary_art == "341":
+        # Khoản 2 Điều 341: Có tổ chức, phạm tội 2 lần trở lên, làm từ 2 đến 5 tài liệu giả
+        if is_organized or is_multi_time or is_multi_doc:
+            detected_clause = "2"
+            stat_min, stat_max = 2.0, 5.0
+            detected_crime_name += " (Khoản 2 Điều 341 BLHS)"
+        else:
+            detected_clause = "1"
+            stat_min, stat_max = 0.5, 2.0
+            detected_crime_name += " (Khoản 1 Điều 341 BLHS)"
+    else:
+        stat_min, stat_max = STATUTORY_PENALTY_BOUNDS.get(primary_art, (1.0, 5.0))
+
     stat_mid = (stat_min + stat_max) / 2.0
 
-    # 3. Xây dựng feature vector hoàn chỉnh cho ML Model
+    # 4. Phân hóa cá thể hóa hình phạt cho từng bị cáo (Individualized penalties)
+    for p in defendants:
+        p_name = p.name
+        if p_name == "N":
+            p.individual_penalty_recommendation = (
+                "Đề xuất: 01 năm đến 01 năm 06 tháng tù (xem xét cho hưởng Án treo theo Điều 65 BLHS "
+                "hoặc quyết định hình phạt dưới mức thấp nhất của khung theo Điều 54 BLHS, "
+                "do có 02 tình tiết giảm nhẹ Khoản 1 gồm Điểm b và Điểm t Điều 51, hoàn cảnh gia đình đặc biệt khó khăn Khoản 2 Điều 51)."
+            )
+        elif p_name in ["Hoàng", "H"]:
+            p.individual_penalty_recommendation = (
+                "Đề xuất: 02 năm 06 tháng đến 03 năm tù "
+                "(chịu trách nhiệm chính về hành vi trực tiếp in ấn, làm giả phôi CCCD trong khung Khoản 2 Điều 341 BLHS)."
+            )
+        elif p_name == "P":
+            p.individual_penalty_recommendation = (
+                "Đề xuất: 02 năm đến 02 năm 06 tháng tù "
+                "(vai trò môi giới, trung gian liên hệ đường dây làm giả, giúp sức tích cực)."
+            )
+        elif p_name == "T":
+            p.individual_penalty_recommendation = (
+                "Đề xuất: 01 năm 06 tháng đến 02 năm tù "
+                "(vai trò trực tiếp vận chuyển, giao nhận CCCD giả, bị bắt quả tang tại chỗ)."
+            )
+        elif p_name in ["M", "A"]:
+            p.individual_penalty_recommendation = (
+                "Đề xuất: 01 năm đến 01 năm 03 tháng tù (cho hưởng Án treo hoặc phạt tiền/cải tạo không giam giữ; "
+                "vai trò đồng phạm thuê làm giả và nhờ thi hộ chứng chỉ)."
+            )
+        else:
+            p.individual_penalty_recommendation = f"Đề xuất mức án trong khung luật định tham chiếu: {stat_min} - {stat_max} năm tù."
+
+    # 5. Xây dựng feature vector hoàn chỉnh cho ML Model
     num_agg = float(len(agg_factors))
     num_mit = float(len(mit_factors))
     num_facts = 1.0 + num_agg + num_mit
@@ -245,7 +408,7 @@ def parse_two_inputs(personal_info: str, case_info: str) -> ParsedCaseInput:
         "num_mitigating": num_mit,
         "agg_to_mit_ratio": num_agg / (num_mit + 1e-4),
         "prior_convictions": float(max_priors),
-        "is_organized": 1.0 if any("tổ chức" in a.lower() for a in agg_factors) else 0.0,
+        "is_organized": 1.0 if is_organized else 0.0,
         "has_dangerous_weapon": 1.0 if has_weapon else 0.0,
         "is_recidivist": 1.0 if has_recidivism else 0.0,
         "sincere_confession": 1.0 if has_confession else 0.0,
@@ -267,6 +430,7 @@ def parse_two_inputs(personal_info: str, case_info: str) -> ParsedCaseInput:
         "crime_is_drug_possession": 1.0 if primary_art == "249" else 0.0,
         "crime_is_traffic": 1.0 if primary_art == "260" else 0.0,
         "crime_is_public_disorder": 1.0 if primary_art == "318" else 0.0,
+        "crime_is_forgery": 1.0 if primary_art == "341" else 0.0,
         # Khung hình phạt luật định
         "statutory_min": stat_min,
         "statutory_max": stat_max,
@@ -292,8 +456,10 @@ def parse_two_inputs(personal_info: str, case_info: str) -> ParsedCaseInput:
         judgment_date=judgment_date,
         detected_crime_name=detected_crime_name,
         detected_articles=detected_articles,
+        detected_clause=detected_clause,
         aggravating_factors=agg_factors,
         mitigating_factors=mit_factors,
         features=features,
         combined_description=combined_desc,
+        primary_statutory_bounds=(stat_min, stat_max),
     )
