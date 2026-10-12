@@ -1,0 +1,31 @@
+{
+  "id": "judgment_050_ma_tuy_tang_tru_khoan_1",
+  "case_number": "45/2024/HS-ST",
+  "court": "Tòa án nhân dân thành phố Rạch Giá, tỉnh Kiên Giang",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2024-08-20",
+  "crime_type": "Tội tàng trữ trái phép chất ma túy",
+  "applicable_articles": [
+    "249"
+  ],
+  "defendant": {
+    "name": "Ngô Minh LL",
+    "dob": "1997-02-14",
+    "birth_year": 1997,
+    "prior_convictions": 0
+  },
+  "facts_summary": "Khoảng 14 giờ ngày 15/05/2024, tại phòng trọ số 4 trên đường Nguyễn Trung Trực, lực lượng chức năng kiểm tra phát hiện Ngô Minh LL đang cất giấu 01 đoạn ống hút nhựa hàn kín hai đầu chứa 0,35 gam chất bột màu trắng mua của một người lạ mặt để sử dụng cá nhân. Kết luận giám định xác định là ma túy Heroine.",
+  "aggravating_factors": [],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "ăn năn hối cải",
+    "phạm tội lần đầu"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 1.5,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN THÀNH PHỐ RẠCH GIÁ, TỈNH KIÊN GIANG\nBẢN ÁN SỐ: 45/2024/HS-ST NGÀY 20/08/2024 VỀ TỘI TÀNG TRỮ TRÁI PHÉP CHẤT MA TÚY\n\nNỘI DUNG VỤ ÁN:\nHồi 14 giờ ngày 15/05/2024, Công an thành phố Rạch Giá kiểm tra hành chính nhà trọ tại phường Vĩnh Bảo, phát hiện trong túi quần của Ngô Minh LL có 01 tép nhựa chứa bột màu trắng. LL khai nhận là Heroine mua về để bản thân sử dụng. Kết luận giám định số 214 xác định chất bột màu trắng là Heroine có khối lượng 0,35 gam.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nHành vi tàng trữ 0,35 gam Heroine nhằm mục đích sử dụng cá nhân của bị cáo phạm vào điểm c khoản 1 Điều 249 BLHS 2015. Bị cáo chưa có tiền án tiền sự, quá trình điều tra và tại phiên tòa thành khẩn khai báo, ăn năn hối cải nên áp dụng điểm s khoản 1 Điều 51 BLHS để giảm nhẹ một phần hình phạt.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Ngô Minh LL phạm 'Tội tàng trữ trái phép chất ma túy'.\nÁp dụng điểm c khoản 1 Điều 249; điểm s khoản 1 Điều 51 BLHS 2015.\nXử phạt bị cáo Ngô Minh LL 01 (một) năm 06 (sáu) tháng tù."
+}

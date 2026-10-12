@@ -1,0 +1,26 @@
+{
+  "id": "judgment_014_khong_pham_toi_dan_su",
+  "case_number": "08/2023/HS-ST",
+  "court": "Tòa án nhân dân quận Hoàn Kiếm, thành phố Hà Nội",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2023-03-10",
+  "crime_type": "Tội lừa đảo chiếm đoạt tài sản",
+  "applicable_articles": [
+    "174"
+  ],
+  "defendant": {
+    "name": "Mai Thị Q",
+    "dob": "1980-05-12",
+    "prior_convictions": 0
+  },
+  "facts_summary": "VKS truy tố bị cáo vay nợ 200 triệu đồng kinh doanh thua lỗ chưa trả là lừa đảo. Tòa án xác định bị cáo có tài sản bảo đảm, việc chậm trả do làm ăn thua lỗ khách quan, không có hành vi gian dối hay bỏ trốn.",
+  "aggravating_factors": [],
+  "mitigating_factors": [],
+  "verdict": "not_guilty",
+  "sentence_type": "acquitted",
+  "sentence_years": 0.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN QUẬN HOÀN KIẾM, TP HÀ NỘI\nBẢN ÁN SỐ: 08/2023/HS-ST NGÀY 10/03/2023\nTUYÊN BỐ BỊ CÁO MAI THỊ Q KHÔNG PHẠM TỘI\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nCăn cứ lời khai tại phiên tòa và tài liệu hồ sơ, giao dịch giữa bị cáo và người vay là quan hệ hợp đồng dân sự hợp pháp. Bị cáo không dùng thủ đoạn gian dối khi vay và không bỏ trốn hay tẩu tán tài sản. Do đó không đủ yếu tố cấu thành tội 'Lừa đảo chiếm đoạt tài sản'.\n\nQUYẾT ĐỊNH:\nCăn cứ Điều 13, Điều 326 Bộ luật Tố tụng hình sự.\nTuyên bố bị cáo Mai Thị Q không phạm tội 'Lừa đảo chiếm đoạt tài sản'."
+}

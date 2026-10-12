@@ -1,0 +1,134 @@
+# ============================================================
+# Model Configuration
+# legal-ai-vietnam/configs/models.yaml
+# ============================================================
+
+# ============================================================
+# EMBEDDING MODELS
+# All use fastembed (ONNX Runtime) - no PyTorch required
+# ============================================================
+embedding_models:
+  # Primary: Multilingual, good for Vietnamese legal text
+  primary:
+    name: "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
+    provider: "fastembed"
+    dimension: 768
+    max_length: 512
+    languages: ["vi", "en"]
+    size_mb: 1000
+    notes: "Best quality for Vietnamese, requires ~1GB download on first use"
+
+  # Alternative: Lighter model if RAM is constrained
+  lightweight:
+    name: "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    provider: "fastembed"
+    dimension: 384
+    max_length: 512
+    languages: ["vi", "en"]
+    size_mb: 220
+    notes: "Smaller, faster, slightly lower quality"
+
+  # Active model (change here to switch)
+  active: "primary"
+
+# ============================================================
+# LLM MODELS
+# Via LiteLLM - supports multiple providers
+# ============================================================
+llm_models:
+  # Production: Claude (best for Vietnamese legal reasoning)
+  claude_sonnet:
+    model_id: "claude-3-5-sonnet-20241022"
+    provider: "anthropic"
+    context_window: 200000
+    max_output_tokens: 8096
+    cost_per_1m_input: 3.0   # USD
+    cost_per_1m_output: 15.0  # USD
+    supports_structured_output: true
+    notes: "Recommended for legal analysis - strong reasoning, handles Vietnamese well"
+
+  claude_haiku:
+    model_id: "claude-3-5-haiku-20241022"
+    provider: "anthropic"
+    context_window: 200000
+    max_output_tokens: 8096
+    cost_per_1m_input: 0.8
+    cost_per_1m_output: 4.0
+    supports_structured_output: true
+    notes: "Faster and cheaper - use for simple extraction tasks"
+
+  # Fallback: OpenAI
+  gpt4o_mini:
+    model_id: "gpt-4o-mini"
+    provider: "openai"
+    context_window: 128000
+    max_output_tokens: 16384
+    cost_per_1m_input: 0.15
+    cost_per_1m_output: 0.6
+    supports_structured_output: true
+    notes: "Fallback when Anthropic unavailable"
+
+  # Active models by task
+  active:
+    analysis: "claude_sonnet"        # Full case analysis
+    extraction: "claude_haiku"       # Entity extraction (cheaper)
+    classification: "claude_haiku"   # Crime classification
+    reasoning: "claude_sonnet"       # Legal reasoning + RAG
+    fallback: "gpt4o_mini"
+
+# ============================================================
+# PREDICTION MODELS (ML - Phase 2)
+# Placeholder for future ML models
+# ============================================================
+prediction_models:
+  first_instance:
+    type: "placeholder"
+    notes: "Will be trained when sufficient labeled data available"
+    minimum_samples: 500
+    features:
+      - "crime_category"
+      - "applied_articles"
+      - "aggravating_factors"
+      - "mitigating_factors"
+      - "prior_convictions"
+      - "court_level"
+    targets:
+      - "verdict"
+      - "sentence_years"
+      - "suspended_sentence"
+
+  appeal:
+    type: "placeholder"
+    notes: "Requires first_instance model + appeal metadata"
+    minimum_samples: 200
+    features:
+      - "first_instance_outcome"
+      - "appeal_type"
+      - "appeal_scope"
+      - "appeal_reasons"
+      - "new_evidence"
+    targets:
+      - "appellate_outcome"
+      - "sentence_change"
+
+# ============================================================
+# RETRIEVAL CONFIGURATION
+# ============================================================
+retrieval:
+  legal_rag:
+    top_k: 5
+    rerank: false  # Set to true if cross-encoder available
+    hybrid_alpha: 0.7  # Weight for semantic vs keyword
+
+  precedent:
+    top_k: 3
+    # Precedent matching requires legal issue similarity
+    require_legal_issue_match: true
+    min_score: 0.5
+
+  similar_cases:
+    top_k: 10
+    # Filter by same crime category
+    filter_by_crime_category: true
+    # Filter by same court level if possible
+    prefer_same_court_level: true

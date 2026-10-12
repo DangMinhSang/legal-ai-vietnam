@@ -1,0 +1,437 @@
+{
+  "evaluation_timestamp": "2026-10-12T12:27:22.504938",
+  "temporal_cutoff_date": "2022-01-01",
+  "dataset_statistics": {
+    "total_cases": 50,
+    "train_cases_count": 31,
+    "test_cases_count": 19
+  },
+  "heuristic_baseline": {
+    "classification": {
+      "accuracy": 0.10526315789473684,
+      "balanced_accuracy": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "regression": {
+      "mae": 4.7368421052631575,
+      "rmse": 6.909185343096764,
+      "r2": -0.886893682251177
+    },
+    "legal_consistency": {
+      "negative_sentence_violations": 0,
+      "not_guilty_sentence_violations": 0,
+      "total_consistency_violations": 0,
+      "consistency_pass_rate": 1.0
+    },
+    "case_predictions": [
+      {
+        "case_number": "15/2022/HS-ST",
+        "crime_type": "Tội giết người",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 10.0,
+        "pred_sentence": 0.0,
+        "confidence": 0.6000000000000001,
+        "warnings": []
+      },
+      {
+        "case_number": "52/2022/HS-ST",
+        "crime_type": "Tội cướp tài sản",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 18.0,
+        "pred_sentence": 0.0,
+        "confidence": 0.5,
+        "warnings": []
+      },
+      {
+        "case_number": "08/2023/HS-ST",
+        "crime_type": "Tội lừa đảo chiếm đoạt tài sản",
+        "true_verdict": "not_guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 0.0,
+        "pred_sentence": 0.0,
+        "confidence": 0.5,
+        "warnings": []
+      },
+      {
+        "case_number": "41/2023/HS-ST",
+        "crime_type": "Tội trộm cắp tài sản",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 2.0,
+        "pred_sentence": 0.0,
+        "confidence": 0.8,
+        "warnings": []
+      },
+      {
+        "case_number": "77/2023/HS-ST",
+        "crime_type": "Tội cướp giật tài sản",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 4.0,
+        "pred_sentence": 0.0,
+        "confidence": 0.5,
+        "warnings": []
+      },
+      {
+        "case_number": "19/2024/HS-ST",
+        "crime_type": "Tội vận chuyển trái phép chất ma túy",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 11.0,
+        "pred_sentence": 0.0,
+        "confidence": 0.7,
+        "warnings": []
+      },
+      {
+        "case_number": "26/2024/HS-ST",
+        "crime_type": "Tội vi phạm quy định về tham gia giao thông đường bộ",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 3.5,
+        "pred_sentence": 0.0,
+        "confidence": 0.7000000000000001,
+        "warnings": []
+      },
+      {
+        "case_number": "10/2022/HS-ST",
+        "crime_type": "Tội tàng trữ trái phép chất ma túy",
+        "true_verdict": "not_guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 0.0,
+        "pred_sentence": 0.0,
+        "confidence": 0.5,
+        "warnings": []
+      },
+      {
+        "case_number": "24/2022/HS-ST",
+        "crime_type": "Tội trộm cắp tài sản",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 1.0,
+        "pred_sentence": 0.0,
+        "confidence": 0.9,
+        "warnings": []
+      },
+      {
+        "case_number": "37/2022/HS-ST",
+        "crime_type": "Tội gây rối trật tự công cộng",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 2.0,
+        "pred_sentence": 0.0,
+        "confidence": 0.6000000000000001,
+        "warnings": []
+      },
+      {
+        "case_number": "59/2022/HS-ST",
+        "crime_type": "Tội vi phạm quy định về tham gia giao thông đường bộ",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 2.0,
+        "pred_sentence": 0.0,
+        "confidence": 0.9,
+        "warnings": []
+      },
+      {
+        "case_number": "17/2023/HS-ST",
+        "crime_type": "Tội cướp giật tài sản",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 4.5,
+        "pred_sentence": 0.0,
+        "confidence": 0.5,
+        "warnings": []
+      },
+      {
+        "case_number": "35/2023/HS-ST",
+        "crime_type": "Tội lừa đảo chiếm đoạt tài sản",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 2.5,
+        "pred_sentence": 0.0,
+        "confidence": 0.5,
+        "warnings": []
+      },
+      {
+        "case_number": "50/2023/HS-ST",
+        "crime_type": "Tội cố ý gây thương tích",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 2.5,
+        "pred_sentence": 0.0,
+        "confidence": 0.8,
+        "warnings": []
+      },
+      {
+        "case_number": "68/2023/HS-ST",
+        "crime_type": "Tội mua bán trái phép chất ma túy",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 7.5,
+        "pred_sentence": 0.0,
+        "confidence": 0.7,
+        "warnings": []
+      },
+      {
+        "case_number": "12/2024/HS-ST",
+        "crime_type": "Tội giết người",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 15.0,
+        "pred_sentence": 0.0,
+        "confidence": 0.7000000000000001,
+        "warnings": []
+      },
+      {
+        "case_number": "22/2024/HS-ST",
+        "crime_type": "Tội gây rối trật tự công cộng",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 1.5,
+        "pred_sentence": 0.0,
+        "confidence": 0.9,
+        "warnings": []
+      },
+      {
+        "case_number": "34/2024/HS-ST",
+        "crime_type": "Tội vi phạm quy định về tham gia giao thông đường bộ",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 1.5,
+        "pred_sentence": 0.0,
+        "confidence": 0.9,
+        "warnings": []
+      },
+      {
+        "case_number": "45/2024/HS-ST",
+        "crime_type": "Tội tàng trữ trái phép chất ma túy",
+        "true_verdict": "guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 1.5,
+        "pred_sentence": 0.0,
+        "confidence": 0.8,
+        "warnings": []
+      }
+    ]
+  },
+  "machine_learning_model": {
+    "classification": {
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "regression": {
+      "mae": 1.9178947368421055,
+      "rmse": 3.1462743213621978,
+      "r2": 0.608720661338005
+    },
+    "legal_consistency": {
+      "negative_sentence_violations": 0,
+      "not_guilty_sentence_violations": 0,
+      "total_consistency_violations": 0,
+      "consistency_pass_rate": 1.0
+    },
+    "case_predictions": [
+      {
+        "case_number": "15/2022/HS-ST",
+        "crime_type": "Tội giết người",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 10.0,
+        "pred_sentence": 10.02,
+        "confidence": 1.0,
+        "warnings": []
+      },
+      {
+        "case_number": "52/2022/HS-ST",
+        "crime_type": "Tội cướp tài sản",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 18.0,
+        "pred_sentence": 8.2,
+        "confidence": 1.0,
+        "warnings": []
+      },
+      {
+        "case_number": "08/2023/HS-ST",
+        "crime_type": "Tội lừa đảo chiếm đoạt tài sản",
+        "true_verdict": "not_guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 0.0,
+        "pred_sentence": 0.0,
+        "confidence": 0.74,
+        "warnings": []
+      },
+      {
+        "case_number": "41/2023/HS-ST",
+        "crime_type": "Tội trộm cắp tài sản",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 2.0,
+        "pred_sentence": 1.57,
+        "confidence": 1.0,
+        "warnings": []
+      },
+      {
+        "case_number": "77/2023/HS-ST",
+        "crime_type": "Tội cướp giật tài sản",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 4.0,
+        "pred_sentence": 7.61,
+        "confidence": 1.0,
+        "warnings": []
+      },
+      {
+        "case_number": "19/2024/HS-ST",
+        "crime_type": "Tội vận chuyển trái phép chất ma túy",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 11.0,
+        "pred_sentence": 8.87,
+        "confidence": 1.0,
+        "warnings": []
+      },
+      {
+        "case_number": "26/2024/HS-ST",
+        "crime_type": "Tội vi phạm quy định về tham gia giao thông đường bộ",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 3.5,
+        "pred_sentence": 2.31,
+        "confidence": 1.0,
+        "warnings": []
+      },
+      {
+        "case_number": "10/2022/HS-ST",
+        "crime_type": "Tội tàng trữ trái phép chất ma túy",
+        "true_verdict": "not_guilty",
+        "pred_verdict": "not_guilty",
+        "true_sentence": 0.0,
+        "pred_sentence": 0.0,
+        "confidence": 0.7,
+        "warnings": []
+      },
+      {
+        "case_number": "24/2022/HS-ST",
+        "crime_type": "Tội trộm cắp tài sản",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 1.0,
+        "pred_sentence": 1.55,
+        "confidence": 1.0,
+        "warnings": [
+          "Lưu ý: Bị cáo có nhiều tình tiết giảm nhẹ (>= 5) và không có tăng nặng, cần xem xét miễn trách nhiệm hình sự hoặc áp dụng hình phạt nhẹ hơn (Điều 54 BLHS)."
+        ]
+      },
+      {
+        "case_number": "37/2022/HS-ST",
+        "crime_type": "Tội gây rối trật tự công cộng",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 2.0,
+        "pred_sentence": 2.93,
+        "confidence": 1.0,
+        "warnings": []
+      },
+      {
+        "case_number": "59/2022/HS-ST",
+        "crime_type": "Tội vi phạm quy định về tham gia giao thông đường bộ",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 2.0,
+        "pred_sentence": 1.74,
+        "confidence": 1.0,
+        "warnings": [
+          "Lưu ý: Bị cáo có nhiều tình tiết giảm nhẹ (>= 5) và không có tăng nặng, cần xem xét miễn trách nhiệm hình sự hoặc áp dụng hình phạt nhẹ hơn (Điều 54 BLHS)."
+        ]
+      },
+      {
+        "case_number": "17/2023/HS-ST",
+        "crime_type": "Tội cướp giật tài sản",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 4.5,
+        "pred_sentence": 7.61,
+        "confidence": 1.0,
+        "warnings": []
+      },
+      {
+        "case_number": "35/2023/HS-ST",
+        "crime_type": "Tội lừa đảo chiếm đoạt tài sản",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 2.5,
+        "pred_sentence": 8.55,
+        "confidence": 1.0,
+        "warnings": []
+      },
+      {
+        "case_number": "50/2023/HS-ST",
+        "crime_type": "Tội cố ý gây thương tích",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 2.5,
+        "pred_sentence": 2.37,
+        "confidence": 1.0,
+        "warnings": []
+      },
+      {
+        "case_number": "68/2023/HS-ST",
+        "crime_type": "Tội mua bán trái phép chất ma túy",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 7.5,
+        "pred_sentence": 3.72,
+        "confidence": 1.0,
+        "warnings": []
+      },
+      {
+        "case_number": "12/2024/HS-ST",
+        "crime_type": "Tội giết người",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 15.0,
+        "pred_sentence": 11.78,
+        "confidence": 1.0,
+        "warnings": []
+      },
+      {
+        "case_number": "22/2024/HS-ST",
+        "crime_type": "Tội gây rối trật tự công cộng",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 1.5,
+        "pred_sentence": 2.26,
+        "confidence": 1.0,
+        "warnings": []
+      },
+      {
+        "case_number": "34/2024/HS-ST",
+        "crime_type": "Tội vi phạm quy định về tham gia giao thông đường bộ",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 1.5,
+        "pred_sentence": 1.74,
+        "confidence": 1.0,
+        "warnings": []
+      },
+      {
+        "case_number": "45/2024/HS-ST",
+        "crime_type": "Tội tàng trữ trái phép chất ma túy",
+        "true_verdict": "guilty",
+        "pred_verdict": "guilty",
+        "true_sentence": 1.5,
+        "pred_sentence": 1.73,
+        "confidence": 1.0,
+        "warnings": []
+      }
+    ]
+  }
+}

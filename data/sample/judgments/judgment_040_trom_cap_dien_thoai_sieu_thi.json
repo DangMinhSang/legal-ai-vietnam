@@ -1,0 +1,33 @@
+{
+  "id": "judgment_040_trom_cap_dien_thoai_sieu_thi",
+  "case_number": "24/2022/HS-ST",
+  "court": "Tòa án nhân dân quận Hải An, thành phố Hải Phòng",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2022-05-19",
+  "crime_type": "Tội trộm cắp tài sản",
+  "applicable_articles": [
+    "173"
+  ],
+  "defendant": {
+    "name": "Phan Anh AA",
+    "dob": "2001-09-02",
+    "birth_year": 2001,
+    "prior_convictions": 0
+  },
+  "facts_summary": "Chiều ngày 05/03/2022, tại gian hàng điện thoại siêu thị B, Phan Anh AA lợi dụng nhân viên tư vấn đang bận tiếp khách khác đã lén lút mở tủ kính lấy trộm 01 chiếc điện thoại Samsung Galaxy S21 trị giá 17.500.000 đồng rồi giấu vào balo mang ra ngoài thì bị bảo vệ phát hiện qua camera giám sát.",
+  "aggravating_factors": [],
+  "mitigating_factors": [
+    "phạm tội lần đầu thuộc trường hợp ít nghiêm trọng",
+    "thành khẩn khai báo",
+    "ăn năn hối cải",
+    "đã thu hồi trả lại toàn bộ tài sản cho siêu thị",
+    "sinh viên có kết quả học tập tốt"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "suspended",
+  "sentence_years": 1.0,
+  "suspended": true,
+  "full_text": "TÒA ÁN NHÂN DÂN QUẬN HẢI AN, THÀNH PHỐ HẢI PHÒNG\nBẢN ÁN SỐ: 24/2022/HS-ST NGÀY 19/05/2022 VỀ TỘI TRỘM CẮP TÀI SẢN\n\nNỘI DUNG VỤ ÁN:\nChiều ngày 05/03/2022, Phan Anh AA vào siêu thị điện máy trên đường Lê Hồng Phong. Lợi dụng lúc quầy trải nghiệm vắng người, AA lén lút mở tủ trưng bày lấy trộm chiếc điện thoại Samsung Galaxy S21 trị giá 17.500.000 đồng bỏ vào balo. Khi AA vừa bước qua cửa an ninh thì chuông báo vang lên, nhân viên bảo vệ kiểm tra phát hiện bắt giữ giao công an.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nHành vi lén lút chiếm đoạt tài sản trị giá 17.500.000 đồng của bị cáo phạm vào khoản 1 Điều 173 BLHS 2015. Bị cáo chưa có tiền án tiền sự, là sinh viên đại học năm thứ 3 có học lực khá, phạm tội nhất thời do bồng bột. Tại phiên tòa thành khẩn khai báo, tài sản đã thu hồi nguyên vẹn trả lại siêu thị. Bị cáo có nơi cư trú rõ ràng và gia đình bảo lãnh, đủ điều kiện hưởng án treo.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Phan Anh AA phạm 'Tội trộm cắp tài sản'.\nÁp dụng khoản 1 Điều 173; điểm i, s khoản 1, khoản 2 Điều 51; Điều 65 BLHS 2015.\nXử phạt bị cáo Phan Anh AA 01 (một) năm tù cho hưởng án treo, thời gian thử thách 02 năm."
+}

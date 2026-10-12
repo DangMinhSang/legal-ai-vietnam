@@ -1,0 +1,58 @@
+[
+  {
+    "config_name": "Config A: Pure Heuristic Baseline",
+    "classification": {
+      "accuracy": 0.10526315789473684,
+      "balanced_accuracy": 0.5,
+      "macro_f1": 0.09523809523809523
+    },
+    "regression": {
+      "mae": 4.7368421052631575,
+      "rmse": 6.909185343096764,
+      "r2": -0.886893682251177
+    },
+    "legal_consistency_rate": 1.0
+  },
+  {
+    "config_name": "Config B: Tabular ML Models (RF + GBR)",
+    "classification": {
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "macro_f1": 1.0
+    },
+    "regression": {
+      "mae": 1.9178947368421055,
+      "rmse": 3.1462743213621978,
+      "r2": 0.608720661338005
+    },
+    "legal_consistency_rate": 1.0
+  },
+  {
+    "config_name": "Config C: Tabular ML + Legal RAG Penalty Frames",
+    "classification": {
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "macro_f1": 1.0
+    },
+    "regression": {
+      "mae": 1.9178947368421055,
+      "rmse": 3.1462743213621978,
+      "r2": 0.608720661338005
+    },
+    "legal_consistency_rate": 1.0
+  },
+  {
+    "config_name": "Config D: Full Pipeline (+ Consistency Guardrails)",
+    "classification": {
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "macro_f1": 1.0
+    },
+    "regression": {
+      "mae": 1.9372368421052635,
+      "rmse": 3.1512843559579427,
+      "r2": 0.6074735457954669
+    },
+    "legal_consistency_rate": 1.0
+  }
+]

@@ -1,0 +1,33 @@
+{
+  "id": "judgment_042_giao_thong_xe_tai_lan_lan",
+  "case_number": "59/2022/HS-ST",
+  "court": "Tòa án nhân dân thị xã Phú Mỹ, tỉnh Bà Rịa - Vũng Tàu",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2022-11-30",
+  "crime_type": "Tội vi phạm quy định về tham gia giao thông đường bộ",
+  "applicable_articles": [
+    "260"
+  ],
+  "defendant": {
+    "name": "Nguyễn Văn CC",
+    "dob": "1986-01-14",
+    "birth_year": 1986,
+    "prior_convictions": 0
+  },
+  "facts_summary": "Sáng ngày 15/08/2022, Nguyễn Văn CC điều khiển xe tải ben lưu thông trên Quốc lộ 51, khi chuyển làn không chú ý quan sát và không bật đèn tín hiệu rẽ, va chạm vào xe máy đi cùng chiều làm người điều khiển xe máy tử vong.",
+  "aggravating_factors": [],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "ăn năn hối cải",
+    "đầu thú",
+    "bồi thường toàn bộ thiệt hại 220 triệu đồng",
+    "đại diện hợp pháp của bị hại có đơn xin miễn truy cứu trách nhiệm hình sự"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "suspended",
+  "sentence_years": 2.0,
+  "suspended": true,
+  "full_text": "TÒA ÁN NHÂN DÂN THỊ XÃ PHÚ MỸ, TỈNH BÀ RỊA - VŨNG TÀU\nBẢN ÁN SỐ: 59/2022/HS-ST NGÀY 30/11/2022 VỀ TỘI VI PHẠM QUY ĐỊNH VỀ THAM GIA GIAO THÔNG ĐƯỜNG BỘ\n\nNỘI DUNG VỤ ÁN:\nKhoảng 08 giờ 15 ngày 15/08/2022, Nguyễn Văn CC lái xe tải ben chở đá trên Quốc lộ 51 hướng từ Phú Mỹ đi Vũng Tàu. Đến Km42, CC chuyển từ làn giữa sang làn sát dải phân cách mà không quan sát gương chiếu hậu và không bật đèn xi nhan, va vào xe mô tô của chị Đỗ Thị M khiến nạn nhân ngã xuống đường và bị bánh sau cán qua tử vong.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nHành vi chuyển làn không đảm bảo an toàn giao thông gây chết 01 người của bị cáo đã phạm vào điểm a khoản 1 Điều 260 BLHS 2015. Bị cáo ra đầu thú, thành khẩn khai báo, đã cùng chủ xe bồi thường trọn vẹn 220.000.000 đồng cho gia đình bị hại. Gia đình bị hại có đơn xin miễn truy cứu trách nhiệm hình sự cho bị cáo. Xét bị cáo có nhân thân tốt, đủ điều kiện hưởng án treo.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Nguyễn Văn CC phạm 'Tội vi phạm quy định về tham gia giao thông đường bộ'.\nÁp dụng điểm a khoản 1 Điều 260; điểm b, s khoản 1, khoản 2 Điều 51; Điều 65 BLHS 2015.\nXử phạt bị cáo Nguyễn Văn CC 02 (hai) năm tù cho hưởng án treo, thời gian thử thách 04 năm."
+}

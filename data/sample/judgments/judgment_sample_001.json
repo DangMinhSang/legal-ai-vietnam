@@ -1,0 +1,30 @@
+{
+  "id": "sample_judgment_001",
+  "case_number": "SAMPLE-001/2020/HSST",
+  "court": "Tòa án nhân dân quận X, TP.HCM (ẩn danh)",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "judgment_date": "2020-08-15",
+  "crime_type": "Tội cướp tài sản",
+  "applicable_articles": [
+    "168"
+  ],
+  "defendant": {
+    "name": "[ẨN DANH]",
+    "dob": "1995-01-01",
+    "prior_convictions": 0
+  },
+  "facts_summary": "Bị cáo dùng dao khống chế và cướp điện thoại di động trị giá 5.000.000 đồng của bị hại vào buổi tối trên đường vắng. Bị cáo bị bắt giữ tại chỗ.",
+  "aggravating_factors": [
+    "dùng hung khí nguy hiểm (dao)"
+  ],
+  "mitigating_factors": [
+    "thành thật khai báo",
+    "bồi thường cho bị hại"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 4,
+  "suspended": false,
+  "source": "SAMPLE DATA - ẩn danh hóa, chỉ dùng cho demo/test"
+}

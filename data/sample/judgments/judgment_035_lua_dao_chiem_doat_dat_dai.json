@@ -1,0 +1,34 @@
+{
+  "id": "judgment_035_lua_dao_chiem_doat_dat_dai",
+  "case_number": "16/2021/HS-ST",
+  "court": "Tòa án nhân dân tỉnh Bà Rịa - Vũng Tàu",
+  "court_level": "province",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2021-02-20",
+  "crime_type": "Tội lừa đảo chiếm đoạt tài sản",
+  "applicable_articles": [
+    "174"
+  ],
+  "defendant": {
+    "name": "Phạm Hữu U",
+    "dob": "1978-06-10",
+    "birth_year": 1978,
+    "prior_convictions": 0
+  },
+  "facts_summary": "Trong năm 2020, Phạm Hữu U làm giả giấy tờ quyền sử dụng đất đối với thửa đất quy hoạch cây xanh tại thành phố Vũng Tàu, tự nhận là chủ đất và ký hợp đồng đặt cọc chuyển nhượng cho 03 người, chiếm đoạt tổng số tiền 1.250.000.000 đồng rồi tiêu xài cá nhân.",
+  "aggravating_factors": [
+    "chiếm đoạt tài sản có giá trị lớn",
+    "phạm tội 02 lần trở lên",
+    "dùng thủ đoạn tinh vi"
+  ],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "đã nộp lại khắc phục 500.000.000 đồng"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 9.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN TỈNH BÀ RỊA - VŨNG TÀU\nBẢN ÁN SỐ: 16/2021/HS-ST NGÀY 20/02/2021 VỀ TỘI LỪA ĐẢO CHIẾM ĐOẠT TÀI SẢN\n\nNỘI DUNG VỤ ÁN:\nTừ tháng 02/2020 đến tháng 08/2020, Phạm Hữu U tự vẽ bản đồ phân lô và sử dụng giấy chứng nhận quyền sử dụng đất giả của một khu đất thuộc quy hoạch công viên, giới thiệu với người mua là đất dự án của mình. U đã nhận tiền cọc chuyển nhượng của 03 bị hại với tổng số tiền 1.250.000.000 đồng. Sau khi nhận tiền, U cắt đứt liên lạc và dùng số tiền trên vào mục đích cá nhân.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nBị cáo dùng thủ đoạn gian dối chiếm đoạt số tiền trên 500 triệu đồng của nhiều người, đã phạm vào điểm a khoản 4 Điều 174 BLHS 2015. Bị cáo có tình tiết tăng nặng phạm tội 2 lần trở lên theo điểm g khoản 1 Điều 52 BLHS. Quá trình giải quyết vụ án, bị cáo đã thành khẩn khai báo và nộp lại 500.000.000 đồng để khắc phục hậu quả, nên được xem xét tình tiết giảm nhẹ theo điểm b, s khoản 1 Điều 51 BLHS.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Phạm Hữu U phạm 'Tội lừa đảo chiếm đoạt tài sản'.\nÁp dụng điểm a khoản 4 Điều 174; điểm b, s khoản 1 Điều 51; điểm g khoản 1 Điều 52 BLHS 2015.\nXử phạt bị cáo Phạm Hữu U 09 (chín) năm tù."
+}

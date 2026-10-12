@@ -1,0 +1,31 @@
+{
+  "id": "judgment_009_giet_nguoi_kich_dong",
+  "case_number": "18/2021/HS-ST",
+  "court": "Tòa án nhân dân tỉnh Nghệ An",
+  "court_level": "province",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2021-04-25",
+  "crime_type": "Tội giết người trong trạng thái tinh thần bị kích động mạnh",
+  "applicable_articles": [
+    "125"
+  ],
+  "defendant": {
+    "name": "Trương Văn K",
+    "dob": "1983-06-15",
+    "prior_convictions": 0
+  },
+  "facts_summary": "Nạn nhân say xỉn mang hung khí đến nhà chửi bới, đập phá bàn thờ và đánh đập mẹ già của bị cáo dã man. Bị cáo can ngăn không được, tinh thần bị kích động tột độ, vớ lấy thanh sắt đánh vào đầu nạn nhân tử vong.",
+  "aggravating_factors": [],
+  "mitigating_factors": [
+    "hành vi trái pháp luật nghiêm trọng của nạn nhân",
+    "đầu thú",
+    "thành khẩn khai báo",
+    "gia đình có công cách mạng"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 2.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN TỈNH NGHỆ AN\nBẢN ÁN SỐ: 18/2021/HS-ST NGÀY 25/04/2021 VỀ TỘI GIẾT NGƯỜI TRONG TRẠNG THÁI TINH THẦN BỊ KÍCH ĐỘNG MẠNH\n\nÁP DỤNG ÁN LỆ 28/2019/AL:\nHành vi của nạn nhân đánh đập mẹ già bị cáo là hành vi trái pháp luật nghiêm trọng, đưa bị cáo vào trạng thái tinh thần bị kích động mạnh.\n\nQUYẾT ĐỊNH:\nÁp dụng khoản 1 Điều 125; điểm s, v khoản 1 Điều 51 BLHS 2015.\nXử phạt Trương Văn K 02 (hai) năm tù."
+}

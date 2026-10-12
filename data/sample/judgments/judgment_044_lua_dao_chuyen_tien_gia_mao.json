@@ -1,0 +1,35 @@
+{
+  "id": "judgment_044_lua_dao_chuyen_tien_gia_mao",
+  "case_number": "35/2023/HS-ST",
+  "court": "Tòa án nhân dân quận Hoàn Kiếm, thành phố Hà Nội",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2023-06-22",
+  "crime_type": "Tội lừa đảo chiếm đoạt tài sản",
+  "applicable_articles": [
+    "174"
+  ],
+  "defendant": {
+    "name": "Đinh Thu EE",
+    "dob": "1994-03-17",
+    "birth_year": 1994,
+    "prior_convictions": 0
+  },
+  "facts_summary": "Từ tháng 11/2022 đến tháng 02/2023, Đinh Thu EE sử dụng tài khoản mạng xã hội giả mạo cán bộ bệnh viện, gửi hình ảnh biên lai giả kêu gọi tiền viện phí từ thiện phẫu thuật tim cho trẻ em nghèo, nhận ủng hộ của 12 nhà hảo tâm tổng số tiền 140.000.000 đồng rồi chiếm đoạt tiêu xài.",
+  "aggravating_factors": [
+    "dùng thủ đoạn tinh vi",
+    "phạm tội 02 lần trở lên",
+    "lợi dụng hoàn cảnh khó khăn dịch bệnh từ thiện"
+  ],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "đã bồi thường khắc phục toàn bộ 140 triệu đồng",
+    "nuôi con nhỏ dưới 36 tháng tuổi"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 2.5,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN QUẬN HOÀN KIẾM, THÀNH PHỐ HÀ NỘI\nBẢN ÁN SỐ: 35/2023/HS-ST NGÀY 22/06/2023 VỀ TỘI LỪA ĐẢO CHIẾM ĐOẠT TÀI SẢN\n\nNỘI DUNG VỤ ÁN:\nTrong khoảng thời gian cuối năm 2022 đầu năm 2023, Đinh Thu EE lập tài khoản Facebook giả mạo nhân viên phòng công tác xã hội Bệnh viện Nhi Trung ương. EE cắt ghép hình ảnh các bệnh nhi hiểm nghèo và biên lai viện phí giả mạo để kêu gọi quyên góp từ thiện. 12 cá nhân hảo tâm đã chuyển khoản vào tài khoản của EE với tổng số tiền 140.000.000 đồng, sau đó EE rút toàn bộ để tiêu dùng cá nhân.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nHành vi dùng thủ đoạn gian dối trên không gian mạng chiếm đoạt 140.000.000 đồng của nhiều người đã phạm vào điểm c, e khoản 2 Điều 174 BLHS 2015. Bị cáo có tình tiết tăng nặng phạm tội 02 lần trở lên. Tuy nhiên bị cáo nhân thân chưa tiền án tiền sự, tại cơ quan điều tra và phiên tòa khai báo thành khẩn, gia đình đã bồi thường hoàn trả 100% số tiền chiếm đoạt cho các bị hại và bị cáo đang nuôi con nhỏ dưới 36 tháng tuổi.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Đinh Thu EE phạm 'Tội lừa đảo chiếm đoạt tài sản'.\nÁp dụng điểm c khoản 2 Điều 174; điểm b, s, n khoản 1, khoản 2 Điều 51; điểm g khoản 1 Điều 52 BLHS 2015.\nXử phạt bị cáo Đinh Thu EE 02 (hai) năm 06 (sáu) tháng tù."
+}

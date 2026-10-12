@@ -1,0 +1,32 @@
+{
+  "id": "judgment_005_giet_nguoi_con_do",
+  "case_number": "39/2019/HS-ST",
+  "court": "Tòa án nhân dân thành phố Hà Nội",
+  "court_level": "province",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2019-07-22",
+  "crime_type": "Tội giết người",
+  "applicable_articles": [
+    "123"
+  ],
+  "defendant": {
+    "name": "Vũ Đình D",
+    "dob": "1990-11-03",
+    "prior_convictions": 2
+  },
+  "facts_summary": "Tại quán ăn đêm, chỉ vì mâu thuẫn nhìn đểu nhỏ nhặt, bị cáo dùng dao bấm đâm liên tiếp 02 nhát vào vùng ngực và cổ của nạn nhân khiến nạn nhân tử vong tại chỗ.",
+  "aggravating_factors": [
+    "có tính chất côn đồ",
+    "tái phạm nguy hiểm"
+  ],
+  "mitigating_factors": [
+    "đầu thú",
+    "tác động gia đình nộp 30 triệu tiền mai táng"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 19.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN THÀNH PHỐ HÀ NỘI\nBẢN ÁN SỐ: 39/2019/HS-ST NGÀY 22/07/2019 VỀ TỘI GIẾT NGƯỜI\n\nNỘI DUNG VỤ ÁN:\nĐêm 02/02/2019, Vũ Đình D ngồi uống bia tại quán vỉa hè quận Đ. Thấy anh H bàn bên cạnh nhìn sang, D bực tức chửi bới, rút dao bấm đâm vào vùng cổ và ngực anh H. Hậu quả anh H tử vong do mất máu cấp. Áp dụng án lệ 17/2018/AL của TANDTC, hành vi vô cớ đâm nạn nhân có tính chất côn đồ rõ rệt.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nHành vi của bị cáo đặc biệt nguy hiểm, coi thường tính mạng con người và pháp luật. Bị cáo có 02 tiền án, thuộc trường hợp tái phạm nguy hiểm. Căn cứ điểm n khoản 1 Điều 123 BLHS 2015; Án lệ 17/2018/AL; điểm h khoản 1 Điều 52 BLHS. Bị cáo có tình tiết đầu thú.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Vũ Đình D phạm 'Tội giết người'.\nXử phạt bị cáo Vũ Đình D 19 (mười chín) năm tù."
+}

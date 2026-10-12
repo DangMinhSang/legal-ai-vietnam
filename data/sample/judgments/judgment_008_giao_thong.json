@@ -1,0 +1,32 @@
+{
+  "id": "judgment_008_giao_thong",
+  "case_number": "31/2020/HS-ST",
+  "court": "Tòa án nhân dân huyện Củ Chi, TP. Hồ Chí Minh",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2020-05-30",
+  "crime_type": "Tội vi phạm quy định về tham gia giao thông đường bộ",
+  "applicable_articles": [
+    "260"
+  ],
+  "defendant": {
+    "name": "Đặng Văn H",
+    "dob": "1988-12-12",
+    "prior_convictions": 0
+  },
+  "facts_summary": "Bị cáo điều khiển xe ô tô sau khi uống rượu bia (nồng độ cồn 0.65mg/l khí thở), chạy quá tốc độ lấn làn đâm vào xe mô tô đi ngược chiều làm 01 người chết.",
+  "aggravating_factors": [
+    "sử dụng rượu bia nồng độ cồn cao"
+  ],
+  "mitigating_factors": [
+    "đầu thú",
+    "bồi thường toàn bộ thiệt hại cho gia đình nạn nhân 150 triệu",
+    "đại diện bị hại xin giảm nhẹ"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 3.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN HUYỆN CỦ CHI, TP HỒ CHÍ MINH\nBẢN ÁN SỐ: 31/2020/HS-ST NGÀY 30/05/2020 VỀ TỘI VI PHẠM QUY ĐỊNH VỀ THAM GIA GIAO THÔNG ĐƯỜNG BỘ\n\nQUYẾT ĐỊNH:\nÁp dụng điểm b khoản 2 Điều 260; điểm b, s khoản 1, khoản 2 Điều 51 BLHS 2015.\nXử phạt Đặng Văn H 03 (ba) năm tù."
+}

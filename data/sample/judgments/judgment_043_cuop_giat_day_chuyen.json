@@ -1,0 +1,33 @@
+{
+  "id": "judgment_043_cuop_giat_day_chuyen",
+  "case_number": "17/2023/HS-ST",
+  "court": "Tòa án nhân dân quận 12, TP. Hồ Chí Minh",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2023-04-10",
+  "crime_type": "Tội cướp giật tài sản",
+  "applicable_articles": [
+    "171"
+  ],
+  "defendant": {
+    "name": "Võ Thành DD",
+    "dob": "1996-08-04",
+    "birth_year": 1996,
+    "prior_convictions": 1
+  },
+  "facts_summary": "Trưa ngày 10/01/2023, Võ Thành DD chạy xe mô tô Exciter rảo quanh tuyến đường Lê Văn Khương, áp sát giật sợi dây chuyền vàng 18K trị giá 22.000.000 đồng của bà N đang đứng bên lề đường, làm bà N ngã xuống đường chấn thương phần mềm.",
+  "aggravating_factors": [
+    "dùng thủ đoạn nguy hiểm",
+    "tái phạm"
+  ],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "thu hồi trả lại tài sản"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 4.5,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN QUẬN 12, THÀNH PHỐ HỒ CHÍ MINH\nBẢN ÁN SỐ: 17/2023/HS-ST NGÀY 10/04/2023 VỀ TỘI CƯỚP GIẬT TÀI SẢN\n\nNỘI DUNG VỤ ÁN:\nKhoảng 11 giờ 30 ngày 10/01/2023, Võ Thành DD điều khiển xe máy Yamaha Exciter gắn biển số giả lưu thông trên đường Lê Văn Khương. Phát hiện bà Phan Thị N đứng mua hàng bên lề đường có đeo dây chuyền vàng, DD áp sát giật mạnh sợi dây chuyền vàng 18K trọng lượng 5 chỉ (trị giá 22.000.000 đồng) khiến bà N ngã trầy xước tay chân. DD tăng ga bỏ chạy nhưng bị công an trích xuất camera truy bắt sau 24 giờ.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nHành vi của bị cáo sử dụng xe máy tốc độ cao giật tài sản làm ngã người đi đường thuộc trường hợp dùng thủ đoạn nguy hiểm quy định tại điểm d khoản 2 Điều 171 BLHS 2015. Bị cáo có 01 tiền án về tội trộm cắp tài sản chưa được xóa án tích nên thuộc trường hợp tái phạm theo điểm h khoản 1 Điều 52 BLHS. Quá trình điều tra bị cáo thành khẩn nhận tội, tài sản đã thu hồi trả lại người bị hại.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Võ Thành DD phạm 'Tội cướp giật tài sản'.\nÁp dụng điểm d khoản 2 Điều 171; điểm s khoản 1 Điều 51; điểm h khoản 1 Điều 52 BLHS 2015.\nXử phạt bị cáo Võ Thành DD 04 (bốn) năm 06 (sáu) tháng tù."
+}

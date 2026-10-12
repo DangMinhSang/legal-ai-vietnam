@@ -1,0 +1,32 @@
+{
+  "id": "judgment_006_co_y_gay_thuong_tich",
+  "case_number": "45/2019/HS-ST",
+  "court": "Tòa án nhân dân quận Hải Châu, thành phố Đà Nẵng",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2019-10-05",
+  "crime_type": "Tội cố ý gây thương tích",
+  "applicable_articles": [
+    "134"
+  ],
+  "defendant": {
+    "name": "Phạm Văn E",
+    "dob": "1994-04-18",
+    "prior_convictions": 0
+  },
+  "facts_summary": "Do tranh chấp đất đai ranh giới, bị cáo dùng gậy gỗ đánh gãy tay và rách trán bị hại, tỷ lệ tổn thương cơ thể giám định là 24%.",
+  "aggravating_factors": [
+    "dùng hung khí nguy hiểm"
+  ],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "bồi thường toàn bộ chi phí điều trị",
+    "bị hại xin giảm nhẹ"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 2.0,
+  "suspended": true,
+  "full_text": "TÒA ÁN NHÂN DÂN QUẬN HẢI CHÂU, TP ĐÀ NẴNG\nBẢN ÁN SỐ: 45/2019/HS-ST NGÀY 05/10/2019 VỀ TỘI CỐ Ý GÂY THƯƠNG TÍCH\n\nNỘI DUNG VỤ ÁN VÀ NHẬN ĐỊNH:\nPhạm Văn E dùng hung khí nguy hiểm là đoạn gậy gỗ đặc dài 80cm gây thương tích 24% cho anh M. Hành vi vi phạm điểm đ khoản 2 Điều 134 BLHS 2015. Bị cáo có nhân thân tốt, bồi thường đầy đủ và bị hại có đơn xin bãi nại, không cần thiết cách ly khỏi xã hội.\n\nQUYẾT ĐỊNH:\nÁp dụng điểm đ khoản 2 Điều 134; điểm b, s khoản 1, khoản 2 Điều 51; Điều 65 BLHS 2015.\nXử phạt Phạm Văn E 02 (hai) năm tù nhưng cho hưởng án treo, thời gian thử thách 04 năm."
+}

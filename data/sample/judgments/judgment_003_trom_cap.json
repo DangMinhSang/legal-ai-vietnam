@@ -1,0 +1,32 @@
+{
+  "id": "judgment_003_trom_cap",
+  "case_number": "58/2018/HS-ST",
+  "court": "Tòa án nhân dân thành phố Biên Hòa, tỉnh Đồng Nai",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2018-11-20",
+  "crime_type": "Tội trộm cắp tài sản",
+  "applicable_articles": [
+    "173"
+  ],
+  "defendant": {
+    "name": "Trần Quốc B",
+    "dob": "1997-08-14",
+    "prior_convictions": 0
+  },
+  "facts_summary": "Bị cáo lợi dụng chủ nhà sơ hở không khóa cổng, dùng vam phá khóa trộm cắp chiếc xe mô tô Honda SH trị giá 65.000.000 đồng trong sân nhà dân.",
+  "aggravating_factors": [
+    "dùng thủ đoạn tinh vi"
+  ],
+  "mitigating_factors": [
+    "phạm tội lần đầu",
+    "thành khẩn khai báo",
+    "đã thu hồi trả lại tài sản"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 2.5,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN THÀNH PHỐ BIÊN HÒA, TỈNH ĐỒNG NAI\nBẢN ÁN SỐ: 58/2018/HS-ST NGÀY 20/11/2018 VỀ TỘI TRỘM CẮP TÀI SẢN\n\nNỘI DUNG VỤ ÁN:\nVào hồi 14 giờ ngày 05/09/2018, Trần Quốc B phát hiện xe mô tô Honda SH BKS 60F1-123.45 để trong sân nhà anh C tại phường Q, thành phố Biên Hòa không người trông coi. B lẻn vào dùng vam phá khóa điện xe rồi nổ máy tẩu thoát. Trên đường mang đi tiêu thụ, B bị tổ tuần tra phát hiện bắt giữ. Hội đồng định giá tài sản kết luận xe trị giá 65.000.000 đồng.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nHành vi lén lút chiếm đoạt tài sản của bị cáo trị giá trên 50 triệu đồng đã cấu thành tội 'Trộm cắp tài sản' quy định tại điểm c khoản 2 Điều 173 BLHS 2015. Xét bị cáo nhân thân tốt, chưa có tiền án tiền sự, khai báo thành khẩn và tài sản đã được thu hồi nguyên vẹn trả lại cho bị hại.\n\nQUYẾT ĐỊNH:\nÁp dụng điểm c khoản 2 Điều 173; điểm s khoản 1, khoản 2 Điều 51 BLHS 2015.\nXử phạt bị cáo Trần Quốc B 02 (hai) năm 06 (sáu) tháng tù."
+}

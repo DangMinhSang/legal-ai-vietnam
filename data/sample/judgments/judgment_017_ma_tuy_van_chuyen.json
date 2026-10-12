@@ -1,0 +1,29 @@
+{
+  "id": "judgment_017_ma_tuy_van_chuyen",
+  "case_number": "19/2024/HS-ST",
+  "court": "Tòa án nhân dân tỉnh Tây Ninh",
+  "court_level": "province",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2024-02-15",
+  "crime_type": "Tội vận chuyển trái phép chất ma túy",
+  "applicable_articles": [
+    "250"
+  ],
+  "defendant": {
+    "name": "Lâm Văn T",
+    "dob": "1995-04-30",
+    "prior_convictions": 0
+  },
+  "facts_summary": "Bị cáo nhận vận chuyển thuê 18 gam Heroin qua biên giới với tiền công 5 triệu đồng, bị bộ đội biên phòng bắt quả tang.",
+  "aggravating_factors": [],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "hoàn cảnh gia đình đặc biệt khó khăn"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 11.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN TỈNH TÂY NINH\nBẢN ÁN SỐ: 19/2024/HS-ST NGÀY 15/02/2024 VỀ TỘI VẬN CHUYỂN TRÁI PHÉP CHẤT MA TÚY\n\nQUYẾT ĐỊNH:\nÁp dụng điểm b khoản 3 Điều 250; điểm s khoản 1 Điều 51 BLHS 2015.\nXử phạt Lâm Văn T 11 (mười một) năm tù."
+}

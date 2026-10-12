@@ -1,0 +1,33 @@
+{
+  "id": "judgment_012_giet_nguoi_chua_dat",
+  "case_number": "15/2022/HS-ST",
+  "court": "Tòa án nhân dân tỉnh Quảng Ninh",
+  "court_level": "province",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2022-04-18",
+  "crime_type": "Tội giết người",
+  "applicable_articles": [
+    "123",
+    "15",
+    "57"
+  ],
+  "defendant": {
+    "name": "Bùi Văn N",
+    "dob": "1993-01-25",
+    "prior_convictions": 1
+  },
+  "facts_summary": "Do mâu thuẫn cá nhân, bị cáo dùng dao thái lan đâm mạnh 01 nhát vào vùng ngực trái của nạn nhân (sát tim). Nạn nhân được đưa đi cấp cứu kịp thời nên không chết, tổn thương 48%. Áp dụng án lệ 45/2021/AL.",
+  "aggravating_factors": [
+    "tái phạm"
+  ],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "bồi thường viện phí 50 triệu"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 10.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN TỈNH QUẢNG NINH\nBẢN ÁN SỐ: 15/2022/HS-ST NGÀY 18/04/2022 VỀ TỘI GIẾT NGƯỜI (CHƯA ĐẠT)\n\nÁP DỤNG ÁN LỆ 45/2021/AL:\nHành vi dùng dao nhọn đâm vào vùng trọng yếu (ngực trái) cấu thành tội Giết người thuộc trường hợp chưa đạt theo Điều 15 BLHS.\n\nQUYẾT ĐỊNH:\nÁp dụng khoản 1 Điều 123; Điều 15; Điều 57; điểm b, s khoản 1 Điều 51 BLHS 2015.\nXử phạt Bùi Văn N 10 (mười) năm tù."
+}

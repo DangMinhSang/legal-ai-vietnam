@@ -1,0 +1,27 @@
+{
+  "id": "judgment_031_trom_cap_khong_pham_toi_dan_su",
+  "case_number": "09/2020/HS-ST",
+  "court": "Tòa án nhân dân quận Gò Vấp, TP. Hồ Chí Minh",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2020-03-12",
+  "crime_type": "Tội trộm cắp tài sản",
+  "applicable_articles": [
+    "173"
+  ],
+  "defendant": {
+    "name": "Lý Văn Q",
+    "dob": "1984-04-25",
+    "birth_year": 1984,
+    "prior_convictions": 0
+  },
+  "facts_summary": "VKSND truy tố Lý Văn Q về hành vi lén lút chiếm đoạt chiếc xe máy trị giá 28.000.000 đồng của anh Chu Văn B. Tại phiên tòa, hồ sơ chứng cứ và lời khai thể hiện anh B vay của Q 30.000.000 đồng và tự nguyện giao xe kèm giấy tờ, có giấy biên nhận thỏa thuận cầm cố tài sản hợp pháp. Q mang xe về nhà cất giữ công khai, không có hành vi lén lút.",
+  "aggravating_factors": [],
+  "mitigating_factors": [],
+  "verdict": "not_guilty",
+  "sentence_type": "acquitted",
+  "sentence_years": 0.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN QUẬN GÒ VẤP, THÀNH PHỐ HỒ CHÍ MINH\nBẢN ÁN SỐ: 09/2020/HS-ST NGÀY 12/03/2020\nTUYÊN BỐ BỊ CÁO LÝ VĂN Q KHÔNG PHẠM TỘI\n\nNỘI DUNG VỤ ÁN:\nCáo trạng truy tố Lý Văn Q về tội 'Trộm cắp tài sản' theo khoản 1 Điều 173 BLHS do cho rằng Q đã lấy trộm chiếc xe máy Yamaha Exciter của anh Chu Văn B dựng tại bãi xe ngày 05/11/2019.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nTại phiên tòa, bị cáo xuất trình Giấy thỏa thuận vay tiền và biên nhận giữ tài sản có chữ ký xác nhận của anh B thể hiện anh B vay nợ 30.000.000 đồng và tự nguyện bàn giao chìa khóa cùng giấy đăng ký xe cho Q làm tin. Lời khai của các nhân chứng tại bãi xe cũng xác định Q đến lấy xe ban ngày một cách công khai, thông báo rõ cho người trông coi. Đây là quan hệ tranh chấp tài sản trong hợp đồng vay dân sự, bị cáo không có hành vi lén lút nhằm mục đích chiếm đoạt. Hành vi không cấu thành tội phạm hình sự.\n\nQUYẾT ĐỊNH:\nCăn cứ Điều 13, Điều 326 Bộ luật Tố tụng hình sự năm 2015.\nTuyên bố bị cáo Lý Văn Q không phạm tội 'Trộm cắp tài sản'."
+}

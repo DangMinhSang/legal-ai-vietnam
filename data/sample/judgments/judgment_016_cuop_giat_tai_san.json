@@ -1,0 +1,32 @@
+{
+  "id": "judgment_016_cuop_giat_tai_san",
+  "case_number": "77/2023/HS-ST",
+  "court": "Tòa án nhân dân quận Tân Bình, TP. Hồ Chí Minh",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2023-11-20",
+  "crime_type": "Tội cướp giật tài sản",
+  "applicable_articles": [
+    "171"
+  ],
+  "defendant": {
+    "name": "Trịnh Quốc S",
+    "dob": "2001-02-14",
+    "prior_convictions": 1
+  },
+  "facts_summary": "Bị cáo chạy xe máy ép sát người đi bộ giật túi xách bên trong có điện thoại iPhone 13 trị giá 18.000.000 đồng, làm nạn nhân ngã trầy xước.",
+  "aggravating_factors": [
+    "dùng thủ đoạn nguy hiểm",
+    "tái phạm"
+  ],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "thu hồi trả lại tài sản"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 4.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN QUẬN TÂN BÌNH, TP HỒ CHÍ MINH\nBẢN ÁN SỐ: 77/2023/HS-ST NGÀY 20/11/2023 VỀ TỘI CƯỚP GIẬT TÀI SẢN\n\nQUYẾT ĐỊNH:\nÁp dụng điểm d khoản 2 Điều 171; điểm s khoản 1 Điều 51; điểm h khoản 1 Điều 52 BLHS 2015.\nXử phạt Trịnh Quốc S 04 (bốn) năm tù."
+}

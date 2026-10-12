@@ -1,0 +1,32 @@
+{
+  "id": "judgment_037_ma_tuy_van_chuyen_lien_tinh",
+  "case_number": "44/2021/HS-ST",
+  "court": "Tòa án nhân dân tỉnh Thanh Hóa",
+  "court_level": "province",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2021-09-10",
+  "crime_type": "Tội vận chuyển trái phép chất ma túy",
+  "applicable_articles": [
+    "250"
+  ],
+  "defendant": {
+    "name": "Lê Đình X",
+    "dob": "1983-04-12",
+    "birth_year": 1983,
+    "prior_convictions": 1
+  },
+  "facts_summary": "Đêm ngày 14/06/2021, tại Trạm thu phí Bỉm Sơn, lực lượng CSĐT tội phạm về ma túy bắt giữ Lê Đình X điều khiển xe ô tô du lịch vận chuyển thuê 02 bánh Heroine (tổng trọng lượng 698,5 gam) từ biên giới về các tỉnh đồng bằng tiêu thụ.",
+  "aggravating_factors": [
+    "tái phạm nguy hiểm",
+    "vận chuyển số lượng ma túy rất lớn"
+  ],
+  "mitigating_factors": [
+    "thành khẩn khai báo"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 16.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN TỈNH THANH HÓA\nBẢN ÁN SỐ: 44/2021/HS-ST NGÀY 10/09/2021 VỀ TỘI VẬN CHUYỂN TRÁI PHÉP CHẤT MA TÚY\n\nNỘI DUNG VỤ ÁN:\nHồi 22 giờ 30 ngày 14/06/2021, tại Trạm thu phí Bỉm Sơn, Công an tỉnh Thanh Hóa kiểm tra xe ô tô BKS 36A-345.67 do Lê Đình X điều khiển, phát hiện dưới hộc để đồ ghế sau có 02 khối chữ nhật bọc băng keo đen. Kết luận giám định số 412 xác định toàn bộ là Heroine, tổng khối lượng 698,5 gam. X khai nhận vận chuyển thuê với tiền công 30 triệu đồng.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nBị cáo vận chuyển 698,5 gam Heroine đã phạm vào điểm b khoản 4 Điều 250 BLHS 2015. Bị cáo có 01 tiền án chưa xóa án tích về tội mua bán ma túy nên lần này thuộc trường hợp tái phạm nguy hiểm theo điểm h khoản 2 Điều 52 BLHS. Quá trình điều tra bị cáo thành khẩn khai báo nên áp dụng điểm s khoản 1 Điều 51 BLHS. Cần xử phạt nghiêm khắc để đảm bảo tính răn đe.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Lê Đình X phạm 'Tội vận chuyển trái phép chất ma túy'.\nÁp dụng điểm b khoản 4 Điều 250; điểm s khoản 1 Điều 51; điểm h khoản 2 Điều 52 BLHS 2015.\nXử phạt bị cáo Lê Đình X 16 (mười sáu) năm tù."
+}

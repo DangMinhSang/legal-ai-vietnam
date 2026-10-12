@@ -1,0 +1,32 @@
+{
+  "id": "judgment_030_gay_roi_trat_tu_khu_dan_cu",
+  "case_number": "72/2019/HS-ST",
+  "court": "Tòa án nhân dân thị xã Bến Cát, tỉnh Bình Dương",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2019-11-28",
+  "crime_type": "Tội gây rối trật tự công cộng",
+  "applicable_articles": [
+    "318"
+  ],
+  "defendant": {
+    "name": "Nguyễn Thành P",
+    "dob": "2000-05-16",
+    "birth_year": 2000,
+    "prior_convictions": 0
+  },
+  "facts_summary": "Khoảng 20 giờ ngày 15/08/2019, Nguyễn Thành P cùng 03 thanh niên tụ tập nẹt pô, rú ga, hò hét gây mất trật tự trên đường liên xã D6. Khi tổ tuần tra công an xã nhắc nhở, P có lời lẽ kích động thách thức, gây ách tắc giao thông đoạn đường suốt 45 phút.",
+  "aggravating_factors": [],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "ăn năn hối cải",
+    "phạm tội lần đầu thuộc trường hợp ít nghiêm trọng",
+    "tuổi đời còn trẻ"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "non_custodial_reform",
+  "sentence_years": 1.5,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN THỊ XÃ BẾN CÁT, TỈNH BÌNH DƯƠNG\nBẢN ÁN SỐ: 72/2019/HS-ST NGÀY 28/11/2019 VỀ TỘI GÂY RỐI TRẬT TỰ CÔNG CỘNG\n\nNỘI DUNG VỤ ÁN:\nTối ngày 15/08/2019, Nguyễn Thành P cùng một số đối tượng điều khiển xe máy độ pô liên tục nẹt pô rú ga chạy vòng tròn trên đường liên xã, gây ồn ào và cản trở người dân đi lại. Khi lực lượng công an xã làm nhiệm vụ nhắc nhở giải tán, P không chấp hành mà còn lớn tiếng lôi kéo đám đông đứng xem gây ùn tắc giao thông nghiêm trọng.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nHành vi của bị cáo đã xâm phạm trật tự công cộng tại khu dân cư, đủ yếu tố cấu thành tội 'Gây rối trật tự công cộng' theo khoản 1 Điều 318 BLHS 2015. Xét bị cáo tuổi đời còn trẻ, phạm tội lần đầu thuộc trường hợp ít nghiêm trọng, tại tòa ăn năn hối cải và có nơi cư trú rõ ràng. Áp dụng hình phạt cải tạo không giam giữ theo Điều 36 BLHS cũng đủ để giáo dục, rèn luyện bị cáo tại địa phương.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Nguyễn Thành P phạm 'Tội gây rối trật tự công cộng'.\nÁp dụng khoản 1 Điều 318; điểm i, s khoản 1 Điều 51; Điều 36 BLHS 2015.\nXử phạt bị cáo Nguyễn Thành P 01 (một) năm 06 (sáu) tháng cải tạo không giam giữ."
+}

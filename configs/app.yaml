@@ -1,0 +1,111 @@
+# ============================================================
+# Application Configuration
+# legal-ai-vietnam/configs/app.yaml
+# ============================================================
+
+app:
+  name: "Legal AI Vietnam"
+  version: "0.1.0"
+  description: "AI system for Vietnamese criminal case analysis"
+  phase: "Phase 1 - MVP"
+
+api:
+  host: "127.0.0.1"
+  port: 8000
+  reload: false
+  workers: 1
+  timeout: 120  # seconds
+
+database:
+  # SQLite with sqlite-vec for vector search
+  type: sqlite
+  # Path relative to project root
+  path: "./data/db/legal_ai.db"
+  # WAL mode for better concurrent reads
+  wal_mode: true
+  # Connection pool
+  pool_size: 5
+  max_overflow: 10
+  echo_sql: false
+
+embedding:
+  # fastembed ONNX model - works without PyTorch
+  model: "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
+  dimension: 768
+  batch_size: 32
+  max_length: 512
+  cache_dir: "./data/models/fastembed"
+
+llm:
+  primary_model: "claude-3-5-sonnet-20241022"
+  fallback_model: "gpt-4o-mini"
+  temperature: 0.1
+  max_tokens: 4096
+  max_retries: 3
+  retry_delay: 1.0  # seconds
+
+document_parser:
+  # PDF parsing
+  pdf_backend: "pypdf"  # or "pymupdf" if installed
+  # OCR for scanned documents
+  ocr_enabled: true
+  ocr_backend: "rapidocr"
+  # Maximum file size (MB)
+  max_file_size_mb: 50
+  # Supported formats
+  supported_formats:
+    - ".pdf"
+    - ".docx"
+    - ".txt"
+
+chunking:
+  # Text chunking for RAG
+  chunk_size: 512  # tokens
+  chunk_overlap: 64  # tokens
+  # Legal structure: prefer splitting at article/clause boundaries
+  respect_legal_structure: true
+
+retrieval:
+  # Number of results to return
+  top_k: 5
+  # Minimum similarity score (0-1)
+  min_score: 0.3
+  # Hybrid search weights
+  semantic_weight: 0.7
+  keyword_weight: 0.3
+
+data_sources:
+  vbpl:
+    base_url: "https://vbpl.vn"
+    sitemap_url: "https://vbpl.vn/sitemap.xml"
+    delay_seconds: 2.0
+    enabled: true
+  toaan:
+    base_url: "https://congbobanan.toaan.gov.vn"
+    delay_seconds: 2.0
+    verify_ssl: false  # Site has invalid SSL cert
+    enabled: true
+  anle:
+    base_url: "https://anle.toaan.gov.vn"
+    delay_seconds: 2.0
+    verify_ssl: false
+    enabled: true
+  huggingface:
+    # Pre-existing dataset: th1nhng0/vietnamese-legal-documents (CC BY 4.0)
+    legal_documents_dataset: "th1nhng0/vietnamese-legal-documents"
+    enabled: true
+
+logging:
+  level: "INFO"
+  format: "<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"
+  file: "./logs/legal_ai.log"
+  rotation: "10 MB"
+  retention: "30 days"
+
+evaluation:
+  # Random seed for reproducibility
+  random_seed: 42
+  # Time-based split: judgments before this date go to train
+  temporal_split_date: "2022-01-01"
+  # Minimum samples per class for training
+  min_samples_per_class: 10

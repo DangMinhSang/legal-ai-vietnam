@@ -1,0 +1,35 @@
+{
+  "id": "judgment_047_giet_nguoi_do_ghen_tuong",
+  "case_number": "12/2024/HS-ST",
+  "court": "Tòa án nhân dân tỉnh Đồng Nai",
+  "court_level": "province",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2024-01-18",
+  "crime_type": "Tội giết người",
+  "applicable_articles": [
+    "123"
+  ],
+  "defendant": {
+    "name": "Tạ Văn HH",
+    "dob": "1988-10-15",
+    "birth_year": 1988,
+    "prior_convictions": 0
+  },
+  "facts_summary": "Tối ngày 22/09/2023, do nghi ngờ vợ có quan hệ tình cảm với anh Vũ Ngọc M, Tạ Văn HH chuẩn bị một con dao bầu giấu trong người tìm đến phòng trọ của anh M tại phường Long Bình Tân, đâm nhiều nhát vào vùng ngực và sườn làm anh M tử vong trên đường đưa đi cấp cứu.",
+  "aggravating_factors": [
+    "dùng hung khí nguy hiểm",
+    "có tính chất côn đồ"
+  ],
+  "mitigating_factors": [
+    "đầu thú",
+    "thành khẩn khai báo",
+    "ăn năn hối cải",
+    "đã bồi thường chi phí mai táng 150 triệu đồng cho gia đình nạn nhân"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 15.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN TỈNH ĐỒNG NAI\nBẢN ÁN SỐ: 12/2024/HS-ST NGÀY 18/01/2024 VỀ TỘI GIẾT NGƯỜI\n\nNỘI DUNG VỤ ÁN:\nTối ngày 22/09/2023, nghi ngờ vợ có quan hệ ngoài luồng, Tạ Văn HH thủ sẵn 01 dao bầu nhọn dài 30cm đi đến dãy phòng trọ tại phường Long Bình Tân, thành phố Biên Hòa. Gặp anh Vũ Ngọc M, hai bên lời qua tiếng lại, HH rút dao đâm liên tiếp 02 nhát vào ngực trái và mạn sườn anh M. Nạn nhân ngã gục và tử vong do sốc mất máu cấp thủng tim. HH sau đó mang dao đến Công an phường đầu thú.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nHành vi chuẩn bị hung khí đâm chết người chỉ vì nghi ngờ ghen tuông có tính chất côn đồ, phạm vào điểm n khoản 1 Điều 123 BLHS 2015. Sau khi gây án bị cáo đã đầu thú, thành khẩn nhận tội, gia đình đã tự nguyện nộp 150.000.000 đồng bồi thường mai táng và tổn thất tinh thần cho gia đình người bị hại. Bị cáo được áp dụng điểm b, s khoản 1, khoản 2 Điều 51 BLHS.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Tạ Văn HH phạm 'Tội giết người'.\nÁp dụng điểm n khoản 1 Điều 123; điểm b, s khoản 1, khoản 2 Điều 51 BLHS 2015.\nXử phạt bị cáo Tạ Văn HH 15 (mười lăm) năm tù."
+}

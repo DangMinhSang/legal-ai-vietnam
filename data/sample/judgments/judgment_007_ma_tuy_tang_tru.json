@@ -1,0 +1,30 @@
+{
+  "id": "judgment_007_ma_tuy_tang_tru",
+  "case_number": "12/2020/HS-ST",
+  "court": "Tòa án nhân dân thành phố Nha Trang, tỉnh Khánh Hòa",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2020-02-18",
+  "crime_type": "Tội tàng trữ trái phép chất ma túy",
+  "applicable_articles": [
+    "249"
+  ],
+  "defendant": {
+    "name": "Hoàng Minh G",
+    "dob": "1998-09-09",
+    "prior_convictions": 0
+  },
+  "facts_summary": "Bị cáo mua 0,85 gam ma túy loại Methamphetamine cất giấu trong túi quần nhằm mục đích sử dụng cho bản thân thì bị lực lượng công an bắt quả tang.",
+  "aggravating_factors": [],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "ăn năn hối cải",
+    "người dân tộc thiểu số hiểu biết pháp luật hạn chế"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 1.5,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN THÀNH PHỐ NHA TRANG, TỈNH KHÁNH HÒA\nBẢN ÁN SỐ: 12/2020/HS-ST NGÀY 18/02/2020 VỀ TỘI TÀNG TRỮ TRÁI PHÉP CHẤT MA TÚY\n\nQUYẾT ĐỊNH:\nCăn cứ điểm c khoản 1 Điều 249; điểm s khoản 1 Điều 51 BLHS 2015.\nXử phạt Hoàng Minh G 01 (một) năm 06 (sáu) tháng tù."
+}

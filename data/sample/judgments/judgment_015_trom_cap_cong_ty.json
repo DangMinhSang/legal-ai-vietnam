@@ -1,0 +1,30 @@
+{
+  "id": "judgment_015_trom_cap_cong_ty",
+  "case_number": "41/2023/HS-ST",
+  "court": "Tòa án nhân dân thị xã Bến Cát, tỉnh Bình Dương",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2023-07-15",
+  "crime_type": "Tội trộm cắp tài sản",
+  "applicable_articles": [
+    "173"
+  ],
+  "defendant": {
+    "name": "Lý Văn R",
+    "dob": "1999-11-20",
+    "prior_convictions": 0
+  },
+  "facts_summary": "Bị cáo là công nhân kho, lợi dụng ca đêm trộm cắp 15 cuộn dây đồng trị giá 85.000.000 đồng của công ty giấu vào thùng rác mang ra ngoài bán sắt vụn.",
+  "aggravating_factors": [],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "bồi thường đầy đủ",
+    "người lao động nghèo khó"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 2.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN THỊ XÃ BẾN CÁT, TỈNH BÌNH DƯƠNG\nBẢN ÁN SỐ: 41/2023/HS-ST NGÀY 15/07/2023 VỀ TỘI TRỘM CẮP TÀI SẢN\n\nQUYẾT ĐỊNH:\nÁp dụng điểm c khoản 2 Điều 173; điểm b, s khoản 1 Điều 51 BLHS 2015.\nXử phạt Lý Văn R 02 (hai) năm tù."
+}

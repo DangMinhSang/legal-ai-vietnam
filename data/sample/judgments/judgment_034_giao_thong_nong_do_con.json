@@ -1,0 +1,33 @@
+{
+  "id": "judgment_034_giao_thong_nong_do_con",
+  "case_number": "55/2020/HS-ST",
+  "court": "Tòa án nhân dân thành phố Biên Hòa, tỉnh Đồng Nai",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2020-11-15",
+  "crime_type": "Tội vi phạm quy định về tham gia giao thông đường bộ",
+  "applicable_articles": [
+    "260"
+  ],
+  "defendant": {
+    "name": "Mai Xuân T",
+    "dob": "1992-02-18",
+    "birth_year": 1992,
+    "prior_convictions": 0
+  },
+  "facts_summary": "Đêm ngày 19/08/2020, Mai Xuân T điều khiển xe ô tô 4 chỗ sau khi dự tiệc liên hoan (kết quả đo nồng độ cồn là 0.72 mg/l khí thở), lưu thông với tốc độ 75km/h trong đô thị, va chạm với xe máy chở hai người đi cùng chiều làm 01 người tử vong và 01 người thương tật 38%.",
+  "aggravating_factors": [
+    "sử dụng rượu bia nồng độ cồn cao"
+  ],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "đầu thú",
+    "bồi thường gia đình các nạn nhân tổng cộng 210 triệu đồng"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 3.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN THÀNH PHỐ BIÊN HÒA, TỈNH ĐỒNG NAI\nBẢN ÁN SỐ: 55/2020/HS-ST NGÀY 15/11/2020 VỀ TỘI VI PHẠM QUY ĐỊNH VỀ THAM GIA GIAO THÔNG ĐƯỜNG BỘ\n\nNỘI DUNG VỤ ÁN:\nKhoảng 22 giờ ngày 19/08/2020, Mai Xuân T điều khiển xe ô tô lưu thông trên đường Đồng Khởi với nồng độ cồn trong hơi thở đạt 0,72 mg/l. Do không làm chủ tốc độ và tầm quan sát bị ảnh hưởng, T đâm vào đuôi xe mô tô chạy cùng chiều phía trước, làm chị V tử vong tại chỗ và anh K bị đa chấn thương với tỷ lệ tổn thương cơ thể 38%.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nBị cáo điều khiển phương tiện khi trong máu hoặc hơi thở có nồng độ cồn vượt quá mức quy định gây tai nạn làm chết người, thuộc tình tiết định khung tại điểm b khoản 2 Điều 260 BLHS 2015. Bị cáo đã ra đầu thú, thành khẩn khai báo và tự nguyện bồi thường đầy đủ 210.000.000 đồng cho gia đình các nạn nhân, nên được xem xét giảm nhẹ theo điểm b, s khoản 1, khoản 2 Điều 51 BLHS.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Mai Xuân T phạm 'Tội vi phạm quy định về tham gia giao thông đường bộ'.\nÁp dụng điểm b khoản 2 Điều 260; điểm b, s khoản 1, khoản 2 Điều 51 BLHS 2015.\nXử phạt bị cáo Mai Xuân T 03 (ba) năm tù."
+}

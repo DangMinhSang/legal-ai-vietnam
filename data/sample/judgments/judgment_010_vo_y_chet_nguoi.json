@@ -1,0 +1,30 @@
+{
+  "id": "judgment_010_vo_y_chet_nguoi",
+  "case_number": "29/2021/HS-ST",
+  "court": "Tòa án nhân dân tỉnh Thừa Thiên Huế",
+  "court_level": "province",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2021-08-19",
+  "crime_type": "Tội vô ý làm chết người",
+  "applicable_articles": [
+    "128"
+  ],
+  "defendant": {
+    "name": "Ngô Văn L",
+    "dob": "1996-03-22",
+    "prior_convictions": 0
+  },
+  "facts_summary": "Hai bên xô xát đẩy qua đẩy lại tay không, bị cáo gạt mạnh tay khiến nạn nhân loạng choạng ngã đập gáy vào bậc tam cấp xi măng dẫn đến chấn thương sọ não tử vong. Áp dụng án lệ 30/2020/AL.",
+  "aggravating_factors": [],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "bồi thường toàn bộ",
+    "bị hại có một phần lỗi"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 1.5,
+  "suspended": true,
+  "full_text": "TÒA ÁN NHÂN DÂN TỈNH THỪA THIÊN HUẾ\nBẢN ÁN SỐ: 29/2021/HS-ST NGÀY 19/08/2021 VỀ TỘI VÔ Ý LÀM CHẾT NGƯỜI\n\nÁP DỤNG ÁN LỆ 30/2020/AL:\nBị cáo không có vũ khí, không có ý thức tước đoạt tính mạng, việc nạn nhân ngã tử vong là do vô ý.\n\nQUYẾT ĐỊNH:\nÁp dụng khoản 1 Điều 128; điểm b, s khoản 1 Điều 51; Điều 65 BLHS 2015.\nXử phạt Ngô Văn L 01 năm 06 tháng tù cho hưởng án treo, thời gian thử thách 03 năm."
+}

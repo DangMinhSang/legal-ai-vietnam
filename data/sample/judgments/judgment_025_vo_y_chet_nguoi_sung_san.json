@@ -1,0 +1,34 @@
+{
+  "id": "judgment_025_vo_y_chet_nguoi_sung_san",
+  "case_number": "27/2018/HS-ST",
+  "court": "Tòa án nhân dân huyện Lạc Dương, tỉnh Lâm Đồng",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2018-08-14",
+  "crime_type": "Tội vô ý làm chết người",
+  "applicable_articles": [
+    "128"
+  ],
+  "defendant": {
+    "name": "K' K",
+    "dob": "1993-04-07",
+    "birth_year": 1993,
+    "prior_convictions": 0
+  },
+  "facts_summary": "Trưa ngày 10/05/2018, K' K mang súng tự chế đi săn gà rừng tại khu vực rừng đầu nguồn. Do sơ suất không kiểm tra hướng bắn và tầm nhìn bị cây cối che khuất, phát đạn của K' K đã bắn trúng vùng ngực anh Ha M đang đi hái nấm, làm anh Ha M tử vong trên đường đi cấp cứu.",
+  "aggravating_factors": [],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "ăn năn hối cải",
+    "đầu thú",
+    "bồi thường toàn bộ thiệt hại 110 triệu đồng cho gia đình bị hại",
+    "gia đình có công với cách mạng",
+    "đại diện bị hại xin giảm nhẹ"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "suspended",
+  "sentence_years": 2.0,
+  "suspended": true,
+  "full_text": "TÒA ÁN NHÂN DÂN HUYỆN LẠC DƯƠNG, TỈNH LÂM ĐỒNG\nBẢN ÁN SỐ: 27/2018/HS-ST NGÀY 14/08/2018 VỀ TỘI VÔ Ý LÀM CHẾT NGƯỜI\n\nNỘI DUNG VỤ ÁN:\nNgày 10/05/2018, K' K đi săn tại khu vực tiểu khu 112 rừng Lạc Dương. Nghe tiếng động trong lùm cây rậm rạp, tưởng là gà rừng, K' K nổ súng bắn nhưng không ngờ trúng anh Ha M đang hái nấm rừng. Thấy anh M ngã gục, K' K hô hoán cùng người dân đưa nạn nhân đi cấp cứu nhưng anh M tử vong do mất máu cấp. K' K sau đó đã đến cơ quan công an đầu thú.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nHành vi bất cẩn khi sử dụng súng săn của bị cáo dẫn đến hậu quả chết người đã phạm vào 'Tội vô ý làm chết người' theo khoản 1 Điều 128 BLHS 2015. Bị cáo có nhiều tình tiết giảm nhẹ: đầu thú, thành khẩn khai báo, gia đình đã bồi thường 110.000.000 đồng, gia đình có công với cách mạng và đại diện bị hại có đơn xin giảm nhẹ hình phạt. Bị cáo đủ điều kiện hưởng án treo theo Điều 65 BLHS.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo K' K phạm 'Tội vô ý làm chết người'.\nÁp dụng khoản 1 Điều 128; điểm b, s khoản 1, khoản 2 Điều 51; Điều 65 BLHS 2015.\nXử phạt bị cáo K' K 02 (hai) năm tù cho hưởng án treo, thời gian thử thách 04 năm."
+}

@@ -1,0 +1,33 @@
+{
+  "id": "judgment_038_vo_y_chet_nguoi_dien_giat",
+  "case_number": "61/2021/HS-ST",
+  "court": "Tòa án nhân dân huyện Yên Định, tỉnh Thanh Hóa",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2021-11-25",
+  "crime_type": "Tội vô ý làm chết người",
+  "applicable_articles": [
+    "128"
+  ],
+  "defendant": {
+    "name": "Trịnh Bá Y",
+    "dob": "1975-10-08",
+    "birth_year": 1975,
+    "prior_convictions": 0
+  },
+  "facts_summary": "Đầu tháng 09/2021, để bảo vệ ruộng ngô của gia đình khỏi chuột phá hoại, Trịnh Bá Y đã kéo dây điện 220V giăng xung quanh bờ ruộng nhưng không đặt biển cảnh báo nguy hiểm và không ngắt điện ban ngày. Ông Nguyễn Văn H đi cắt cỏ sơ ý vướng vào dây điện bị điện giật tử vong.",
+  "aggravating_factors": [],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "ăn năn hối cải",
+    "bồi thường toàn bộ thiệt hại 130 triệu đồng",
+    "gia đình người bị hại có đơn xin miễn trách nhiệm hình sự",
+    "nhân thân tốt"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "suspended",
+  "sentence_years": 1.5,
+  "suspended": true,
+  "full_text": "TÒA ÁN NHÂN DÂN HUYỆN YÊN ĐỊNH, TỈNH THANH HÓA\nBẢN ÁN SỐ: 61/2021/HS-ST NGÀY 25/11/2021 VỀ TỘI VÔ Ý LÀM CHẾT NGƯỜI\n\nNỘI DUNG VỤ ÁN:\nNgày 03/09/2021, Trịnh Bá Y kéo dây điện trần từ nhà ra bãi ngô để bẫy chuột. Do cẩu thả, Y không đặt biển cảnh báo và quên không ngắt cầu dao. Khoảng 07 giờ sáng ngày 04/09/2021, ông Nguyễn Văn H đi cắt cỏ qua bờ ruộng vướng phải dây kim loại có điện dẫn đến tử vong do suy hô hấp tuần hoàn cấp vì điện giật.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nHành vi giăng dây điện bẫy chuột gây chết người của bị cáo cấu thành tội 'Vô ý làm chết người' theo quy định tại khoản 1 Điều 128 BLHS 2015. Bị cáo nhân thân tốt, chưa tiền án tiền sự, khai báo thành khẩn, đã khắc phục bồi thường 130.000.000 đồng và gia đình nạn nhân tha thiết xin miễn giảm hình phạt. Bị cáo có đủ điều kiện hưởng án treo theo Điều 65 BLHS.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Trịnh Bá Y phạm 'Tội vô ý làm chết người'.\nÁp dụng khoản 1 Điều 128; điểm b, s khoản 1, khoản 2 Điều 51; Điều 65 BLHS 2015.\nXử phạt bị cáo Trịnh Bá Y 01 (một) năm 06 (sáu) tháng tù cho hưởng án treo, thời gian thử thách 03 năm."
+}

@@ -1,0 +1,30 @@
+{
+  "id": "judgment_021_ma_tuy_mua_ban_nho",
+  "case_number": "42/2017/HS-ST",
+  "court": "Tòa án nhân dân thành phố Vinh, tỉnh Nghệ An",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2017-09-15",
+  "crime_type": "Tội mua bán trái phép chất ma túy",
+  "applicable_articles": [
+    "251"
+  ],
+  "defendant": {
+    "name": "Phan Văn F",
+    "dob": "1989-11-02",
+    "birth_year": 1989,
+    "prior_convictions": 0
+  },
+  "facts_summary": "Khoảng 15 giờ ngày 20/06/2017, tại khu vực bến xe Chợ Vinh, lực lượng công an bắt quả tang Phan Văn F đang bán trái phép 02 gói nhỏ Heroine cho một đối tượng nghiện với giá 400.000 đồng. Khám xét khẩn cấp thu giữ tổng cộng 0,42 gam Heroine.",
+  "aggravating_factors": [],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "ăn năn hối cải"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 3.5,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN THÀNH PHỐ VINH, TỈNH NGHỆ AN\nBẢN ÁN SỐ: 42/2017/HS-ST NGÀY 15/09/2017 VỀ TỘI MUA BÁN TRÁI PHÉP CHẤT MA TÚY\n\nNỘI DUNG VỤ ÁN:\nVào hồi 15 giờ ngày 20/06/2017, tổ công tác Công an thành phố Vinh làm nhiệm vụ tại khu vực bến xe Chợ Vinh phát hiện bắt quả tang Phan Văn F đang bán 02 gói nhỏ Heroine cho đối tượng Lê Văn T với số tiền 400.000 đồng. Thu giữ trong túi quần của F thêm 01 gói ma túy. Kết luận giám định số 198 xác định toàn bộ chất bột màu trắng thu giữ là Heroine có khối lượng 0,42 gam.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nHành vi mua bán trái phép 0,42 gam Heroine của bị cáo đã phạm vào tội 'Mua bán trái phép chất ma túy' theo quy định tại khoản 1 Điều 251 BLHS 2015. Hành vi xâm phạm chính sách độc quyền quản lý của Nhà nước về chất ma túy. Tuy nhiên, bị cáo nhân thân tốt, chưa có tiền án tiền sự, khai báo thành khẩn và ăn năn hối cải nên được xem xét giảm nhẹ hình phạt theo điểm s khoản 1 Điều 51 BLHS.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Phan Văn F phạm 'Tội mua bán trái phép chất ma túy'.\nÁp dụng khoản 1 Điều 251; điểm s khoản 1 Điều 51 BLHS 2015.\nXử phạt bị cáo Phan Văn F 03 (ba) năm 06 (sáu) tháng tù."
+}

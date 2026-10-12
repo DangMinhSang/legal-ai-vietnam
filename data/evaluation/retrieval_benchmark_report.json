@@ -1,0 +1,1136 @@
+{
+  "metadata": {
+    "title": "Legal AI Vietnam Retrieval Benchmark Report",
+    "timestamp": "2026-10-12T05:23:50.467585+00:00",
+    "execution_mode": "hybrid",
+    "duration_seconds": 4.883,
+    "total_scenarios": 15,
+    "precedent_scenarios_count": 8,
+    "statutory_scenarios_count": 7,
+    "database": "data/db/legal_ai.db"
+  },
+  "summary_metrics": {
+    "precedent": {
+      "total_queries": 8,
+      "hit_rate_at_1": 0.625,
+      "hit_rate_at_3": 1.0,
+      "mean_reciprocal_rank": 0.8125,
+      "mean_precision_at_3": 0.625,
+      "mean_recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.6309,
+      "isolation_compliance_rate": 100.0,
+      "isolation_violations_total": 0
+    },
+    "legal_doc": {
+      "total_queries": 7,
+      "hit_rate_at_1": 0.7143,
+      "hit_rate_at_3": 1.0,
+      "mean_reciprocal_rank": 0.8095,
+      "mean_precision_at_3": 0.381,
+      "mean_recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.5,
+      "isolation_compliance_rate": 100.0,
+      "isolation_violations_total": 0
+    },
+    "overall": {
+      "total_queries": 15,
+      "hit_rate_at_1": 0.6667,
+      "hit_rate_at_3": 1.0,
+      "mean_reciprocal_rank": 0.8111,
+      "mean_precision_at_3": 0.5111,
+      "mean_recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.5698,
+      "isolation_compliance_rate": 100.0,
+      "isolation_violations_total": 0
+    }
+  },
+  "provenance_and_isolation": {
+    "total_violations": 0,
+    "compliance_rate_percent": 100.0,
+    "qppl_precedent_leakage_count": 0,
+    "precedent_non_precedent_leakage_count": 0,
+    "isolation_verified": true
+  },
+  "scenario_results": [
+    {
+      "id": "PREC_01",
+      "type": "precedent",
+      "category": "Án lệ hình sự",
+      "query": "người tham gia đánh nhau bằng tay chân nhưng đồng phạm dùng dao đâm chết người mà không có sự bàn bạc trước",
+      "target": "Án lệ 01/2016/AL",
+      "first_target_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_3": 0.6667,
+      "recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.6222,
+      "isolation_passed": true,
+      "top_retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": "5a561624-40b6-4518-b5e3-4677343634ab",
+          "score": 0.0333,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_01_2016",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": null,
+          "precedent_id": "anle_01_2016"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "6a1ab0bf-4545-4d88-a05a-aa5344d46c66",
+          "score": 0.0328,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_01_2016",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": null,
+          "precedent_id": "anle_01_2016"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "a6dffae9-05e6-417b-a074-529d91a7a3e6",
+          "score": 0.0327,
+          "cosine_similarity": 0.8665,
+          "label": "Án lệ anle_28_2019",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_28_2019"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "2a2bdae2-8f0e-4155-9650-d1e8bbda5f1f",
+          "score": 0.0323,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_17_2018",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_17_2018"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "f816b1f2-246a-41cd-8334-d501939d6d7d",
+          "score": 0.0317,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_17_2018",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_17_2018"
+        }
+      ]
+    },
+    {
+      "id": "PREC_02",
+      "type": "precedent",
+      "category": "Án lệ hình sự",
+      "query": "trong vụ ẩu đả bị cáo chỉ tham gia rượt đuổi và đánh bằng tay không còn đồng phạm khác bất ngờ rút dao đâm chết nạn nhân",
+      "target": "Án lệ 01/2016/AL",
+      "first_target_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_3": 0.6667,
+      "recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.7985,
+      "isolation_passed": true,
+      "top_retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": "5a561624-40b6-4518-b5e3-4677343634ab",
+          "score": 0.0366,
+          "cosine_similarity": 0.8316,
+          "label": "Án lệ anle_01_2016",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": null,
+          "precedent_id": "anle_01_2016"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "6a1ab0bf-4545-4d88-a05a-aa5344d46c66",
+          "score": 0.0359,
+          "cosine_similarity": 0.7805,
+          "label": "Án lệ anle_01_2016",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": null,
+          "precedent_id": "anle_01_2016"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "604ae80f-3461-4186-865d-73592484092c",
+          "score": 0.0349,
+          "cosine_similarity": 0.7833,
+          "label": "Án lệ anle_47_2021",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_47_2021"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "2a2bdae2-8f0e-4155-9650-d1e8bbda5f1f",
+          "score": 0.0346,
+          "cosine_similarity": 1.0,
+          "label": "Án lệ anle_17_2018",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_17_2018"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "f816b1f2-246a-41cd-8334-d501939d6d7d",
+          "score": 0.0323,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_17_2018",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_17_2018"
+        }
+      ]
+    },
+    {
+      "id": "PREC_03",
+      "type": "precedent",
+      "category": "Án lệ hình sự",
+      "query": "vụ án giết người có đồng phạm do mâu thuẫn nhỏ nhặt chuẩn bị hung khí nguy hiểm tìm chém nạn nhân thể hiện tính chất côn đồ",
+      "target": "Án lệ 17/2018/AL",
+      "first_target_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_3": 0.6667,
+      "recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.7208,
+      "isolation_passed": true,
+      "top_retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": "2a2bdae2-8f0e-4155-9650-d1e8bbda5f1f",
+          "score": 0.0361,
+          "cosine_similarity": 0.8724,
+          "label": "Án lệ anle_17_2018",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": null,
+          "precedent_id": "anle_17_2018"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "5a561624-40b6-4518-b5e3-4677343634ab",
+          "score": 0.0355,
+          "cosine_similarity": 0.79,
+          "label": "Án lệ anle_01_2016",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_01_2016"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "f816b1f2-246a-41cd-8334-d501939d6d7d",
+          "score": 0.0333,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_17_2018",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": null,
+          "precedent_id": "anle_17_2018"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "fbc9ea1a-5536-4928-a934-9391c79c4449",
+          "score": 0.0331,
+          "cosine_similarity": 0.8047,
+          "label": "Án lệ anle_28_2019",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_28_2019"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "604ae80f-3461-4186-865d-73592484092c",
+          "score": 0.0317,
+          "cosine_similarity": 0.7653,
+          "label": "Án lệ anle_47_2021",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_47_2021"
+        }
+      ]
+    },
+    {
+      "id": "PREC_04",
+      "type": "precedent",
+      "category": "Án lệ hình sự",
+      "query": "người vợ bị chồng bạo hành ngược đãi nhiều năm trong lúc bị xúc phạm đánh đập nghiêm trọng đã dùng dao đâm chết chồng do tinh thần bị kích động mạnh",
+      "target": "Án lệ 28/2019/AL",
+      "first_target_rank": 2,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "reciprocal_rank": 0.5,
+      "precision_at_3": 0.3333,
+      "recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.7216,
+      "isolation_passed": true,
+      "top_retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": "5a561624-40b6-4518-b5e3-4677343634ab",
+          "score": 0.036,
+          "cosine_similarity": 0.8322,
+          "label": "Án lệ anle_01_2016",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_01_2016"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "a6dffae9-05e6-417b-a074-529d91a7a3e6",
+          "score": 0.0333,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_28_2019",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": null,
+          "precedent_id": "anle_28_2019"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "604ae80f-3461-4186-865d-73592484092c",
+          "score": 0.0323,
+          "cosine_similarity": 0.8325,
+          "label": "Án lệ anle_47_2021",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_47_2021"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "a9f06308-da1c-40c7-a8c9-78b887017a5a",
+          "score": 0.0323,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_30_2020",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_30_2020"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "ea517fae-17a0-4543-aed6-a7f9d46e699e",
+          "score": 0.0317,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_30_2020",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_30_2020"
+        }
+      ]
+    },
+    {
+      "id": "PREC_05",
+      "type": "precedent",
+      "category": "Án lệ hình sự",
+      "query": "cãi vã xô xát bột phát dùng tay đẩy nạn nhân ngã đập đầu xuống đất chấn thương sọ não tử vong xác định vô ý làm chết người",
+      "target": "Án lệ 30/2020/AL",
+      "first_target_rank": 2,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "reciprocal_rank": 0.5,
+      "precision_at_3": 0.6667,
+      "recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.5904,
+      "isolation_passed": true,
+      "top_retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": "5a561624-40b6-4518-b5e3-4677343634ab",
+          "score": 0.0355,
+          "cosine_similarity": 0.7711,
+          "label": "Án lệ anle_01_2016",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_01_2016"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "ea517fae-17a0-4543-aed6-a7f9d46e699e",
+          "score": 0.0333,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_30_2020",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": null,
+          "precedent_id": "anle_30_2020"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "a9f06308-da1c-40c7-a8c9-78b887017a5a",
+          "score": 0.0328,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_30_2020",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": null,
+          "precedent_id": "anle_30_2020"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "604ae80f-3461-4186-865d-73592484092c",
+          "score": 0.0323,
+          "cosine_similarity": 0.7942,
+          "label": "Án lệ anle_47_2021",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_47_2021"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "6a1ab0bf-4545-4d88-a05a-aa5344d46c66",
+          "score": 0.0317,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_01_2016",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_01_2016"
+        }
+      ]
+    },
+    {
+      "id": "PREC_06",
+      "type": "precedent",
+      "category": "Án lệ hình sự",
+      "query": "dùng dao bầu sắc nhọn đâm chém trúng vùng ngực cổ trọng yếu của nạn nhân nhưng nạn nhân không chết do cấp cứu kịp thời xác định giết người chưa đạt",
+      "target": "Án lệ 45/2021/AL",
+      "first_target_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_3": 0.6667,
+      "recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.5,
+      "isolation_passed": true,
+      "top_retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": "b4c6902b-2664-498b-aa26-1c7a0e9884e9",
+          "score": 0.0333,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_45_2021",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": null,
+          "precedent_id": "anle_45_2021"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "5a561624-40b6-4518-b5e3-4677343634ab",
+          "score": 0.0328,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_01_2016",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_01_2016"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "02e8e220-7863-42e1-9e2c-7ed3eb465ff2",
+          "score": 0.0323,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_45_2021",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": null,
+          "precedent_id": "anle_45_2021"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "6a1ab0bf-4545-4d88-a05a-aa5344d46c66",
+          "score": 0.0317,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_01_2016",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_01_2016"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "f816b1f2-246a-41cd-8334-d501939d6d7d",
+          "score": 0.0312,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_17_2018",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_17_2018"
+        }
+      ]
+    },
+    {
+      "id": "PREC_07",
+      "type": "precedent",
+      "category": "Án lệ hình sự",
+      "query": "hành vi giật dây chuyền hoặc lén lút trộm cắp tài sản bị người đuổi theo đã dùng hung khí chống trả ngay tức khắc để giữ tài sản chuyển hóa tội cướp tài sản",
+      "target": "Án lệ 47/2021/AL",
+      "first_target_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_3": 0.6667,
+      "recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.5,
+      "isolation_passed": true,
+      "top_retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": "604ae80f-3461-4186-865d-73592484092c",
+          "score": 0.0333,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_47_2021",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": null,
+          "precedent_id": "anle_47_2021"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "f00853db-7fcb-470f-8fd1-804301e57b15",
+          "score": 0.0328,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_47_2021",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": null,
+          "precedent_id": "anle_47_2021"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "5a561624-40b6-4518-b5e3-4677343634ab",
+          "score": 0.0323,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_01_2016",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_01_2016"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "f816b1f2-246a-41cd-8334-d501939d6d7d",
+          "score": 0.0319,
+          "cosine_similarity": 0.7739,
+          "label": "Án lệ anle_17_2018",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_17_2018"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "f37e9a6e-5d85-4828-b005-cf35de516df3",
+          "score": 0.0317,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_57_2023",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_57_2023"
+        }
+      ]
+    },
+    {
+      "id": "PREC_08",
+      "type": "precedent",
+      "category": "Án lệ hình sự",
+      "query": "dùng thủ đoạn gian dối đưa thông tin sai sự thật về quyền sở hữu đất đai làm giả giấy tờ để người mua tin tưởng chuyển tiền nhằm chiếm đoạt tài sản",
+      "target": "Án lệ 57/2023/AL",
+      "first_target_rank": 2,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "reciprocal_rank": 0.5,
+      "precision_at_3": 0.6667,
+      "recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.5938,
+      "isolation_passed": true,
+      "top_retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": "f00853db-7fcb-470f-8fd1-804301e57b15",
+          "score": 0.0351,
+          "cosine_similarity": 0.7815,
+          "label": "Án lệ anle_47_2021",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_47_2021"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "71d9c9ea-100c-4acb-83c0-4f2ab6f03b7e",
+          "score": 0.0333,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_57_2023",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": null,
+          "precedent_id": "anle_57_2023"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "f37e9a6e-5d85-4828-b005-cf35de516df3",
+          "score": 0.0328,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_57_2023",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": null,
+          "precedent_id": "anle_57_2023"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "f816b1f2-246a-41cd-8334-d501939d6d7d",
+          "score": 0.0327,
+          "cosine_similarity": 0.7632,
+          "label": "Án lệ anle_17_2018",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": null,
+          "precedent_id": "anle_17_2018"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "f9996c37-f1fb-4eef-98d1-ecf7abb6e197",
+          "score": 0.0323,
+          "cosine_similarity": 0.5,
+          "label": "Án lệ anle_57_2023",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": null,
+          "precedent_id": "anle_57_2023"
+        }
+      ]
+    },
+    {
+      "id": "LAW_01",
+      "type": "legal_doc",
+      "category": "Văn bản QPPL",
+      "query": "hành vi cướp giật tài sản của người đi đường trên phố rồi nhanh chóng tẩu thoát",
+      "target": "Điều 171 BLHS 2015",
+      "first_target_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_3": 0.6667,
+      "recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.5,
+      "isolation_passed": true,
+      "top_retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": "d9490482-647d-4dc0-b2ea-053fa5b5ce22",
+          "score": 0.0333,
+          "cosine_similarity": 0.5,
+          "label": "Điều 171",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "c308769a-452c-4de0-87cd-d712f6053b43",
+          "score": 0.0328,
+          "cosine_similarity": 0.5,
+          "label": "Điều 91",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "786eda08-7515-4423-b412-1b30da5917f4",
+          "score": 0.0323,
+          "cosine_similarity": 0.5,
+          "label": "Điều 91",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "e819efd1-e7ab-4ba2-8de2-95a1632db752",
+          "score": 0.0317,
+          "cosine_similarity": 0.5,
+          "label": "Điều 14",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "3bad1b59-7cf4-4f4d-8414-7ad4f2cbbd20",
+          "score": 0.0312,
+          "cosine_similarity": 0.5,
+          "label": "Điều 12",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        }
+      ]
+    },
+    {
+      "id": "LAW_02",
+      "type": "legal_doc",
+      "category": "Văn bản QPPL",
+      "query": "hành vi vận chuyển trái phép 500 gam chất ma túy heroine qua biên giới không nhằm mục đích mua bán",
+      "target": "Điều 250 BLHS 2015",
+      "first_target_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_3": 0.3333,
+      "recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.5,
+      "isolation_passed": true,
+      "top_retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": "d0e2df2b-f206-4bf4-a7f2-1c19408edbc9",
+          "score": 0.0333,
+          "cosine_similarity": 0.5,
+          "label": "Điều 250",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "c835c8ec-5c4e-4de2-8264-2a8bc3bf70de",
+          "score": 0.0328,
+          "cosine_similarity": 0.5,
+          "label": "Điều 253",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "4c341a14-18ce-4955-a992-037811e682e6",
+          "score": 0.0323,
+          "cosine_similarity": 0.5,
+          "label": "Điều 389",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "87f956db-db2b-4449-9769-b8a06076a856",
+          "score": 0.0317,
+          "cosine_similarity": 0.5,
+          "label": "Điều 249",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "786eda08-7515-4423-b412-1b30da5917f4",
+          "score": 0.0312,
+          "cosine_similarity": 0.5,
+          "label": "Điều 91",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        }
+      ]
+    },
+    {
+      "id": "LAW_03",
+      "type": "legal_doc",
+      "category": "Văn bản QPPL",
+      "query": "người tham gia giao thông đường bộ vi phạm quy định về an toàn giao thông gây tai nạn làm chết người có nồng độ cồn",
+      "target": "Điều 260 BLHS 2015",
+      "first_target_rank": 3,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "reciprocal_rank": 0.3333,
+      "precision_at_3": 0.3333,
+      "recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.5,
+      "isolation_passed": true,
+      "top_retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": "860cc111-d3d5-436a-a438-4e2fd5ccd3c0",
+          "score": 0.0333,
+          "cosine_similarity": 0.5,
+          "label": "Điều 264",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "dad62dc9-abd4-4fe9-80ba-99d1de77c631",
+          "score": 0.0328,
+          "cosine_similarity": 0.5,
+          "label": "Điều 263",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "62bf1ff4-e8cb-4bdf-8786-a360897b68ec",
+          "score": 0.0323,
+          "cosine_similarity": 0.5,
+          "label": "Điều 260",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "8858cfd0-19a1-4cc8-85d9-c0b44a4c7930",
+          "score": 0.0317,
+          "cosine_similarity": 0.5,
+          "label": "Điều 260",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "90a32248-743d-4b44-8f29-098f7b168ced",
+          "score": 0.0312,
+          "cosine_similarity": 0.5,
+          "label": "Điều 264",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        }
+      ]
+    },
+    {
+      "id": "LAW_04",
+      "type": "legal_doc",
+      "category": "Văn bản QPPL",
+      "query": "dùng vũ lực đe dọa dùng vũ lực ngay tức khắc làm tê liệt ý chí của nạn nhân nhằm chiếm đoạt tài sản",
+      "target": "Điều 168 BLHS 2015",
+      "first_target_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_3": 0.3333,
+      "recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.5,
+      "isolation_passed": true,
+      "top_retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": "ffa1e4fb-c79f-45c3-991c-1f9b5c4b900f",
+          "score": 0.0333,
+          "cosine_similarity": 0.5,
+          "label": "Điều 168",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "77b6ba71-77b7-4bec-a958-532e766c6788",
+          "score": 0.0328,
+          "cosine_similarity": 0.5,
+          "label": "Điều 170",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "53f0a5df-7a37-486b-9ba9-5d23821b3c12",
+          "score": 0.0323,
+          "cosine_similarity": 0.5,
+          "label": "Điều 330",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "4cacbd37-7332-4ec1-92cf-ce39235a2e96",
+          "score": 0.0317,
+          "cosine_similarity": 0.5,
+          "label": "Điều 384",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "79df1633-3c22-4e0b-b8e3-97803e73e04b",
+          "score": 0.0312,
+          "cosine_similarity": 0.5,
+          "label": "Điều 80",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        }
+      ]
+    },
+    {
+      "id": "LAW_05",
+      "type": "legal_doc",
+      "category": "Văn bản QPPL",
+      "query": "bằng thủ đoạn gian dối đưa thông tin không đúng sự thật nhằm chiếm đoạt tài sản của người khác trị giá trên 50 triệu đồng",
+      "target": "Điều 174 BLHS 2015",
+      "first_target_rank": 3,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "reciprocal_rank": 0.3333,
+      "precision_at_3": 0.3333,
+      "recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.5,
+      "isolation_passed": true,
+      "top_retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": "15ab23b7-33ca-4bf8-9450-8dbdea92f258",
+          "score": 0.0333,
+          "cosine_similarity": 0.5,
+          "label": "Điều 175",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "2bcc5318-7b07-4362-aaeb-4a1854bd4623",
+          "score": 0.0328,
+          "cosine_similarity": 0.5,
+          "label": "Điều 159",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "724be49f-e939-4b77-8b92-a60035091a92",
+          "score": 0.0323,
+          "cosine_similarity": 0.5,
+          "label": "Điều 174",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "4cacbd37-7332-4ec1-92cf-ce39235a2e96",
+          "score": 0.0317,
+          "cosine_similarity": 0.5,
+          "label": "Điều 384",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "834033bd-e450-41db-a02f-810f9534cad3",
+          "score": 0.0312,
+          "cosine_similarity": 0.5,
+          "label": "Điều 198",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        }
+      ]
+    },
+    {
+      "id": "LAW_06",
+      "type": "legal_doc",
+      "category": "Văn bản QPPL",
+      "query": "tội giết người có tính chất côn đồ hoặc vì động cơ đê hèn quy định như thế nào",
+      "target": "Điều 123 BLHS 2015",
+      "first_target_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_3": 0.3333,
+      "recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.5,
+      "isolation_passed": true,
+      "top_retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": "bd4b1119-fe61-4885-bf07-e45a740b4fb1",
+          "score": 0.0333,
+          "cosine_similarity": 0.5,
+          "label": "Điều 123",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "25ec5e71-6921-4eee-8078-7645e51cec94",
+          "score": 0.0328,
+          "cosine_similarity": 0.5,
+          "label": "Điều 52",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "52b1cfc7-4f84-42de-8fc8-89bb09a91b4f",
+          "score": 0.0323,
+          "cosine_similarity": 0.5,
+          "label": "Điều 125",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "6478e610-5216-4bb7-beb2-02b9e5a6b405",
+          "score": 0.0317,
+          "cosine_similarity": 0.5,
+          "label": "Điều 133",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "fbe1c3bd-13a6-41aa-a11e-413e52a4f177",
+          "score": 0.0312,
+          "cosine_similarity": 0.5,
+          "label": "Điều 389",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        }
+      ]
+    },
+    {
+      "id": "LAW_07",
+      "type": "legal_doc",
+      "category": "Văn bản QPPL",
+      "query": "cố ý gây thương tích hoặc gây tổn hại cho sức khỏe của người khác mà dùng hung khí nguy hiểm",
+      "target": "Điều 134 BLHS 2015",
+      "first_target_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_3": 0.3333,
+      "recall_at_3": 1.0,
+      "mean_cosine_similarity": 0.5,
+      "isolation_passed": true,
+      "top_retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": "84331e96-a713-4661-a2cf-903043617b6c",
+          "score": 0.0333,
+          "cosine_similarity": 0.5,
+          "label": "Điều 134",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "64a1a079-0b3d-4497-b30c-ee1ce44be33d",
+          "score": 0.0328,
+          "cosine_similarity": 0.5,
+          "label": "Điều 136",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "071b592e-09b6-4d2c-84d0-f40f74e940a9",
+          "score": 0.0323,
+          "cosine_similarity": 0.5,
+          "label": "Điều 398",
+          "is_valid_source": true,
+          "matches_target": false,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "fdd33157-b8db-4ff0-a767-e04936cb7ede",
+          "score": 0.0317,
+          "cosine_similarity": 0.5,
+          "label": "Điều 134",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "c308769a-452c-4de0-87cd-d712f6053b43",
+          "score": 0.0312,
+          "cosine_similarity": 0.5,
+          "label": "Điều 91",
+          "is_valid_source": true,
+          "matches_target": true,
+          "legal_document_id": "c911b62a-511c-40b6-a454-abfe85593d6e",
+          "precedent_id": null
+        }
+      ]
+    }
+  ]
+}

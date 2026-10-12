@@ -1,0 +1,32 @@
+{
+  "id": "judgment_004_lua_dao",
+  "case_number": "14/2019/HS-ST",
+  "court": "Tòa án nhân dân tỉnh Bình Dương",
+  "court_level": "province",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2019-03-15",
+  "crime_type": "Tội lừa đảo chiếm đoạt tài sản",
+  "applicable_articles": [
+    "174"
+  ],
+  "defendant": {
+    "name": "Lê Thị C",
+    "dob": "1985-02-20",
+    "prior_convictions": 0
+  },
+  "facts_summary": "Bị cáo đưa ra thông tin gian dối có khả năng xin việc làm vào cơ quan nhà nước, nhận của 2 bị hại tổng số tiền 180.000.000 đồng rồi tiêu xài cá nhân không thực hiện cam kết.",
+  "aggravating_factors": [
+    "phạm tội 02 lần trở lên"
+  ],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "đã khắc phục bồi thường 100.000.000 đồng",
+    "con nhỏ dưới 36 tháng tuổi"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 3.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN TỈNH BÌNH DƯƠNG\nBẢN ÁN SỐ: 14/2019/HS-ST NGÀY 15/03/2019 VỀ TỘI LỪA ĐẢO CHIẾM ĐOẠT TÀI SẢN\n\nNỘI DUNG VỤ ÁN:\nTrong khoảng thời gian từ tháng 01/2018 đến tháng 06/2018, Lê Thị C tự xưng quen biết nhiều lãnh đạo, hứa hẹn xin chỉ tiêu vào biên chế nhà nước cho anh D và chị E, nhận tổng cộng 180.000.000 đồng. Sau khi nhận tiền, C không làm bất kỳ thủ tục nào mà đem trả nợ và tiêu xài cá nhân rồi cắt đứt liên lạc.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nBị cáo dùng thủ đoạn gian dối đưa ra thông tin không đúng sự thật nhằm chiếm đoạt tài sản của người khác trị giá từ 50 triệu đến dưới 200 triệu đồng. Hành vi thuộc điểm c khoản 2 Điều 174 BLHS 2015. Bị cáo có nhiều tình tiết giảm nhẹ theo Điều 51 BLHS 2015.\n\nQUYẾT ĐỊNH:\nÁp dụng điểm c khoản 2 Điều 174; điểm b, s khoản 1, khoản 2 Điều 51; điểm g khoản 1 Điều 52 BLHS 2015.\nXử phạt bị cáo Lê Thị C 03 (ba) năm tù."
+}

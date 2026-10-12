@@ -1,0 +1,33 @@
+{
+  "id": "judgment_002_cuop_tai_san",
+  "case_number": "22/2018/HS-ST",
+  "court": "Tòa án nhân dân quận 1, TP. Hồ Chí Minh",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2018-06-12",
+  "crime_type": "Tội cướp tài sản",
+  "applicable_articles": [
+    "168"
+  ],
+  "defendant": {
+    "name": "Nguyễn Văn A",
+    "dob": "1992-05-10",
+    "prior_convictions": 1
+  },
+  "facts_summary": "Bị cáo cùng một đồng phạm dùng xe máy áp sát, dùng bình xịt hơi cay và dao gấp khống chế bảo vệ cửa hàng tiện lợi, cướp số tiền mặt 45.000.000 đồng rồi tẩu thoát.",
+  "aggravating_factors": [
+    "phạm tội có tổ chức",
+    "dùng hung khí nguy hiểm",
+    "tái phạm"
+  ],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "gia đình bồi thường một phần"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 8.5,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN QUẬN 1, THÀNH PHỐ HỒ CHÍ MINH\nBẢN ÁN SỐ: 22/2018/HS-ST NGÀY 12/06/2018 VỀ TỘI CƯỚP TÀI SẢN\n\nNỘI DUNG VỤ ÁN:\nKhoảng 23 giờ ngày 15/03/2018, Nguyễn Văn A cùng một đối tượng chưa rõ lai lịch đi xe mô tô đến cửa hàng tiện lợi tại phường B, Quận 1. A dùng bình xịt hơi cay xịt vào mặt nhân viên bảo vệ và dùng dao gấp đe dọa ép nhân viên thu ngân mở két giao số tiền 45.000.000 đồng. Sau khi chiếm đoạt được tài sản, các đối tượng tẩu thoát. Ngày 20/03/2018, A bị cơ quan công an bắt giữ cùng tang vật.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nHành vi của bị cáo là rất nguy hiểm cho xã hội, trực tiếp xâm phạm đến quyền sở hữu tài sản và sức khỏe của người khác. Bị cáo phạm tội có tổ chức, sử dụng vũ khí, phương tiện nguy hiểm và có 01 tiền án chưa được xóa án tích, thuộc trường hợp tái phạm theo điểm d, đ khoản 2 Điều 168 BLHS 2015. Quá trình điều tra và tại phiên tòa, bị cáo thành khẩn khai báo, gia đình đã bồi thường 20.000.000 đồng nên được hưởng tình tiết giảm nhẹ tại điểm s, b khoản 1 Điều 51 BLHS 2015.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Nguyễn Văn A phạm 'Tội cướp tài sản'. Áp dụng điểm d, đ khoản 2 Điều 168; điểm b, s khoản 1 Điều 51; điểm h khoản 1 Điều 52 BLHS 2015.\nXử phạt bị cáo Nguyễn Văn A 08 (tám) năm 06 (sáu) tháng tù."
+}

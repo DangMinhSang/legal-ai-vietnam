@@ -1,0 +1,32 @@
+{
+  "id": "judgment_018_giao_thong_khong_bang_lai",
+  "case_number": "26/2024/HS-ST",
+  "court": "Tòa án nhân dân huyện Hóc Môn, TP. Hồ Chí Minh",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2024-05-10",
+  "crime_type": "Tội vi phạm quy định về tham gia giao thông đường bộ",
+  "applicable_articles": [
+    "260"
+  ],
+  "defendant": {
+    "name": "Vũ Hải U",
+    "dob": "2003-08-08",
+    "prior_convictions": 0
+  },
+  "facts_summary": "Bị cáo chưa có giấy phép lái xe ô tô nhưng vẫn mượn xe điều khiển gây tai nạn làm tử vong 01 người đi bộ qua đường.",
+  "aggravating_factors": [
+    "không có giấy phép lái xe"
+  ],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "bồi thường gia đình nạn nhân 120 triệu",
+    "xin giảm nhẹ"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 3.5,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN HUYỆN HÓC MÔN, TP HỒ CHÍ MINH\nBẢN ÁN SỐ: 26/2024/HS-ST NGÀY 10/05/2024\n\nQUYẾT ĐỊNH:\nÁp dụng điểm a khoản 2 Điều 260; điểm b, s khoản 1, khoản 2 Điều 51 BLHS 2015.\nXử phạt Vũ Hải U 03 (ba) năm 06 (sáu) tháng tù."
+}

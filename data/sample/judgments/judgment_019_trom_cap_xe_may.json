@@ -1,0 +1,32 @@
+{
+  "id": "judgment_019_trom_cap_xe_may",
+  "case_number": "18/2017/HS-ST",
+  "court": "Tòa án nhân dân quận Đống Đa, thành phố Hà Nội",
+  "court_level": "district",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2017-04-12",
+  "crime_type": "Tội trộm cắp tài sản",
+  "applicable_articles": [
+    "173"
+  ],
+  "defendant": {
+    "name": "Đỗ Văn D",
+    "dob": "1994-06-15",
+    "birth_year": 1994,
+    "prior_convictions": 0
+  },
+  "facts_summary": "Khoảng 19 giờ ngày 10/01/2017, Đỗ Văn D đi bộ qua ngõ phố X, phát hiện xe máy Honda Wave của anh N dựng trước cửa nhà không khóa cổ, cắm sẵn chìa khóa. D lén lút tiếp cận rồi nổ máy điều khiển xe tẩu thoát. Hội đồng định giá tài sản kết luận chiếc xe có giá trị 14.500.000 đồng.",
+  "aggravating_factors": [],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "ăn năn hối cải",
+    "phạm tội lần đầu thuộc trường hợp ít nghiêm trọng",
+    "đã thu hồi tài sản trả cho bị hại"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "suspended",
+  "sentence_years": 1.0,
+  "suspended": true,
+  "full_text": "TÒA ÁN NHÂN DÂN QUẬN ĐỐNG ĐA, THÀNH PHỐ HÀ NỘI\nBẢN ÁN SỐ: 18/2017/HS-ST NGÀY 12/04/2017 VỀ TỘI TRỘM CẮP TÀI SẢN\n\nNỘI DUNG VỤ ÁN:\nKhoảng 19 giờ ngày 10/01/2017, Đỗ Văn D đi bộ qua ngõ phố X thuộc phường Q, quận Đống Đa, phát hiện xe máy Honda Wave biển kiểm soát 29E1-234.56 của anh Nguyễn Văn N dựng trước cửa nhà không người trông coi, chìa khóa vẫn cắm ở ổ khóa điện. D nảy sinh ý định chiếm đoạt nên lại gần mở khóa xe nổ máy tẩu thoát. Đến ngày 12/01/2017, D mang xe đi tiêu thụ thì bị tổ tuần tra Công an quận Đống Đa phát hiện bắt giữ. Kết luận định giá tài sản xác định chiếc xe trị giá 14.500.000 đồng.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nHành vi lén lút chiếm đoạt tài sản của bị cáo trị giá 14.500.000 đồng đã cấu thành tội 'Trộm cắp tài sản' theo khoản 1 Điều 173 BLHS 2015. Bị cáo chưa có tiền án tiền sự, phạm tội lần đầu thuộc trường hợp ít nghiêm trọng. Quá trình điều tra và tại phiên tòa thành khẩn khai báo, tài sản đã thu hồi trả lại bị hại. Xét bị cáo có nơi cư trú rõ ràng, đủ điều kiện hưởng án treo theo Điều 65 BLHS.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Đỗ Văn D phạm 'Tội trộm cắp tài sản'.\nÁp dụng khoản 1 Điều 173; điểm i, s khoản 1, khoản 2 Điều 51; Điều 65 BLHS 2015.\nXử phạt bị cáo Đỗ Văn D 01 (một) năm tù cho hưởng án treo, thời gian thử thách là 02 (hai) năm."
+}

@@ -1,0 +1,32 @@
+{
+  "id": "judgment_013_cuop_tai_san_ngan_hang",
+  "case_number": "52/2022/HS-ST",
+  "court": "Tòa án nhân dân tỉnh Bình Dương",
+  "court_level": "province",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2022-08-25",
+  "crime_type": "Tội cướp tài sản",
+  "applicable_articles": [
+    "168"
+  ],
+  "defendant": {
+    "name": "Dương Văn P",
+    "dob": "1991-07-07",
+    "prior_convictions": 0
+  },
+  "facts_summary": "Bị cáo mang súng giả và vật giống mìn tự chế vào phòng giao dịch ngân hàng uy hiếp nhân viên, cướp đi số tiền 800.000.000 đồng rồi bỏ trốn. Bị bắt sau 48 giờ cùng toàn bộ số tiền.",
+  "aggravating_factors": [
+    "dùng thủ đoạn nguy hiểm",
+    "chiếm đoạt tài sản giá trị đặc biệt lớn"
+  ],
+  "mitigating_factors": [
+    "thành khẩn khai báo",
+    "toàn bộ tài sản đã được thu hồi"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 18.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN TỈNH BÌNH DƯƠNG\nBẢN ÁN SỐ: 52/2022/HS-ST NGÀY 25/08/2022 VỀ TỘI CƯỚP TÀI SẢN\n\nQUYẾT ĐỊNH:\nÁp dụng điểm a khoản 4 Điều 168; điểm s khoản 1, khoản 2 Điều 51 BLHS 2015.\nXử phạt Dương Văn P 18 (mười tám) năm tù."
+}

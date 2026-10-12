@@ -1,0 +1,33 @@
+{
+  "id": "judgment_032_giet_nguoi_khoan_1_dac_biet_nghiem_trong",
+  "case_number": "25/2020/HS-ST",
+  "court": "Tòa án nhân dân thành phố Hà Nội",
+  "court_level": "province",
+  "judgment_type": "first_instance",
+  "legal_domain": "criminal",
+  "judgment_date": "2020-07-08",
+  "crime_type": "Tội giết người",
+  "applicable_articles": [
+    "123"
+  ],
+  "defendant": {
+    "name": "Tạ Đình R",
+    "dob": "1985-08-14",
+    "birth_year": 1985,
+    "prior_convictions": 2
+  },
+  "facts_summary": "Tối ngày 12/03/2020, tại ngõ phố Khâm Thiên, sau khi uống rượu, Tạ Đình R mang theo thanh kiếm tự chế dài 80cm sang nhà hàng xóm là ông C đâm liên tiếp nhiều nhát vào ngực và bụng nạn nhân do mâu thuẫn tranh chấp ranh giới đất đai kéo dài. Nạn nhân tử vong tại chỗ do thủng tim và phổi.",
+  "aggravating_factors": [
+    "có tính chất côn đồ",
+    "dùng hung khí nguy hiểm",
+    "tái phạm nguy hiểm"
+  ],
+  "mitigating_factors": [
+    "thành khẩn khai báo"
+  ],
+  "verdict": "guilty",
+  "sentence_type": "imprisonment",
+  "sentence_years": 20.0,
+  "suspended": false,
+  "full_text": "TÒA ÁN NHÂN DÂN THÀNH PHỐ HÀ NỘI\nBẢN ÁN SỐ: 25/2020/HS-ST NGÀY 08/07/2020 VỀ TỘI GIẾT NGƯỜI\n\nNỘI DUNG VỤ ÁN:\nTối ngày 12/03/2020, do tranh chấp đất đai ngõ đi chung, Tạ Đình R cầm kiếm tự chế xông thẳng vào nhà ông Nguyễn Văn C. Khi ông C đang ngồi uống trà, R vung kiếm chém và đâm 03 nhát vào ngực và bụng ông C. Vợ ông C tri hô thì R bỏ chạy khỏi hiện trường. Ông C được đưa đi cấp cứu nhưng tử vong trước khi tới bệnh viện.\n\nNHẬN ĐỊNH CỦA TÒA ÁN:\nHành vi của bị cáo có tính chất côn đồ, sử dụng hung khí nguy hiểm tước đoạt tính mạng người khác một cách dã man, phạm vào điểm n khoản 1 Điều 123 BLHS 2015. Bị cáo có 02 tiền án về tội cố ý gây thương tích và cướp giật, chưa được xóa án tích, lần phạm tội này thuộc trường hợp tái phạm nguy hiểm theo điểm h khoản 2 Điều 52 BLHS. Hành vi đặc biệt nguy hiểm cho xã hội, cần áp dụng mức hình phạt tù có thời hạn cao nhất.\n\nQUYẾT ĐỊNH:\nTuyên bố bị cáo Tạ Đình R phạm 'Tội giết người'.\nÁp dụng điểm n khoản 1 Điều 123; điểm s khoản 1 Điều 51; điểm h khoản 2 Điều 52 BLHS 2015.\nXử phạt bị cáo Tạ Đình R 20 (hai mươi) năm tù."
+}
