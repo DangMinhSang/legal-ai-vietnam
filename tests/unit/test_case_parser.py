@@ -85,3 +85,29 @@ def test_parse_two_inputs_forgery_case() -> None:
     def_dict = {d.name: d for d in parsed.defendants}
     assert "Điều 54" in def_dict["N"].individual_penalty_recommendation or "Án treo" in def_dict["N"].individual_penalty_recommendation
     assert "trực tiếp" in def_dict["Hoàng"].individual_penalty_recommendation.lower()
+
+
+def test_split_freeform_text_and_single_input() -> None:
+    from src.orchestration.case_parser import split_freeform_text
+
+    combined_text = (
+        "- Bị cáo: N Nữ sinh viên tại TP.HCM, hoàn cảnh khó khăn.\n"
+        "- Bị cáo: Hoàng Người trực tiếp làm giả CCCD.\n"
+        "- Bị hại: Trường Đại học S.\n"
+        "Vào ngày 19/01/2024, N đã thông qua mạng xã hội nhờ Hoàng làm giả CCCD nhằm thi hộ tiếng Anh VSTEP."
+    )
+
+    personal, case = split_freeform_text(combined_text)
+    assert "Bị cáo: N" in personal
+    assert "Bị cáo: Hoàng" in personal
+    assert "Bị hại: Trường" in personal
+    assert "thi hộ" in case
+
+    # Kiểm tra phân tích trực tiếp từ full_text (1 khung duy nhất)
+    parsed = parse_two_inputs(full_text=combined_text)
+    assert len(parsed.defendants) >= 2
+    names = [d.name for d in parsed.defendants]
+    assert "N" in names
+    assert "Hoàng" in names
+    assert "341" in parsed.detected_articles
+

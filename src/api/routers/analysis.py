@@ -16,6 +16,8 @@ from src.api.deps import get_db, get_embedding_service, get_llm_service
 from src.api.schemas.analysis import (
     AnalysisRequest,
     AnalysisResult,
+    AutoSplitRequest,
+    AutoSplitResponse,
     CaseOrchestrationRequest,
     CaseOrchestrationResponse,
     LegalProvisionItem,
@@ -479,16 +481,39 @@ async def orchestrate_case_analysis(
     )
 
 
+@router.post("/auto_split", response_model=APIResponse[AutoSplitResponse])
+async def auto_split_case_text(request: AutoSplitRequest) -> APIResponse[AutoSplitResponse]:
+    """Tự động phân tách văn bản tự do thành Thông tin cá nhân và Thông tin vụ án."""
+    from src.orchestration.case_parser import extract_parties, split_freeform_text
+
+    personal_info, case_info = split_freeform_text(request.text)
+    parties = extract_parties(personal_info)
+
+    return APIResponse[AutoSplitResponse](
+        success=True,
+        data=AutoSplitResponse(
+            personal_info=personal_info,
+            case_info=case_info,
+            parties_count=len(parties),
+        ),
+        message="Phân tách văn bản tự do thành công",
+    )
+
+
 @router.post("/web_analyze")
 async def web_analyze_case(
     request: WebAnalysisRequest,
     db: AsyncSession = Depends(get_db),
 ) -> dict[str, Any]:
-    """Phân tích vụ án từ 2 khung nhập liệu duy nhất phục vụ Web Demo."""
+    """Phân tích vụ án từ 2 khung nhập liệu hoặc 1 văn bản tự do phục vụ Web Demo."""
     from src.orchestration.case_parser import parse_two_inputs
     from src.orchestration.orchestrator import CaseAnalysisOrchestrator
 
-    parsed = parse_two_inputs(request.personal_info, request.case_info)
+    parsed = parse_two_inputs(
+        personal_info=request.personal_info,
+        case_info=request.case_info,
+        full_text=request.full_text,
+    )
 
     orchestrator = CaseAnalysisOrchestrator()
     output = await orchestrator.analyze_case(

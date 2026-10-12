@@ -194,10 +194,111 @@ def extract_parties(personal_info: str) -> list[PartyInfo]:
     return parties
 
 
-def parse_two_inputs(personal_info: str, case_info: str) -> ParsedCaseInput:
-    """Chuyển đổi 2 khung nhập liệu thành dữ liệu cấu trúc và vector đặc trưng phục vụ suy luận."""
-    # 1. Phân tích các đương sự từ Khung 1
+def split_freeform_text(text: str) -> tuple[str, str]:
+    """Tự động phân tách một đoạn văn bản tự do thành 2 phần:
+    1. personal_info: Thông tin các đương sự (bị cáo, bị hại, nhân thân).
+    2. case_info: Tình tiết, diễn biến vụ án, hành vi phạm tội, hậu quả.
+    """
+    if not text or not text.strip():
+        return "", ""
+
+    lines = [ln.strip() for ln in text.split("\n") if ln.strip()]
+
+    personal_lines: list[str] = []
+    case_lines: list[str] = []
+    current_mode: str | None = None
+
+    for line in lines:
+        lower = line.lower()
+        if re.search(
+            r"^(?:[i1]|phần\s+[1i]|mục\s+[1i])?[\.\:\s\-]*\s*(?:lý\s+lịch|nhân\s+thân|thông\s+tin\s+cá\s+nhân|danh\s+sách\s+bị\s+cáo|đương\s+sự|bị\s+cáo\s+gồm)\b",
+            lower,
+        ):
+            current_mode = "personal"
+            continue
+        elif re.search(
+            r"^(?:[ii2]|phần\s+[2ii]|mục\s+[2ii])?[\.\:\s\-]*\s*(?:nội\s+dung\s+vụ\s+án|tình\s+tiết\s+vụ\s+án|diễn\s+biến|hành\s+vi\s+phạm\s+tội|kết\s+quả\s+điều\s+tra|nội\s+dung\s+hành\s+vi)\b",
+            lower,
+        ):
+            current_mode = "case"
+            continue
+
+        if current_mode == "personal":
+            personal_lines.append(line)
+        elif current_mode == "case":
+            case_lines.append(line)
+        else:
+            # Chưa có phân mục: phân loại theo từng dòng
+            if re.match(
+                r"^[\s\-*•\d\.]*(?:bị\s+cáo|bị\s+hại|người\s+bị\s+hại|nạn\s+nhân|người\s+có\s+quyền\s+lợi|người\s+liên\s+quan)\b",
+                lower,
+            ):
+                personal_lines.append(line)
+            elif (
+                any(
+                    kw in lower
+                    for kw in [
+                        "sinh năm",
+                        "sn 19",
+                        "sn 20",
+                        "trú tại",
+                        "hộ khẩu",
+                        "nghề nghiệp",
+                        "tiền án",
+                        "tiền sự",
+                    ]
+                )
+                and len(case_lines) == 0
+            ):
+                personal_lines.append(line)
+            else:
+                case_lines.append(line)
+
+    if not personal_lines and case_lines:
+        # Nếu toàn bộ dồn vào case_lines, thử bóc tách theo câu
+        p_sub: list[str] = []
+        c_sub: list[str] = []
+        sentences = re.split(r"(?<=[.!?])\s+", text)
+        for s in sentences:
+            s_low = s.lower()
+            if (
+                any(kw in s_low for kw in ["bị cáo", "bị hại", "sinh năm", "trú tại", "nhân thân"])
+                and ("khoảng" not in s_low and "gây án" not in s_low)
+            ):
+                p_sub.append(s)
+            else:
+                c_sub.append(s)
+        if p_sub:
+            return "\n".join(p_sub), "\n".join(c_sub)
+        return "Bị cáo trong vụ án", text
+
+    return "\n".join(personal_lines), "\n".join(case_lines)
+
+
+def parse_two_inputs(
+    personal_info: str = "",
+    case_info: str = "",
+    full_text: str = "",
+) -> ParsedCaseInput:
+    """Chuyển đổi 2 khung nhập liệu hoặc 1 văn bản tự do thành dữ liệu cấu trúc và vector đặc trưng phục vụ suy luận."""
+    if full_text and (not personal_info or not case_info):
+        p_split, c_split = split_freeform_text(full_text)
+        personal_info = personal_info or p_split
+        case_info = case_info or c_split
+    elif not personal_info and case_info:
+        p_split, c_split = split_freeform_text(case_info)
+        personal_info = p_split
+        case_info = c_split
+
+    # 1. Phân tích các đương sự từ Khung 1 (kèm fallback tìm trong case_info nếu Khung 1 trống)
     parties = extract_parties(personal_info)
+    if (len(parties) <= 1 and parties[0].name == "Bị cáo chính") and any(
+        kw in case_info.lower() for kw in ["bị cáo:", "bị hại:"]
+    ):
+        fallback_parties = extract_parties(case_info)
+        if len(fallback_parties) > len(parties):
+            parties = fallback_parties
+
     defendants = [p for p in parties if p.role == "Bị cáo"]
     victims = [p for p in parties if p.role == "Bị hại"]
     if not defendants and parties:

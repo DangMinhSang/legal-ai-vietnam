@@ -51,29 +51,122 @@
         </div>
       </div>
 
-      <!-- Quick Preset Buttons -->
-      <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap items-center gap-2">
-        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Chọn nhanh mẫu vụ án:</span>
-        <button onclick="loadPreset('forgery_vstep')" class="text-xs bg-amber-50 hover:bg-amber-100 hover:text-amber-900 text-amber-800 font-bold px-3 py-1.5 rounded-lg border border-amber-300 transition shadow-sm">
-          🪪 1. Làm giả CCCD & thi hộ VSTEP (Điều 341)
+      <!-- Quick Preset Buttons & Model Selector -->
+      <div class="mt-4 pt-4 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Mẫu vụ án:</span>
+          <button onclick="loadPreset('forgery_vstep')" class="text-xs bg-amber-50 hover:bg-amber-100 hover:text-amber-900 text-amber-800 font-bold px-3 py-1.5 rounded-lg border border-amber-300 transition shadow-sm">
+            🪪 1. Làm giả CCCD thi hộ VSTEP (Đ.341)
+          </button>
+          <button onclick="loadPreset('injury')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
+            🔪 2. Cố ý gây thương tích (Đ.134)
+          </button>
+          <button onclick="loadPreset('robbery')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
+            🔫 3. Cướp tài sản (Đ.168)
+          </button>
+          <button onclick="loadPreset('snatching')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
+            🏍️ 4. Cướp giật tài sản (Đ.171)
+          </button>
+          <button onclick="loadPreset('not_guilty')" class="text-xs bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
+            🕊️ 5. Vô tội
+          </button>
+        </div>
+
+        <!-- AI Engine Selector -->
+        <div class="flex items-center gap-2 bg-slate-50 p-2 rounded-xl border border-slate-200">
+          <label for="model_engine_select" class="text-xs font-bold text-slate-600 flex items-center gap-1">
+            <span>🧠</span> Mô hình LLM:
+          </label>
+          <select id="model_engine_select" onchange="changeModelEngine()" class="text-xs rounded-lg border-slate-300 border bg-white px-2.5 py-1 text-slate-800 font-medium focus:ring-1 focus:ring-indigo-500">
+            <option value="offline_hybrid" selected>⚙️ Heuristic & Random Forest (Tự động - Offline 100%)</option>
+            <option value="qwen_ollama">🧠 Qwen2.5 (3B / 7B qua Ollama Local)</option>
+            <option value="vietnamese_llm">🇻🇳 Vietnamese LLM (PhoGPT / Vistral-7B)</option>
+            <option value="claude_openai">☁️ Claude 3.5 Sonnet / GPT-4o (Cloud API)</option>
+            <option value="kaggle_gpu">⚡ Kaggle Cloud GPU (Hỗ trợ fine-tune & host)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Mode Switcher (Tabs) -->
+    <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center gap-2 bg-slate-200/70 p-1 rounded-xl">
+        <button
+          id="tab_single_btn"
+          onclick="switchInputTab('single')"
+          class="px-4 py-2 rounded-lg text-xs font-bold transition shadow-sm bg-white text-indigo-700 flex items-center gap-1.5"
+        >
+          <span>⚡</span> CHẾ ĐỘ 1 KHUNG NHẬP TỰ DO (DỄ DÀNG NHẤT)
         </button>
-        <button onclick="loadPreset('injury')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
-          🔪 2. Cố ý gây thương tích (Điều 134)
+        <button
+          id="tab_double_btn"
+          onclick="switchInputTab('double')"
+          class="px-4 py-2 rounded-lg text-xs font-medium transition text-slate-600 hover:text-slate-900 flex items-center gap-1.5"
+        >
+          <span>📝</span> CHẾ ĐỘ 2 KHUNG CHI TIẾT (CÁ NHÂN & VỤ ÁN)
         </button>
-        <button onclick="loadPreset('robbery')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
-          🔫 3. Cướp tài sản (Điều 168)
-        </button>
-        <button onclick="loadPreset('snatching')" class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
-          🏍️ 4. Cướp giật tài sản (Điều 171)
-        </button>
-        <button onclick="loadPreset('not_guilty')" class="text-xs bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 font-medium px-3 py-1.5 rounded-lg border border-slate-200 transition">
-          🕊️ 5. Vô tội / Không phạm tội
+      </div>
+
+      <div class="text-xs text-slate-500 hidden md:block">
+        Mẹo: Có thể dán trực tiếp toàn bộ bản tóm tắt hoặc tải file đính kèm
+      </div>
+    </div>
+
+    <!-- Mode 1: Single Free-Form Input Box -->
+    <div id="single_input_container" class="bg-white rounded-xl shadow-sm border border-indigo-200 p-6 mb-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-3">
+        <div>
+          <label for="freeform_text" class="text-base font-bold text-slate-800 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-bold">★</span>
+            TOÀN VĂN HỒ SƠ / CÁO TRẠNG / TÓM TẮT VỤ ÁN TỰ DO
+          </label>
+          <p class="text-xs text-slate-500 mt-0.5">
+            Dán toàn bộ văn bản vụ việc vào đây. Hệ thống sẽ tự động bóc tách danh sách bị cáo, bị hại, tình tiết vụ án và khung hình phạt.
+          </p>
+        </div>
+
+        <!-- File Upload Action -->
+        <div class="flex items-center gap-2">
+          <input type="file" id="case_file_upload" accept=".txt,.pdf,.docx" class="hidden" onchange="handleFileUpload(event)">
+          <button
+            onclick="document.getElementById('case_file_upload').click()"
+            class="text-xs bg-slate-100 hover:bg-indigo-50 hover:text-indigo-700 text-slate-700 font-semibold px-3 py-1.5 rounded-lg border border-slate-300 transition flex items-center gap-1.5"
+          >
+            <span>📂</span> Tải file (.txt, .pdf, .docx)
+          </button>
+        </div>
+      </div>
+
+      <textarea
+        id="freeform_text"
+        rows="12"
+        class="w-full text-sm rounded-lg border-slate-300 border focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 p-3.5 bg-slate-50/50 font-mono leading-relaxed"
+        placeholder="Dán toàn bộ nội dung vụ việc hoặc bản cáo trạng vào đây...
+Ví dụ:
+- Bị cáo: N, nữ sinh viên năm cuối tại TP.HCM, gia đình hoàn cảnh khó khăn...
+- Bị cáo: Hoàng, người làm giả trực tiếp...
+- Bị cáo: P, người môi giới...
+Vào ngày 19/01/2024, N đã thông qua P liên hệ Hoàng để làm CCCD giả thi hộ VSTEP cho M và A..."
+      ></textarea>
+
+      <div class="mt-3 flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100">
+        <div class="flex items-center gap-2">
+          <button
+            onclick="triggerAutoSplit()"
+            class="text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-800 font-bold px-3 py-1.5 rounded-lg border border-indigo-200 transition flex items-center gap-1"
+          >
+            <span>⚡</span> Tự động phân tách sang 2 khung chi tiết
+          </button>
+          <span id="split_status_msg" class="text-xs text-emerald-600 font-medium hidden">✓ Đã phân tách xong!</span>
+        </div>
+        <button onclick="document.getElementById('freeform_text').value=''" class="text-xs text-slate-400 hover:text-slate-600">
+          Xóa trắng
         </button>
       </div>
     </div>
 
-    <!-- The 2 Input Frames -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <!-- Mode 2: The 2 Input Frames (Hidden by default or toggled) -->
+    <div id="double_input_container" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
 
       <!-- Khung 1: Thông tin cá nhân -->
       <div class="bg-white rounded-xl shadow-sm border border-indigo-200 p-6 flex flex-col justify-between">
@@ -299,21 +392,133 @@ Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng
       }
     };
 
+    let currentInputMode = 'single';
+
+    function switchInputTab(mode) {
+      currentInputMode = mode;
+      const singleContainer = document.getElementById('single_input_container');
+      const doubleContainer = document.getElementById('double_input_container');
+      const tabSingleBtn = document.getElementById('tab_single_btn');
+      const tabDoubleBtn = document.getElementById('tab_double_btn');
+
+      if (mode === 'single') {
+        singleContainer.classList.remove('hidden');
+        doubleContainer.classList.add('hidden');
+        tabSingleBtn.className = 'px-4 py-2 rounded-lg text-xs font-bold transition shadow-sm bg-white text-indigo-700 flex items-center gap-1.5';
+        tabDoubleBtn.className = 'px-4 py-2 rounded-lg text-xs font-medium transition text-slate-600 hover:text-slate-900 flex items-center gap-1.5';
+      } else {
+        singleContainer.classList.add('hidden');
+        doubleContainer.classList.remove('hidden');
+        tabDoubleBtn.className = 'px-4 py-2 rounded-lg text-xs font-bold transition shadow-sm bg-white text-indigo-700 flex items-center gap-1.5';
+        tabSingleBtn.className = 'px-4 py-2 rounded-lg text-xs font-medium transition text-slate-600 hover:text-slate-900 flex items-center gap-1.5';
+      }
+    }
+
+    function changeModelEngine() {
+      const select = document.getElementById('model_engine_select');
+      const val = select.value;
+      const labels = {
+        offline_hybrid: "Đang dùng: Heuristic Rules + Random Forest (Offline 100%, Phản hồi tức thì)",
+        qwen_ollama: "Đang dùng: Qwen2.5 (3B / 7B qua Ollama Local Server - http://localhost:11434)",
+        vietnamese_llm: "Đang dùng: Vietnamese LLM (PhoGPT / Vistral-7B Local & FastEmbed)",
+        claude_openai: "Đang dùng: Claude 3.5 Sonnet / OpenAI GPT-4o (Cloud API)",
+        kaggle_gpu: "Đang dùng: Kaggle Cloud GPU Endpoint (Host qua Ngrok/FastAPI trên T4 GPU)"
+      };
+      console.log("[Engine Changed]:", labels[val]);
+    }
+
     function loadPreset(key) {
       const p = PRESETS[key];
       if (p) {
         document.getElementById('personal_info').value = p.personal;
         document.getElementById('case_info').value = p.case;
+        document.getElementById('freeform_text').value = `${p.personal}\n\n${p.case}`;
+      }
+    }
+
+    async function triggerAutoSplit() {
+      const text = document.getElementById('freeform_text').value.trim();
+      if (!text) {
+        alert("Vui lòng nhập hoặc dán nội dung vào ô Toàn văn hồ sơ trước khi phân tách!");
+        return;
+      }
+
+      try {
+        const resp = await fetch('/api/v1/analysis/auto_split', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: text })
+        });
+        if (!resp.ok) throw new Error("Không thể phân tách văn bản tự động");
+        const json = await resp.json();
+        const res = json.data;
+
+        document.getElementById('personal_info').value = res.personal_info || "";
+        document.getElementById('case_info').value = res.case_info || "";
+
+        // Chuyển sang Tab 2 Khung để người dùng nhìn thấy kết quả
+        switchInputTab('double');
+
+        const statusMsg = document.getElementById('split_status_msg');
+        statusMsg.textContent = `✓ Đã phân tách ${res.parties_count || 1} đương sự sang 2 khung!`;
+        statusMsg.classList.remove('hidden');
+        setTimeout(() => statusMsg.classList.add('hidden'), 4000);
+      } catch (e) {
+        alert("Lỗi phân tách: " + e.message);
+      }
+    }
+
+    function handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const ext = file.name.split('.').pop().toLowerCase();
+      if (ext === 'txt') {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          document.getElementById('freeform_text').value = e.target.result;
+        };
+        reader.readAsText(file, 'UTF-8');
+      } else {
+        // Tải lên endpoint parser của backend
+        const formData = new FormData();
+        formData.append('file', file);
+        fetch('/api/v1/documents/upload', {
+          method: 'POST',
+          body: formData
+        })
+        .then(r => r.json())
+        .then(data => {
+          if (data && data.text) {
+            document.getElementById('freeform_text').value = data.text;
+          } else {
+            alert(`Đã nhận file ${file.name}. Vui lòng mở và copy nội dung dạng văn bản vào ô.`);
+          }
+        })
+        .catch(err => {
+          alert(`Đã chọn file ${file.name}. Nếu là PDF/DOCX, bạn có thể copy nội dung trực tiếp vào ô.`);
+        });
       }
     }
 
     async function analyzeCase() {
-      const personalInfo = document.getElementById('personal_info').value.trim();
-      const caseInfo = document.getElementById('case_info').value.trim();
+      let payload = {};
 
-      if (!personalInfo || !caseInfo) {
-        alert("Vui lòng nhập đầy đủ cả 2 khung: 1. Thông tin cá nhân và 2. Thông tin vụ án!");
-        return;
+      if (currentInputMode === 'single') {
+        const freeText = document.getElementById('freeform_text').value.trim();
+        if (!freeText) {
+          alert("Vui lòng nhập hoặc dán nội dung hồ sơ vụ án vào ô nhập liệu!");
+          return;
+        }
+        payload = { full_text: freeText };
+      } else {
+        const personalInfo = document.getElementById('personal_info').value.trim();
+        const caseInfo = document.getElementById('case_info').value.trim();
+        if (!personalInfo || !caseInfo) {
+          alert("Vui lòng nhập đầy đủ cả 2 khung: 1. Thông tin cá nhân và 2. Thông tin vụ án!");
+          return;
+        }
+        payload = { personal_info: personalInfo, case_info: caseInfo };
       }
 
       // UI loading state
@@ -328,10 +533,7 @@ Các vấn đề cần xác minh: vai trò và mức độ tham gia của từng
         const resp = await fetch('/api/v1/analysis/web_analyze', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            personal_info: personalInfo,
-            case_info: caseInfo
-          })
+          body: JSON.stringify(payload)
         });
 
         if (!resp.ok) {

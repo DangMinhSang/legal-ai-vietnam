@@ -318,7 +318,7 @@ legal-ai-vietnam/
 
 ## Trạng thái triển khai & Kết quả nghiên cứu
 
-Toàn bộ các thành phần cốt lõi của hệ thống đã được triển khai, kiểm thử và nghiệm thu khoa học với **111/111 bài kiểm thử vượt qua (100% Pass Rate)**:
+Toàn bộ các thành phần cốt lõi của hệ thống đã được triển khai, kiểm thử và nghiệm thu khoa học với **112/112 bài kiểm thử vượt qua (100% Pass Rate)**:
 
 ### Phase 1 - Nền tảng cốt lõi (MVP) — ĐÃ HOÀN THÀNH 100%
 
@@ -418,10 +418,10 @@ phải qua code review để kiểm tra temporal split.
 
 ## Kiểm định Tự động (Tests)
 
-Hệ thống sở hữu bộ kiểm thử tự động toàn diện với **111 test cases** bao phủ từ tầng xử lý văn bản, trích xuất thực thể, suy luận thời gian đến phát hiện rò rỉ dữ liệu và tích hợp API:
+Hệ thống sở hữu bộ kiểm thử tự động toàn diện với **112 test cases** bao phủ từ tầng xử lý văn bản, trích xuất thực thể, suy luận thời gian đến phát hiện rò rỉ dữ liệu và tích hợp API:
 
 ```bash
-# Chạy toàn bộ 111 tests (100% Passed)
+# Chạy toàn bộ 112 tests (100% Passed)
 pytest
 
 # Chỉ chạy các bài kiểm thử suy luận pháp lý thời gian (Temporal Legal Reasoning)

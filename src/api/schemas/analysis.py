@@ -92,9 +92,25 @@ class CaseOrchestrationResponse(BaseModel):
 
 
 class WebAnalysisRequest(BaseModel):
-    """Yêu cầu phân tích từ giao diện web với chính xác 2 khung nhập liệu."""
+    """Yêu cầu phân tích từ giao diện web (hỗ trợ cả 2 khung hoặc 1 khung tự do)."""
 
-    personal_info: str = Field(description="1. Thông tin cá nhân (Bị cáo, Bị hại, nhiều người)")
-    case_info: str = Field(description="2. Thông tin vụ án (Hành vi, thời gian, công cụ, hậu quả)")
+    personal_info: str = Field(default="", description="1. Thông tin cá nhân (Bị cáo, Bị hại, nhiều người)")
+    case_info: str = Field(default="", description="2. Thông tin vụ án (Hành vi, thời gian, công cụ, hậu quả)")
+    full_text: str = Field(default="", description="Toàn văn vụ án / cáo trạng tự do (tùy chọn)")
+
+
+class AutoSplitRequest(BaseModel):
+    """Yêu cầu tự động phân tách văn bản tự do thành 2 phần."""
+
+    text: str = Field(description="Toàn văn hồ sơ, cáo trạng hoặc tóm tắt vụ việc")
+
+
+class AutoSplitResponse(BaseModel):
+    """Kết quả tự động phân tách thành 2 khung nhập liệu."""
+
+    personal_info: str
+    case_info: str
+    parties_count: int = 0
+
 
 
